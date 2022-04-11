@@ -55,9 +55,12 @@ const CreateOven: React.FC<ICreateOvenProps> = ({ isOpen, onClose }) => {
   const [{ pkh: userAddress }] = useWallet();
   const { data: delegates } = useDelegates(userAddress);
 
-  const { bakerSelect, setBakerSelect, options: bakerOptions, handleBakerCreate } = useBakerSelect(
-    delegates,
-  );
+  const {
+    bakerSelect,
+    setBakerSelect,
+    options: bakerOptions,
+    handleBakerCreate,
+  } = useBakerSelect(delegates);
 
   const toast = useToast();
   const { t } = useTranslation(['common']);

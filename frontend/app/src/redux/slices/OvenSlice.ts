@@ -38,11 +38,6 @@ export const OvenSlice = createSlice({
   },
 });
 
-export const {
-  setExternalOvens,
-  setSortBy,
-  setRemoveOven,
-  setSearchValue,
-  setClear,
-} = OvenSlice.actions;
+export const { setExternalOvens, setSortBy, setRemoveOven, setSearchValue, setClear } =
+  OvenSlice.actions;
 export default OvenSlice.reducer;
