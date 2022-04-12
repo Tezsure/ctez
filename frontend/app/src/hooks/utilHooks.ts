@@ -19,9 +19,7 @@ import { cfmmError } from '../contracts/cfmm';
 import { openTxSubmittedModal } from '../redux/slices/UiSlice';
 import { useCtezBaseStats } from '../api/queries';
 
-type TUseOvenStats = (
-  oven: AllOvenDatum | undefined | null,
-) => {
+type TUseOvenStats = (oven: AllOvenDatum | undefined | null) => {
   stats: null | {
     ovenBalance: number;
     outStandingCtez: number;
@@ -102,9 +100,7 @@ const useOvenStats: TUseOvenStats = (oven) => {
   return { stats, baseStats: data };
 };
 
-type TUseOvenSummary = (
-  ovens: AllOvenDatum[] | undefined | null,
-) => {
+type TUseOvenSummary = (ovens: AllOvenDatum[] | undefined | null) => {
   stats: null | {
     totalBalance: number;
     totalOutstandingCtez: number;
@@ -301,9 +297,7 @@ const useTxLoader = (): ((
 
 type TOption = { label: string; value: string };
 
-type TUseBakerSelect = (
-  delegates: Baker[] | undefined,
-) => {
+type TUseBakerSelect = (delegates: Baker[] | undefined) => {
   bakerSelect: TOption | null;
   setBakerSelect: Dispatch<SetStateAction<TOption | null>>;
   options: OptionsOrGroups<TOption, GroupBase<TOption>>;
