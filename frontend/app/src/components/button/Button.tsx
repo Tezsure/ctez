@@ -61,7 +61,7 @@ const Button: React.FC<IButtonProps> = (props) => {
           px={6}
           color={colorMode === 'light' ? 'blue' : 'white'}
           borderRadius="5px"
-          onClick={(handleClick as unknown) as MouseEventHandler<HTMLDivElement>}
+          onClick={handleClick as unknown as MouseEventHandler<HTMLDivElement>}
         >
           {content}
         </Box>
@@ -94,7 +94,7 @@ const Button: React.FC<IButtonProps> = (props) => {
       _hover={{
         bgGradient: 'linear(to-r, #0F62FF, #6B5BD2)',
       }}
-      onClick={(handleClick as unknown) as MouseEventHandler<HTMLDivElement>}
+      onClick={handleClick as unknown as MouseEventHandler<HTMLDivElement>}
       rightIcon={props.rightIcon}
       leftIcon={props.leftIcon}
       sx={props.outerSx}
