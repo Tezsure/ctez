@@ -1,0 +1,9 @@
+.gradientcolortext{
+    background: linear-gradient(90.5deg, #0F62FF 8.62%, #6B5BD2 102.96%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: max-content;
+}
+.section-container{
+   padding-top: 30px;
+}
