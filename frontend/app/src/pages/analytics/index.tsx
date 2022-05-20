@@ -2,6 +2,8 @@ import { Box, Button, ButtonGroup, Center, Flex, Skeleton, SkeletonCircle, Table
 import React from 'react'
 import { useThemeColors } from '../../hooks/utilHooks';
 import './analytics.css';
+import GraphCtez from './graph_ctez';
+import GraphDrift from './graph_drift';
 
 
 const AnaluticsPage: React.FC = () => {
@@ -37,78 +39,8 @@ const AnaluticsPage: React.FC = () => {
                     Protocol
                 </Text>
                 <Flex direction='row' wrap='wrap' gridGap='10' >
-
-
-                    <Flex direction='column'
-                        borderRadius={16}
-                        backgroundColor={background}
-                        flex={1}
-                        paddingX='35px'
-                        paddingY='27px'
-                        gridGap={1}
-                    >
-
-                        <Flex justifyContent='space-between'>
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={600}
-                            >
-                                Ctez
-                            </Text>
-                            <ButtonGroup variant='ghost' textColor={textcolor} fontSize='12px' spacing='-1'>
-                                <Button fontSize='12px' textDecoration='underline'>1W</Button>
-                                <Button fontSize='12px' textDecoration='underline' >1M</Button>
-                                <Button fontSize='12px' textDecoration='underline'>ALL</Button>
-                            </ButtonGroup>
-
-                        </Flex>
-                        <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
-                            <Flex gridGap={4}>
-                                <Text>
-                                    Price
-                                </Text>
-                                <Text>
-                                    Target
-                                </Text>
-                            </Flex>
-                            <Text>Premium  <b>-0.01%</b></Text>
-                        </Flex>
-                        <Skeleton height='200px' minWidth='20px' />
-                    </Flex>
-
-
-
-
-
-                    <Flex direction='column'
-                        borderRadius={16}
-                        backgroundColor={background}
-                        flex={1}
-                        paddingX='35px'
-                        paddingY='27px'
-                        gridGap={6}
-                    >
-
-                        <Flex justifyContent='space-between'>
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={600}
-                            >
-                                Drift
-                            </Text>
-                            <ButtonGroup variant='ghost' textColor={textcolor} fontSize='12px' spacing='-1'>
-                                <Button fontSize='12px' textDecoration='underline'>1W</Button>
-                                <Button fontSize='12px' textDecoration='underline' >1M</Button>
-                                <Button fontSize='12px' textDecoration='underline'>ALL</Button>
-                            </ButtonGroup>
-
-                        </Flex>
-                        <Skeleton height='200px' minWidth='20px' />
-                    </Flex>
+                    <GraphCtez />
+                    <GraphDrift/>
                 </Flex>
             </div>
             <div className='section-container'>
