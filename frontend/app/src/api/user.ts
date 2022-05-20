@@ -6,7 +6,9 @@ import { getUserTezCtezData } from './contracts';
 const getXtzBalance = async (userAddress: string) => {
   try {
     const tezos = getTezosInstance();
+    console.log(tezos);
     const xtz = ((await tezos.tz.getBalance(userAddress)) ?? 0).shiftedBy(-6).toNumber() ?? 0;
+    console.log(tezos.tz.getBalance(userAddress));
     return xtz;
   } catch (error) {
     return 0;
