@@ -39,10 +39,14 @@ const AddLiquidity: React.FC = () => {
       if (cfmmStorage) {
         const { tokenPool, cashPool, lqtTotal } = cfmmStorage;
         const cash = cashDeposited * 1e6;
-        const max =
+        let max;
+        if(tokenPool&&cashPool&&lqtTotal){
+        max =
           Math.ceil(((cash * tokenPool.toNumber()) / cashPool.toNumber()) * (1 + slippage * 0.01)) /
-          1e6;
-
+          1e6;}
+        else{
+          max =0;
+        }
         setFieldValue('ctezAmount', formatNumberStandard(max));
         const minLQTMinted =
           ((cash * lqtTotal.toNumber()) / cashPool.toNumber()) * (1 - slippage * 0.01);
