@@ -8,3 +8,67 @@ export interface driftGraphInterface {
     currentAnnualDrift: number;
     timestamp: Date;
 }
+export interface ctezMainHeader {
+    total_ovens: number;
+    TVL: number;
+}
+export interface ctezOven {
+    total_ovens: number;
+    created_ovens: number;
+    liquidated_ovens: number;
+    TVL: number;
+    total_supply: number;
+    collateral_supply: number;
+}
+export interface ctezGraphctez {
+    id: number;
+    current_price: number;
+    current_target: number;
+    premium: number;
+    timestamp: Date;
+}
+
+export interface TvlData {
+    timestamp: Date;
+    tvl: number;
+    id: number;
+}
+
+export interface ctezGraphTVL {
+    tvlData: TvlData[];
+}
+
+export interface Ovendata {
+    ctezStanding: number;
+    id: number;
+    ovenAddress: string;
+    tezStanding: number;
+    timestamp: Date;
+}
+
+export interface ctezGraphOvendata {
+    ovendata: Ovendata[];
+}
+
+export interface MintBurnData {
+    id: number;
+    address: string;
+    ovenAddress: string;
+    target: number;
+    timestamp: Date;
+    burnAmount: number;
+}
+
+export interface ctezOvenTransaction {
+    mintBurnData: MintBurnData[];
+}
+export interface Volumestat {
+    sellVolume: number;
+    buyVolume: number;
+    timestamp: Date;
+    volume24hours: number;
+}
+
+export interface ctezGraphVolumestat {
+    volumestats: Volumestat[];
+}
