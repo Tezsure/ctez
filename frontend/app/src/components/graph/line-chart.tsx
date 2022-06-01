@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, ReactNode } from 'react';
 import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, CartesianGrid, YAxis } from 'recharts';
 import { format, parseISO } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
+import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
@@ -57,7 +58,7 @@ const LineChart = ({
           margin={{
             top: 5,
             right: 30,
-            left: -20,
+            left: -10,
             bottom: 5,
           }}
         
@@ -79,6 +80,7 @@ const LineChart = ({
           <YAxis
          axisLine={false}
          tickLine={false}
+         tickFormatter={(dataYAxis)=>numberToMillionOrBillionFormate(dataYAxis)}
          />
           <XAxis
             dataKey="time"

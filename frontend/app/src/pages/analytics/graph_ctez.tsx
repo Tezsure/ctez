@@ -61,10 +61,10 @@ const GraphCtez: React.FC = () => {
         graph goes here */}
         {activeTab==='1m' ? mainDatatarget1m?<TwoLineChart
          data={mainDatatarget1m}  setValue={setValue} 
-        />:null:
+        />:<Skeleton height='300px' minWidth='20px' />:
         mainDatatargetall?<TwoLineChart
          data={mainDatatargetall} isShowMonth setValue={setValue} 
-        />:null
+        />:<Skeleton height='300px' minWidth='20px' />
         }
     </Flex>)
 }

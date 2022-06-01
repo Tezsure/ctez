@@ -6,6 +6,8 @@ import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 import './analytics.css';
 import GraphCtez from './graph_ctez';
 import GraphDrift from './graph_drift';
+import OvenPiChart from './graph_oven_pi';
+import GraphTVL from './graph_tvl';
 import OvenTable from './ovenTable';
 
 
@@ -80,67 +82,8 @@ const AnaluticsPage: React.FC = () => {
 
             <div className='section-container'>
                 <Flex direction='row' wrap='wrap' gridGap='10' >
-                <Flex direction='column'
-                        borderRadius={16}
-                        backgroundColor={background}
-                        flex={1}
-                        paddingX='35px'
-                        paddingY='27px'
-                        gridGap={6}
-                    >
-
-                        <Flex justifyContent='space-between' >
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={400}
-                            >
-                                TVL
-                            <div style={{fontSize:'32px',fontWeight:600}}>
-                            $3.4M
-                            </div>
-                            </Text>
-                            <ButtonGroup variant='ghost' textColor={textcolor} fontSize='12px' spacing='-1'>
-                                <Button fontSize='12px' textDecoration='underline'>1W</Button>
-                                <Button fontSize='12px' textDecoration='underline' >1M</Button>
-                                <Button fontSize='12px' textDecoration='underline'>ALL</Button>
-                            </ButtonGroup>
-
-                        </Flex>
-                        <Skeleton height='250px' minWidth='20px' />
-                    </Flex>
-
-
-
-
-
-                    <Flex direction='column'
-                        borderRadius={16}
-                        backgroundColor={background}
-                        flex={1}
-                        paddingX='35px'
-                        paddingY='27px'
-                        gridGap={6}
-                        justifyContent='center'
-                    >
-
-                        <Flex justifyContent='space-between'>
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={600}
-                            >
-                                Ovens
-                            </Text>
-
-                        </Flex>
-                        <Flex justifyContent='center'>
-                        <SkeletonCircle size='250' />
-                        </Flex>
-                       
-                    </Flex>
+                <GraphTVL/>
+                <OvenPiChart/>
 
                 </Flex>
             </div>

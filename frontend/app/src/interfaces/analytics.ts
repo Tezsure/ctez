@@ -48,6 +48,13 @@ export interface TvlData {
     id: number;
 }
 
+export interface TvlDataALL {
+    id: number;
+    timestampFrom: Date;
+    timestampTo: Date;
+    tvl: number;
+}
+
 export interface ctezGraphTVL {
     tvlData: TvlData[];
 }

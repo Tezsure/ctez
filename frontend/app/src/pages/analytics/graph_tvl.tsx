@@ -1,11 +1,10 @@
 import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useDriftGraph, useDriftGraphAll} from "../../api/analytics";
+import { useCtezGraphTVL, useCtezGraphTVLAll } from "../../api/analytics";
 import LineChart from "../../components/graph/line-chart";
-import GraphOneLine from "../../components/graph/OneLineGraph";
 import { useThemeColors } from "../../hooks/utilHooks";
 
-const GraphDrift: React.FC = () => {
+const GraphTVL: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
@@ -14,8 +13,8 @@ const GraphDrift: React.FC = () => {
         'imported',
         'text4',
     ]);
-    const { data:data1m = false } = useDriftGraph();
-    const { data:dataAll = false } = useDriftGraphAll();
+    const { data:data1m = false } = useCtezGraphTVL();
+    const { data:dataAll = false } = useCtezGraphTVLAll();
     const [value, setValue] = useState<number | undefined>();
     const [activeTab,setActiveTab]=useState('all');
     // graph options
@@ -46,11 +45,13 @@ const GraphDrift: React.FC = () => {
         </Flex>
         {activeTab==='1m' ? data1m?<LineChart
          data={data1m}  setValue={setValue} 
-        />:<Skeleton height='300px' minWidth='20px' />:
+        />:<Skeleton height='300px' minWidth='20px' />
+:
         dataAll?<LineChart
          data={dataAll} isShowMonth setValue={setValue} 
         />:<Skeleton height='300px' minWidth='20px' />
+
         }
     </Flex>)
 }
-export default GraphDrift;
+export default GraphTVL;
