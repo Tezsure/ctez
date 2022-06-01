@@ -1,14 +1,16 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react';
-import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area } from 'recharts';
+import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, CartesianGrid, YAxis } from 'recharts';
 import { format, parseISO } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
-
+const formatMonth = format('dd LLL');
 export type LineChartProps = {
   data: any[];
   color?: string | undefined;
+  color2?: string | undefined;
+  strokeColor?: string | undefined;
   height?: number | undefined;
   minHeight?: number;
   setValue?: Dispatch<SetStateAction<number | undefined>>; // used for value on hover
@@ -19,11 +21,14 @@ export type LineChartProps = {
   topRight?: ReactNode | undefined;
   bottomLeft?: ReactNode | undefined;
   bottomRight?: ReactNode | undefined;
+  isShowMonth?:boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const LineChart = ({
   data,
-  color = '#7028e4',
+  color = '#0F62FF',
+  color2 = '#38CB89',
+  strokeColor='#CCD2E3',
   value,
   label,
   setValue,
@@ -32,11 +37,12 @@ const LineChart = ({
   topRight,
   bottomLeft,
   bottomRight,
+  isShowMonth=false,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-
+  
   return (
     <Box minHeight={minHeight}  {...rest}>
       <Box>
@@ -51,31 +57,40 @@ const LineChart = ({
           margin={{
             top: 5,
             right: 30,
-            left: 20,
+            left: -20,
             bottom: 5,
           }}
+        
           onMouseLeave={() => {
             setLabel && setLabel(undefined);
             setValue && setValue(undefined);
           }}
         >
+          <CartesianGrid  
+        vertical={false}
+        stroke="#aab8c2"
+        />
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={color} stopOpacity={0.5} />
-              <stop offset="100%" stopColor={color} stopOpacity={0} />
+            <stop offset="0%" stopColor='#3260EF' stopOpacity={0.19} />
+            <stop offset="100%" stopColor='#3560ED' stopOpacity={0} />
             </linearGradient>
           </defs>
+          <YAxis
+         axisLine={false}
+         tickLine={false}
+         />
           <XAxis
             dataKey="time"
             axisLine={false}
             tickLine={false}
-            tickFormatter={(time) => formatDay(parseISO(time))}
+            tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
             minTickGap={10}
           />
           <Tooltip
             contentStyle={{ display: 'none' }}
             formatter={(
-              value: number,
+              value1: number,
               name: string,
               props: { payload: { time: string; value: number } },
             ) => {

@@ -6,6 +6,7 @@ import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 import './analytics.css';
 import GraphCtez from './graph_ctez';
 import GraphDrift from './graph_drift';
+import OvenTable from './ovenTable';
 
 
 const AnaluticsPage: React.FC = () => {
@@ -74,35 +75,7 @@ const AnaluticsPage: React.FC = () => {
                 >
                     Ovens
                 </Text>
-                <TableContainer
-                    backgroundColor={background}
-                    fontSize='14px'
-                    borderRadius={16}
-                    textAlign='right'
-                >
-                    <Table variant='simple'>
-                        <Thead>
-                            <Tr>
-                                <Th isNumeric>Total</Th>
-                                <Th isNumeric>Created</Th>
-                                <Th isNumeric>Liquidated</Th>
-                                <Th isNumeric>TVL</Th>
-                                <Th isNumeric>Total Supply</Th>
-                                <Th isNumeric>Collateral Supply</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            <Tr>
-                                <Td isNumeric>351</Td>
-                                <Td isNumeric>602</Td>
-                                <Td isNumeric>52</Td>
-                                <Td isNumeric>853k tez</Td>
-                                <Td isNumeric>694k tez</Td>
-                                <Td isNumeric>110%</Td>
-                            </Tr>
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                <OvenTable/>
             </div>
 
             <div className='section-container'>

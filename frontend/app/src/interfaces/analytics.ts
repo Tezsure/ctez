@@ -5,8 +5,14 @@ export interface priceSats {
 }
 export interface driftGraphInterface {
     id: number;
-    currentAnnualDrift: number;
+    drift: number;
     timestamp: Date;
+}
+export interface driftGraphInterfaceAll {
+    id: number;
+    drift: number;
+    timestamp_from: Date;
+    timestamp_to: Date;
 }
 export interface ctezMainHeader {
     total_ovens: number;
@@ -56,6 +62,10 @@ export interface Ovendata {
 export interface TwoLineGraph {
     data1:number | string;
     data2:number | string;
+    value:number | string;
+    time:number | string | Date;
+}
+export interface OneLineGraph {
     value:number | string;
     time:number | string | Date;
 }

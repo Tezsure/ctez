@@ -1,6 +1,7 @@
 import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
-import React from "react";
-import { useDriftGraph} from "../../api/analytics";
+import React, { useState } from "react";
+import { useDriftGraph, useDriftGraphAll} from "../../api/analytics";
+import LineChart from "../../components/graph/line-chart";
 import GraphOneLine from "../../components/graph/OneLineGraph";
 import { useThemeColors } from "../../hooks/utilHooks";
 
@@ -13,8 +14,10 @@ const GraphDrift: React.FC = () => {
         'imported',
         'text4',
     ]);
-    const { data = false } = useDriftGraph();
-    console.log("ggg",data)
+    const { data:data1m = false } = useDriftGraph();
+    const { data:dataAll = false } = useDriftGraphAll();
+    const [value, setValue] = useState<number | undefined>();
+    const [activeTab,setActiveTab]=useState('all');
     // graph options
 
     return (<Flex direction='column'
@@ -35,16 +38,19 @@ const GraphDrift: React.FC = () => {
             >
                 Drift
             </Text>
-            <ButtonGroup variant='ghost' textColor={textcolor} fontSize='12px' spacing='-1'>
-                <Button fontSize='12px' textDecoration='underline'>1W</Button>
-                <Button fontSize='12px' textDecoration='underline' >1M</Button>
-                <Button fontSize='12px' textDecoration='underline'>ALL</Button>
+            <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
+                <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
+                <Button fontSize='12px' className={activeTab==='all'?"btnactive":''}  textDecoration='underline' onClick={()=>setActiveTab('all')}>ALL</Button>
             </ButtonGroup>
 
         </Flex>
-
-        {data ? <GraphOneLine labelArr={data.dateArr} data1={data.currentAnnualDriftArr} /> : <Skeleton height='200px' minWidth='20px' />}
-        {/* graph goes here */}
+        {activeTab==='1m' ? data1m?<LineChart
+         data={data1m}  setValue={setValue} 
+        />:null:
+        dataAll?<LineChart
+         data={dataAll} isShowMonth setValue={setValue} 
+        />:null
+        }
     </Flex>)
 }
 export default GraphDrift;

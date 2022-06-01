@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, driftGraphInterface, priceSats, TwoLineGraph } from "../interfaces/analytics";
+import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, driftGraphInterface, driftGraphInterfaceAll, OneLineGraph, priceSats, TwoLineGraph } from "../interfaces/analytics";
 
 const analyticsAPI = axios.create({
   baseURL: 'http://3.109.105.200'
@@ -25,18 +25,35 @@ export const usePriceStats = () => {
   );
 };
 export const useDriftGraph = () => {
-  return useQuery<{ currentAnnualDriftArr: number[], dateArr: number[] }, Error>(
+  return useQuery<OneLineGraph[], Error>(
     'drift_stats',
     async () => {
       const data = await analyticsAPI.get('/main_data/drift');
       const priceStatsArr: driftGraphInterface[] = data.data;
-      const currentAnnualDriftArr: number[] = [];
-      const dateArr: number[] = [];
-      priceStatsArr.forEach((element) => {
-        currentAnnualDriftArr.push(element.currentAnnualDrift);
-        dateArr.push(new Date(element.timestamp).getDate())
+      const data1: OneLineGraph[] = priceStatsArr.map((e) => {
+        return <OneLineGraph> {
+           value: e.drift, 
+           time: e.timestamp
+        }
       })
-      return { currentAnnualDriftArr, dateArr };
+      return data1;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useDriftGraphAll = () => {
+  return useQuery<OneLineGraph[], Error>(
+    'drift_stats_all',
+    async () => {
+      const data = await analyticsAPI.get('/main_data/drift_all');
+      const priceStatsArr: driftGraphInterfaceAll[] = data.data;
+      const data1: OneLineGraph[] = priceStatsArr.map((e) => {
+        return <OneLineGraph> {
+           value: e.drift, 
+           time: e.timestamp_from
+        }
+      })
+      return data1;
     },
     { refetchInterval: 30_000 },
   );

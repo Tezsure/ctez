@@ -3,8 +3,10 @@ import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, YAxis, CartesianG
 import { format, parseISO } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
 
-const DEFAULT_HEIGHT = 250;
+const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
+const formatMonth = format('dd LLL');
+
 
 export type LineChartProps = {
   data: any[];
@@ -21,6 +23,7 @@ export type LineChartProps = {
   topRight?: ReactNode | undefined;
   bottomLeft?: ReactNode | undefined;
   bottomRight?: ReactNode | undefined;
+  isShowMonth?:boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const TwoLineChart = ({
@@ -36,6 +39,7 @@ const TwoLineChart = ({
   topRight,
   bottomLeft,
   bottomRight,
+  isShowMonth=false,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
@@ -50,9 +54,9 @@ const TwoLineChart = ({
           data={data}
           margin={{
             top: 10,
-            right: 10,
-            left: 10,
-            bottom: 10,
+            right: 30,
+            left: -23,
+            bottom: 5,
           }}
           onMouseLeave={() => {
             setLabel && setLabel(undefined);
@@ -73,7 +77,7 @@ const TwoLineChart = ({
             dataKey="time"
             axisLine={false}
             tickLine={false}
-            tickFormatter={(time) => formatDay(parseISO(time))}
+            tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
             minTickGap={10}
           />
          

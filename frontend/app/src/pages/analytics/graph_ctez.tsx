@@ -63,7 +63,7 @@ const GraphCtez: React.FC = () => {
          data={mainDatatarget1m}  setValue={setValue} 
         />:null:
         mainDatatargetall?<TwoLineChart
-         data={mainDatatargetall}  setValue={setValue} 
+         data={mainDatatargetall} isShowMonth setValue={setValue} 
         />:null
         }
     </Flex>)
