@@ -1,12 +1,15 @@
-import { Box, Button, ButtonGroup, Center, Flex, Skeleton, SkeletonCircle, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Center, Flex, Skeleton, SkeletonCircle, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from '@chakra-ui/react';
 import React from 'react'
+import { useMainHeader } from '../../api/analytics';
 import { useThemeColors } from '../../hooks/utilHooks';
+import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 import './analytics.css';
 import GraphCtez from './graph_ctez';
 import GraphDrift from './graph_drift';
 
 
 const AnaluticsPage: React.FC = () => {
+    const { data:headerData=false }=useMainHeader();
     const [textcolor] = useThemeColors(['homeTxt']);
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
@@ -15,8 +18,21 @@ const AnaluticsPage: React.FC = () => {
         'imported',
         'text4',
     ]);
+    const GradientText=(text:string|number,isDollor:boolean)=>{
+        return <b className='gradientcolortext'>
+            {isDollor?'$':null}
+            {text}
+            </b>;
+    }
+    const GradienTSimmer=()=>{
+        return null;
+    }
     return (
         <div style={{ padding: largerScreen ? '55px' : '35px' }}>
+
+
+
+
             <Center>
                 <Text
                     color={textcolor}
@@ -25,9 +41,14 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                    Ctez is managing <b className='gradientcolortext'>$3.4m</b> across <b className='gradientcolortext'>351 ovens</b>
+                    Ctez is managing <GradienTSimmer/> {headerData?GradientText(numberToMillionOrBillionFormate(headerData.TVL),true):<GradienTSimmer/>} across {headerData?GradientText(`${headerData.total_ovens} Ovens`,false):<GradienTSimmer/>}
                 </Text>
             </Center>
+
+
+
+
+
             <div className='section-container'>
                 <Text
                     fontSize={largerScreen ? '30px' : '20px'}

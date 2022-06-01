@@ -30,7 +30,46 @@ const GraphTwoLine : React.FC<{labelArr:number[],data1:number[],data2:number[]}>
             point:{
                 radius: 0
             }
+        },
+        scales: {
+          // xAxes: [{
+          //   gridLines: {
+          //     display:false,
+          //     drawBorder: false
+          // },
+          // yAxes: [{
+          //   gridLines: {
+          //     drawBorder: false,
+          //   },
+          // }]
+          
+          // }]
+          xAxes: [{
+            gridLines: {
+                display:false,
+                drawOnArea: false,
+            }
+        },{
+          display: false,
+          gridLines: {
+            drawOnArea: false,
+          },
         }
+      
+      ],
+        yAxes: [{
+            gridLines: {
+                display:true,
+                drawOnArea: false,
+            }   
+        },{
+          display: false,
+          gridLines: {
+            drawOnArea: false,
+          },
+        }]
+      },
+      scaleShowVerticalLines: false
       };
   return (<Line data={data} options={options} />);
 

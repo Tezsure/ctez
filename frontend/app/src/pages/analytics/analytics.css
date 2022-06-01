@@ -7,3 +7,19 @@
 .section-container{
    padding-top: 30px;
 }
+.textContainer{
+    display: flex;
+    flex-direction: row;
+    gap:4px;
+    align-items: center;
+}
+.textContainer .circleIcon{
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+.btnactive{
+    text-decoration: none;
+    border: 1px solid #0F62FF;
+    background-color: #F8F9FF;
+}

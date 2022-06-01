@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { ReactComponent as AllOvens } from '../../assets/images/sidebar/allovens.svg';
 import { ReactComponent as MyOvens } from '../../assets/images/sidebar/myovens.svg';
 import { ReactComponent as Trade } from '../../assets/images/sidebar/trade.svg';
+import { ReactComponent as AnalyticsIcon } from '../../assets/images/sidebar/analytics-icon.svg';
 import { ReactComponent as Faq } from '../../assets/images/sidebar/faq.svg';
 import Button from '../button';
 import SignIn from '../SignIn';
@@ -56,12 +57,25 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
       })
     ) {
       setHeaderIconText({ text: `Trade`, icon: <Trade /> });
-    } else if (
+
+    } 
+    else if (
+      matchPath(pathName, {
+        path: '/analytics',
+        exact: true,
+      })
+    ) {
+      setHeaderIconText({ text: `Analytics`, icon: <AnalyticsIcon /> });
+      
+    }
+    else if (
       matchPath(pathName, {
         path: '/faq',
         exact: true,
       })
-    ) {
+    )
+    
+    {
       setHeaderIconText({ text: `FAQ`, icon: <Faq /> });
     } else {
       setHeaderIconText({ text: null, icon: null });
