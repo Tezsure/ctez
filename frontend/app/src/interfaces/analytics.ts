@@ -93,6 +93,15 @@ export interface MintBurnData {
     timestamp: Date;
     burnAmount: number;
 }
+export interface DepositTransactionTable {
+    address: string;
+    amount: number;
+    id: number;
+    ovenAddress: string;
+    sideOven: number;
+    target: number;
+    timestamp: Date;
+}
 
 export interface ctezOvenTransaction {
     mintBurnData: MintBurnData[];

@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, ButtonProps, Container, Flex, Icon, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, ButtonProps, Container, Flex, Icon, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from "@chakra-ui/react";
 import { Next, PageGroup, Paginator, Previous, usePaginator } from "chakra-paginator";
 import React, { useEffect, useMemo, useState } from "react";
 import * as timeago from 'timeago.js';
@@ -10,6 +10,7 @@ import { useTableNumberUtils } from "../../hooks/useTableUtils";
 import { useThemeColors } from "../../hooks/utilHooks";
 import { OvenTransactionTable } from "../../interfaces/analytics";
 import { trimAddress } from "../../utils/addressUtils";
+import SkeletonLayout from "../../components/skeleton";
 
 interface CommonTable {
   column:ColData[]
@@ -69,6 +70,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
       const handlePageChange = (nextPage: number) => {
         setCurrentPage(nextPage);
       };
+    
       const modals = useMemo(() => {
         return (
           <>
@@ -104,6 +106,28 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
           </>
         );
       }, [ovenTransactionTable]);
+    if(!ovenTransactionTable.length){
+        return (<Table variant='simple'>
+        <Thead>
+            <Tr>
+            {column.map((coldata,mainkey)=>{
+              if(mainkey===0)
+                return <Th key={`coldataaccessor${mainkey}`} textAlign='left' >{coldata.accessor}</Th>;
+              return <Th key={`coldataaccessor${mainkey}`}   >{coldata.accessor}</Th>;  
+            })}
+            </Tr>
+        </Thead>
+          <Tbody>
+          {Array(pageSize).fill(0).map((_,i)=>(<Tr key={`loaderSreen${i}`}>
+            
+          {column.map((coldata,mainkey)=>(<Td key={`loaderSreenIndividual${mainkey}`} >
+          <SkeletonText noOfLines={1}  />
+          </Td>))}
+            
+          </Tr>))}
+          </Tbody>
+        </Table>);
+      }
     return (
     <Box>
    <TableContainer

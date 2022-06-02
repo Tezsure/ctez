@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, driftGraphInterface, driftGraphInterfaceAll, OneLineGraph, Ovendata, OvenTransactionTable, priceSats, TvlData, TvlDataALL, TwoLineGraph } from "../interfaces/analytics";
+import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, priceSats, TvlData, TvlDataALL, TwoLineGraph } from "../interfaces/analytics";
 
 const analyticsAPI = axios.create({
   baseURL: 'https://analyticsapi.ctez.app'
@@ -92,6 +92,40 @@ export const useOvenTransactionTable = () => {
     { refetchInterval: 30_000 },
   );
 };
+export const useMintedTransactionTable = () => {
+  return useQuery<MintBurnData[], Error>(
+    'main_ctez_MintBurnData',
+    async () => {
+      const data = await analyticsAPI.get('/main_transaction/burn');
+      const mintBurnData: MintBurnData[] = data.data;
+      return mintBurnData;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useDepositTransactionTable = () => {
+  return useQuery<DepositTransactionTable[], Error>(
+    'main_ctez_DepositTransactionTable',
+    async () => {
+      const data = await analyticsAPI.get('/main_transaction/deposit');
+      const depositTransactionTable: DepositTransactionTable[] = data.data;
+      return depositTransactionTable;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useWithdrawTransactionTable = () => {
+  return useQuery<DepositTransactionTable[], Error>(
+    'main_ctez_withdrawTransactionTable',
+    async () => {
+      const data = await analyticsAPI.get('/main_transaction/withdraw');
+      const withdrawTransactionTable: DepositTransactionTable[] = data.data;
+      return withdrawTransactionTable;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+ 
  
 export const useCtezGraphctez1m = () => {
   return useQuery<TwoLineGraph[], Error>(

@@ -2,7 +2,7 @@ import { Box, Button, ButtonGroup, ButtonProps, Container, Flex, Icon, Table, Ta
 import { Next, PageGroup, Paginator, Previous, usePaginator } from "chakra-paginator";
 import React, { useEffect, useMemo, useState } from "react";
 import * as timeago from 'timeago.js';
-import { useOvenTransactionTable } from "../../api/analytics";
+import { useDepositTransactionTable, useMintedTransactionTable, useOvenTransactionTable, useWithdrawTransactionTable } from "../../api/analytics";
 import { ReactComponent as leftIcon } from '../../assets/images/icons/left-icon.svg';
 import { ReactComponent as rightIcon } from '../../assets/images/icons/right-icon.svg';
 import { useTableNumberUtils } from "../../hooks/useTableUtils";
@@ -12,7 +12,12 @@ import { trimAddress } from "../../utils/addressUtils";
 import TableCommon, { ColData } from "./comonTable";
 
 
-
+ enum Transactiontype {
+    Mint='Mint',
+    Burn='Burn',
+    Deposit='Deposit',
+    Withdraw='Withdraw'
+}
 
 const TransactionTableoven: React.FC = () => {
   const { positiveOrNegative, valueFormat } = useTableNumberUtils();
@@ -24,8 +29,92 @@ const TransactionTableoven: React.FC = () => {
         'imported',
         'text4',
     ]);
-    const { data: ovenTransactionTable = [] } = useOvenTransactionTable();
-    const colum:ColData[]=[
+    const { data: mintedTransactionTable = [] } = useOvenTransactionTable();
+    const { data: burnTransactionTable = [] } = useMintedTransactionTable();
+    const { data: depositTransactionTable = [] } = useDepositTransactionTable();
+    const { data: withdrawTransactionTable = [] } = useWithdrawTransactionTable();
+
+    const [transactionType,setTransactionType]=useState<Transactiontype>(Transactiontype.Mint);
+    const columBurn:ColData[]=[
+        {
+            accessor:'Burned',
+            datakey:'burnAmount',
+        },
+        {
+            accessor:'Target',
+            datakey:'target' 
+        },
+        {
+            accessor:'Oven',
+            datakey:'ovenAddress',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Account',
+            datakey:'address',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Time',
+            datakey:'timestamp',
+            isTimeformat:true
+        } 
+
+    ]
+
+    const columDeposit:ColData[]=[
+        {
+            accessor:'Deposit',
+            datakey:'amount',
+        },
+        {
+            accessor:'Target',
+            datakey:'target' 
+        },
+        {
+            accessor:'Oven',
+            datakey:'ovenAddress',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Account',
+            datakey:'address',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Time',
+            datakey:'timestamp',
+            isTimeformat:true
+        } 
+
+    ]
+    const columWithdraw:ColData[]=[
+        {
+            accessor:'Withdraw',
+            datakey:'amount',
+        },
+        {
+            accessor:'Target',
+            datakey:'target' 
+        },
+        {
+            accessor:'Oven',
+            datakey:'ovenAddress',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Account',
+            datakey:'address',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Time',
+            datakey:'timestamp',
+            isTimeformat:true
+        } 
+
+    ]
+    const columMinted:ColData[]=[
         {
             accessor:'Minted',
             datakey:'mintAmount',
@@ -70,50 +159,20 @@ const TransactionTableoven: React.FC = () => {
             >
                 Transactions
             </Text>
-            <ButtonGroup variant='ghost' textColor={textcolor} spacing='-1'>
-                <Button fontSize='12px' textDecoration='underline'>Mint</Button>
-                <Button fontSize='12px' textDecoration='underline' >Burn</Button>
-                <Button fontSize='12px' textDecoration='underline'>Deposit</Button>
-                <Button fontSize='12px' textDecoration='underline'>Withdraw</Button>
+            <ButtonGroup variant='ghost' textColor={textcolor} spacing='-1' gridGap={2}>
+                <Button fontSize='12px' textDecoration='underline' onClick={()=>setTransactionType(Transactiontype.Mint)} className={transactionType===Transactiontype.Mint?'btnactive':''} >Mint</Button>
+                <Button fontSize='12px' textDecoration='underline' onClick={()=>setTransactionType(Transactiontype.Burn)}  className={transactionType===Transactiontype.Burn?'btnactive':''}>Burn</Button>
+                <Button fontSize='12px' textDecoration='underline' onClick={()=>setTransactionType(Transactiontype.Deposit)}  className={transactionType===Transactiontype.Deposit?'btnactive':''}>Deposit</Button>
+                <Button fontSize='12px' textDecoration='underline' onClick={()=>setTransactionType(Transactiontype.Withdraw)}  className={transactionType===Transactiontype.Withdraw?'btnactive':''}>Withdraw</Button>
             </ButtonGroup>
 
         </Flex>
-         {/* <TableNew/> */}
-        {/* <Table columns={columns} data={ovenTransactionTable}/> */}
-   
-   {/* <TableContainer
-      textAlign='center'
-   >
-       <Table variant='simple'>
-           <Thead>
-               <Tr>
-                   <Th  textAlign='left'>Minted</Th>
-                   <Th >Target</Th>
-                   <Th >Oven</Th>
-                   <Th >Account</Th>
-                   <Th isNumeric>Time</Th>
-               </Tr>
-           </Thead>
-           <Tbody>
-               {console.log('currentPageOvens',currentPageOvens)}
-               { currentPageOvens.map((data,index)=>{
+    {transactionType===Transactiontype.Mint && <TableCommon column={columMinted} data={mintedTransactionTable}/>}
+    {transactionType===Transactiontype.Burn && <TableCommon column={columBurn} data={burnTransactionTable}/>}
+    {transactionType===Transactiontype.Deposit && <TableCommon column={columDeposit} data={depositTransactionTable}/>}
+    {transactionType===Transactiontype.Withdraw && <TableCommon column={columWithdraw} data={withdrawTransactionTable}/>}
 
-                  return(<Tr key={data.address+index}>
-                    <Td  textAlign='left'>{data.mintAmount} CETZ</Td>
-                    <Td >{data.target}</Td>
-                    <Td >{trimAddress(data.ovenAddress)}</Td>
-                    <Td >{trimAddress(data.address)}</Td>
-                    <Td isNumeric>{timeago.format(data.timestamp)} </Td>
-                </Tr>)
-               })}
-               
-           </Tbody>
-       </Table>
-   </TableContainer>
 
-    {modals} */}
-    
-    <TableCommon column={colum} data={ovenTransactionTable}/>
 
    </Box>)
 }
