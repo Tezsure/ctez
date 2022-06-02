@@ -1,16 +1,15 @@
-import { Box, Button, ButtonGroup, ButtonProps, Container, Flex, Icon, IconButton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, ButtonProps, Container, Flex, Icon, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from "@chakra-ui/react";
 import { Next, PageGroup, Paginator, Previous, usePaginator } from "chakra-paginator";
 import React, { useEffect, useMemo, useState } from "react";
-import { GiPreviousButton } from "react-icons/gi";
-import { Column } from "react-table";
 import * as timeago from 'timeago.js';
 import { useOvenTransactionTable } from "../../api/analytics";
-import { useTableNumberUtils } from "../../hooks/useTableUtils";
-import { useSortedOvensList, useThemeColors } from "../../hooks/utilHooks";
-import { OvenTransactionTable } from "../../interfaces/analytics";
-import { trimAddress } from "../../utils/addressUtils";
 import { ReactComponent as leftIcon } from '../../assets/images/icons/left-icon.svg';
 import { ReactComponent as rightIcon } from '../../assets/images/icons/right-icon.svg';
+import { useTableNumberUtils } from "../../hooks/useTableUtils";
+import { useThemeColors } from "../../hooks/utilHooks";
+import { OvenTransactionTable } from "../../interfaces/analytics";
+import { trimAddress } from "../../utils/addressUtils";
+import TableCommon, { ColData } from "./comonTable";
 
 
 
@@ -25,78 +24,35 @@ const TransactionTableoven: React.FC = () => {
         'imported',
         'text4',
     ]);
-    const baseStyles: ButtonProps = {
-        w: 7,
-        fontSize: 'sm',
-      };
-      const activeStyles: ButtonProps = {
-        ...baseStyles,
-        _hover: {
-          bg: 'light.text4',
-        },
-        bg: 'light.text4',
-      };
-    const outerLimit = 2;
-    const innerLimit = 2;
-    // graph options
     const { data: ovenTransactionTable = [] } = useOvenTransactionTable();
-//    const sortedOvens = useSortedOvensList(ovenTransactionTable);
-    const [currentPageOvens, setCurrentPageOvens] = useState<OvenTransactionTable[]>([]);
-    const { pagesQuantity, offset, currentPage, setCurrentPage, isDisabled, pageSize } = usePaginator(
+    const colum:ColData[]=[
         {
-          total: ovenTransactionTable?.length,
-          initialState: {
-            pageSize: 5,
-            isDisabled: false,
-            currentPage: 1,
-          },
+            accessor:'Minted',
+            datakey:'mintAmount',
+            isCtez:true,
         },
-      );
-      
-      useEffect(() => {
-        const indexOfLastOven = currentPage * pageSize;
-        const indexOfFirstOven = indexOfLastOven - pageSize;
-        const currentTodos = ovenTransactionTable && ovenTransactionTable.slice(indexOfFirstOven, indexOfLastOven);
-        setCurrentPageOvens(currentTodos);
-      }, [currentPage, pageSize,ovenTransactionTable.length]);
-      const handlePageChange = (nextPage: number) => {
-        setCurrentPage(nextPage);
-      };
-      const modals = useMemo(() => {
-        return (
-          <>
-            <Paginator
-              isDisabled={isDisabled}
-              innerLimit={innerLimit}
-              currentPage={currentPage}
-              outerLimit={outerLimit}
-              pagesQuantity={pagesQuantity}
-              activeStyles={activeStyles}
-              normalStyles={baseStyles}
-              onPageChange={handlePageChange}
-            >
-              <Container align="center" display='flex' justifyContent='center' gridGap={5} w="full" pt={4}>
-                <Previous className="pagignationIcon">
-                   <Icon
-                   color="light.tradebg"
-                   _hover={{ cursor: 'pointer' }}
-                   as={leftIcon}
-                   />
-                </Previous>
-                <PageGroup className="pageNavigation-center-btn" isInline align="center" />
-                <Next className="pagignationIcon">
+        {
+            accessor:'Target',
+            datakey:'target' 
+        },
+        {
+            accessor:'Oven',
+            datakey:'ovenAddress',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Account',
+            datakey:'address',
+            istrimAddress:true,
+        },
+        {
+            accessor:'Time',
+            datakey:'timestamp',
+            isTimeformat:true
+        } 
 
-                <Icon
-                   color="light.tradebg"
-                   _hover={{ cursor: 'pointer' }}
-                   as={rightIcon}
-                   />
-                </Next>
-              </Container>
-            </Paginator>
-          </>
-        );
-      }, [ovenTransactionTable]);
+    ]
+
     return (<Box
         backgroundColor={background}
         fontSize='14px'
@@ -125,7 +81,7 @@ const TransactionTableoven: React.FC = () => {
          {/* <TableNew/> */}
         {/* <Table columns={columns} data={ovenTransactionTable}/> */}
    
-   <TableContainer
+   {/* <TableContainer
       textAlign='center'
    >
        <Table variant='simple'>
@@ -155,7 +111,9 @@ const TransactionTableoven: React.FC = () => {
        </Table>
    </TableContainer>
 
-    {modals}
+    {modals} */}
+    
+    <TableCommon column={colum} data={ovenTransactionTable}/>
 
    </Box>)
 }
