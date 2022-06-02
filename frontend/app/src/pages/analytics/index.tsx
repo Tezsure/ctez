@@ -9,6 +9,7 @@ import GraphDrift from './graph_drift';
 import OvenPiChart from './graph_oven_pi';
 import GraphTVL from './graph_tvl';
 import OvenTable from './ovenTable';
+import TransactionTableoven from './transactionsTable';
 
 
 const AnaluticsPage: React.FC = () => {
@@ -88,105 +89,8 @@ const AnaluticsPage: React.FC = () => {
                 </Flex>
             </div>
                 <div className='section-container'>
-                    <Box
-                     backgroundColor={background}
-                     fontSize='14px'
-                     borderRadius={16}
-                     
-                     paddingY={35}
-                     paddingX={25}
-                     >
-                 <Flex justifyContent='space-between' wrap='wrap'>
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={600}
-                            >
-                                Transactions
-                            </Text>
-                            <ButtonGroup variant='ghost' textColor={textcolor}  spacing='-1'>
-                                <Button fontSize='12px' textDecoration='underline'>Mint</Button>
-                                <Button fontSize='12px' textDecoration='underline' >Burn</Button>
-                                <Button fontSize='12px' textDecoration='underline'>Deposit</Button>
-                                <Button fontSize='12px' textDecoration='underline'>Withdraw</Button>
-                            </ButtonGroup>
-
-                </Flex>
-                <TableContainer
-                   textAlign='center'
-                >
-                    <Table variant='simple'>
-                        <Thead>
-                            <Tr>
-                                <Th  textAlign='left'>Minted</Th>
-                                <Th >Target</Th>
-                                <Th >Oven</Th>
-                                <Th >Account</Th>
-                                <Th isNumeric>Time</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                            <Tr>
-                                <Td  textAlign='left'>100ctez</Td>
-                                <Td >1.05</Td>
-                                <Td >KTae...45</Td>
-                                <Td >T21xy...23</Td>
-                                <Td isNumeric>2 hours ago</Td>
-                            </Tr>
-                        </Tbody>
-                    </Table>
-                </TableContainer>
-                </Box>
+                    <TransactionTableoven/>
+                    
             </div>
 
             <div className='section-container'>

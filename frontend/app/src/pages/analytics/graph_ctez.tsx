@@ -1,9 +1,8 @@
 import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
-import {  useCtezGraphctez1m, useCtezGraphctezall, usePriceStats } from "../../api/analytics";
+import { useCtezGraphctez1m, useCtezGraphctezall } from "../../api/analytics";
 import { TextWithCircleColor } from "../../components/analytics/TTextWithColorCircle";
 import TwoLineChart from "../../components/graph/two-line-chart";
-import GraphTwoLine from "../../components/graph/TwoLineGraph";
 import { useThemeColors } from "../../hooks/utilHooks";
 
 const color = '#0F62FF';

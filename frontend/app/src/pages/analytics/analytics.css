@@ -23,3 +23,26 @@
     border: 1px solid #0F62FF;
     background-color: #F8F9FF;
 }
+.pagignationIcon{
+    background-color: transparent;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.pageNavigation-center-btn li >button{
+   border-radius: 50%;
+   border-radius: 50%;
+    width: 31px;
+    height: 31px;
+    font-weight: 500;
+    font-size: 12px;
+    background: #F8F9FF;
+
+
+}
+.pageNavigation-center-btn {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}

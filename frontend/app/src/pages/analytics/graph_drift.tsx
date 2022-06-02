@@ -1,8 +1,7 @@
 import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useDriftGraph, useDriftGraphAll} from "../../api/analytics";
+import { useDriftGraph, useDriftGraphAll } from "../../api/analytics";
 import LineChart from "../../components/graph/line-chart";
-import GraphOneLine from "../../components/graph/OneLineGraph";
 import { useThemeColors } from "../../hooks/utilHooks";
 
 const GraphDrift: React.FC = () => {

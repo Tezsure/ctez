@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, driftGraphInterface, driftGraphInterfaceAll, OneLineGraph, Ovendata, priceSats, TvlData, TvlDataALL, TwoLineGraph } from "../interfaces/analytics";
+import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, driftGraphInterface, driftGraphInterfaceAll, OneLineGraph, Ovendata, OvenTransactionTable, priceSats, TvlData, TvlDataALL, TwoLineGraph } from "../interfaces/analytics";
 
 const analyticsAPI = axios.create({
-  baseURL: 'http://3.109.105.200'
+  baseURL: 'https://analyticsapi.ctez.app'
 });
 export const usePriceStats = () => {
   return useQuery<{ ctez_priceArr: number[], tez_priceArr: number[], dateArr: number[] }, Error>(
@@ -76,6 +76,18 @@ export const useCtezOven = () => {
       const data = await analyticsAPI.get('/ovens');
       const ctezoven: ctezOven = data.data;
       return ctezoven;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+
+export const useOvenTransactionTable = () => {
+  return useQuery<OvenTransactionTable[], Error>(
+    'main_ctez_OvenTransactionTable',
+    async () => {
+      const data = await analyticsAPI.get('/main_transaction/mint');
+      const ovenTransactionTable: OvenTransactionTable[] = data.data;
+      return ovenTransactionTable;
     },
     { refetchInterval: 30_000 },
   );

@@ -76,6 +76,10 @@ export interface OneLineGraph {
     value:number | string;
     time:number | string | Date;
 }
+export interface PiGraph {
+    value:number | string;
+    time:number | string | Date;
+}
 
 export interface ctezGraphOvendata {
     ovendata: Ovendata[];
@@ -102,4 +106,13 @@ export interface Volumestat {
 
 export interface ctezGraphVolumestat {
     volumestats: Volumestat[];
+}
+
+export interface OvenTransactionTable {
+    id: number;
+    mintAmount: number;
+    address: string;
+    ovenAddress: string;
+    target: number;
+    timestamp: Date;
 }

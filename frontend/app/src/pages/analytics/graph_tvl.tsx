@@ -1,8 +1,9 @@
-import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Skeleton, SkeletonText, Text, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useCtezGraphTVL, useCtezGraphTVLAll } from "../../api/analytics";
 import LineChart from "../../components/graph/line-chart";
 import { useThemeColors } from "../../hooks/utilHooks";
+import { numberToMillionOrBillionFormate } from "../../utils/numberFormate";
 
 const GraphTVL: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
@@ -15,6 +16,7 @@ const GraphTVL: React.FC = () => {
     ]);
     const { data:data1m = false } = useCtezGraphTVL();
     const { data:dataAll = false } = useCtezGraphTVLAll();
+
     const [value, setValue] = useState<number | undefined>();
     const [activeTab,setActiveTab]=useState('all');
     // graph options
@@ -29,14 +31,24 @@ const GraphTVL: React.FC = () => {
     >
 
         <Flex justifyContent='space-between'>
+            <div>
             <Text
                 color={textcolor}
                 fontSize={largerScreen ? '20px' : '16px'}
                 lineHeight="29px"
                 fontWeight={600}
             >
-                Drift
+                TVL
             </Text>
+            <Text
+            color={textcolor}
+            fontSize={largerScreen ? '32px' : '18px'}
+            lineHeight="29px"
+            fontWeight={600}
+            >
+            {(data1m && !value)?numberToMillionOrBillionFormate(data1m[data1m.length-1].value):value?numberToMillionOrBillionFormate(value):<SkeletonText pr={6} noOfLines={1} spacing="1" />}
+            </Text>
+            </div>
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
                 <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
                 <Button fontSize='12px' className={activeTab==='all'?"btnactive":''}  textDecoration='underline' onClick={()=>setActiveTab('all')}>ALL</Button>

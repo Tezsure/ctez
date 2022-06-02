@@ -45,29 +45,12 @@ const PiChart = ({
   const parsedValue = value;
   
   return (
-    
-        <PieChart
-          width={500}
-          height={300}
-          data={data}
-        
-          onMouseLeave={() => {
-            setLabel && setLabel(undefined);
-            setValue && setValue(undefined);
-          }}
-        >
-          <Pie
-            dataKey="value"
-            type="monotone"
-            stroke={color}
-            fill="url(#gradient)"
-            nameKey="time" 
-            cx="50%" 
-            cy="50%"
-            innerRadius={60} 
-            outerRadius={80}
-          />
-        </PieChart>
+    <ResponsiveContainer width="100%" height={minHeight}>
+
+    <PieChart  height={250}>
+    <Pie data={data} dataKey="value" nameKey="time" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+  </PieChart>
+  </ResponsiveContainer>
   );
 };
 
