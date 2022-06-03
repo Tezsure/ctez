@@ -22,6 +22,10 @@ export interface ColData{
   isTimeformat?:boolean,
   isCtez?:boolean,
   accessor:string,
+  isDecription?:boolean,
+  isTez?:boolean,
+  isCtez2?:boolean,
+
 }
 
 const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
@@ -150,7 +154,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                   return(
                     <Tr key={pagedata.address+index}>
                     {column.map((coldata,mainkey)=>{
-                       const {datakey,istrimAddress,isTimeformat,isCtez}= coldata;
+                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isTez,isCtez2}= coldata;
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez)
@@ -175,6 +179,29 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           </div>
                          
                           </Td>);
+                        if(isDecription)
+                            return (<Td  key={pagedata.address+index+mainkey} >
+                              <div className="addresslinktd">
+                              Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez<a 
+                              href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                              rel="noreferrer"
+                              target="_blank">
+                                <Icon
+                                color="light.tradebg"
+                                _hover={{ cursor: 'pointer' }}
+                                className="addresslinktdIcon"
+                                as={linkLight}
+                                
+                                />
+                                </a>
+                              </div>
+                              
+                              </Td>);  
+                            if(isTez)
+                             return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} tez</Td>;
+                             if(isCtez2)
+                             return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} ctez</Td>;
+
                        return <Td key={pagedata.address+index+mainkey} >{pagedata[datakey]}</Td>;  
                     })}
                 </Tr>)

@@ -4,12 +4,15 @@ import { useMainHeader } from '../../api/analytics';
 import { useThemeColors } from '../../hooks/utilHooks';
 import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 import './analytics.css';
+import GraphAMMTVL from './graph_amm_tvl';
+import GraphAMMVolume from './graph_amm_volume';
 import GraphCtez from './graph_ctez';
 import GraphDrift from './graph_drift';
 import OvenPiChart from './graph_oven_pi';
 import GraphTVL from './graph_tvl';
 import OvenTable from './ovenTable';
 import TransactionTableoven from './transactionsTable';
+import TransactionTableAMM from './transactionsTableAmm';
 
 
 const AnaluticsPage: React.FC = () => {
@@ -103,167 +106,13 @@ const AnaluticsPage: React.FC = () => {
                     AMM
                 </Text>
                 <Flex direction='row' wrap='wrap' gridGap='10' >
-                    <Flex direction='column'
-                        borderRadius={16}
-                        backgroundColor={background}
-                        flex={1}
-                        paddingX='35px'
-                        paddingY='27px'
-                        gridGap={6}
-                    >
-
-                        <Flex justifyContent='space-between' >
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={400}
-                            >
-                                TVL
-                                <div style={{ fontSize: '32px', fontWeight: 600 }}>
-                                    $3.4M
-                                </div>
-                            </Text>
-                            <ButtonGroup variant='ghost' textColor={textcolor} fontSize='12px' spacing='-1'>
-                                <Button fontSize='12px' textDecoration='underline'>1W</Button>
-                                <Button fontSize='12px' textDecoration='underline' >1M</Button>
-                                <Button fontSize='12px' textDecoration='underline'>ALL</Button>
-                            </ButtonGroup>
-
-                        </Flex>
-                        <Skeleton height='300px' minWidth='20px' />
-                    </Flex>
-                    <Flex direction='column'
-                        borderRadius={16}
-                        backgroundColor={background}
-                        flex={1}
-                        paddingX='35px'
-                        paddingY='27px'
-                        gridGap={6}
-                    >
-
-                        <Flex justifyContent='space-between'>
-                            <Text
-                                color={textcolor}
-                                fontSize={largerScreen ? '20px' : '16px'}
-                                lineHeight="29px"
-                                fontWeight={600}
-                            >
-                                Volume
-                            </Text>
-                            <ButtonGroup variant='ghost' textColor={textcolor} fontSize='12px' spacing='-1'>
-                                <Button fontSize='12px' textDecoration='underline'>1W</Button>
-                                <Button fontSize='12px' textDecoration='underline' >1M</Button>
-                                <Button fontSize='12px' textDecoration='underline'>ALL</Button>
-                            </ButtonGroup>
-
-                        </Flex>
-                        <Skeleton height='300px' minWidth='20px' />
-                    </Flex>
-
+                    <GraphAMMTVL/>
+                    <GraphAMMVolume/>
                 </Flex>
             </div>
 
             <div className='section-container'>
-                <Box
-                    backgroundColor={background}
-                    fontSize='14px'
-                    borderRadius={16}
-
-                    paddingY={35}
-                    paddingX={25}
-                >
-                    <Flex justifyContent='space-between' wrap='wrap'>
-                        <Text
-                            color={textcolor}
-                            fontSize={largerScreen ? '20px' : '16px'}
-                            lineHeight="29px"
-                            fontWeight={600}
-                        >
-                            Transactions
-                        </Text>
-                        <ButtonGroup variant='ghost' textColor={textcolor} spacing='-1'>
-                            <Button fontSize='12px' textDecoration='underline'>Mint</Button>
-                            <Button fontSize='12px' textDecoration='underline' >Burn</Button>
-                            <Button fontSize='12px' textDecoration='underline'>Deposit</Button>
-                            <Button fontSize='12px' textDecoration='underline'>Withdraw</Button>
-                        </ButtonGroup>
-
-                    </Flex>
-                    <TableContainer
-                        textAlign='center'
-                    >
-                        <Table variant='simple'>
-                            <Thead>
-                                <Tr>
-                                    <Th textAlign='left'>Minted</Th>
-                                    <Th >Target</Th>
-                                    <Th >Oven</Th>
-                                    <Th >Account</Th>
-                                    <Th isNumeric>Time</Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td textAlign='left'>100ctez</Td>
-                                    <Td >1.05</Td>
-                                    <Td >KTae...45</Td>
-                                    <Td >T21xy...23</Td>
-                                    <Td isNumeric>2 hours ago</Td>
-                                </Tr>
-                            </Tbody>
-                        </Table>
-                    </TableContainer>
-                </Box>
+            <TransactionTableAMM/>
             </div>
 
 

@@ -55,6 +55,32 @@ export interface TvlDataALL {
     tvl: number;
 }
 
+export interface TvlAMMData {
+    ctez_price: number;
+    tez_price: string;
+    timestamp: Date;
+    tvl: number;
+}
+export interface TvlAMMDataAll {
+    ctez_price: number;
+    tez_price: string;
+    timestamp_from: Date;
+    timestamp_to: Date;
+    tvl: number;
+}
+export interface VolumeAMMData {
+    sellVolume: number;
+    buyVolume: number;
+    timestamp: Date;
+    volume24hours: number;
+}
+export interface VolumeAMMDataAll {
+    id: number;
+    timestampFrom: Date;
+    timestampTo: Date;
+    tokenSymbol: string;
+    volume: number;
+}
 export interface ctezGraphTVL {
     tvlData: TvlData[];
 }
@@ -67,6 +93,12 @@ export interface Ovendata {
     timestamp: Date;
 }
 export interface TwoLineGraph {
+    data1:number | string;
+    data2:number | string;
+    value:number | string;
+    time:number | string | Date;
+}
+export interface TwoLineGraphWithoutValue {
     data1:number | string;
     data2:number | string;
     value:number | string;
@@ -102,7 +134,15 @@ export interface DepositTransactionTable {
     target: number;
     timestamp: Date;
 }
-
+export interface SwapTransaction {
+    id: number;
+    price: number;
+    tezQty: number;
+    timestamp: Date;
+    tokenQty: number;
+    trader: string;
+    sideTrade: number;
+}
 export interface ctezOvenTransaction {
     mintBurnData: MintBurnData[];
 }

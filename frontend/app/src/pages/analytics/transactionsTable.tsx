@@ -1,14 +1,8 @@
-import { Box, Button, ButtonGroup, ButtonProps, Container, Flex, Icon, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from "@chakra-ui/react";
-import { Next, PageGroup, Paginator, Previous, usePaginator } from "chakra-paginator";
-import React, { useEffect, useMemo, useState } from "react";
-import * as timeago from 'timeago.js';
+import { Box, Button, ButtonGroup, Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { useDepositTransactionTable, useMintedTransactionTable, useOvenTransactionTable, useWithdrawTransactionTable } from "../../api/analytics";
-import { ReactComponent as leftIcon } from '../../assets/images/icons/left-icon.svg';
-import { ReactComponent as rightIcon } from '../../assets/images/icons/right-icon.svg';
 import { useTableNumberUtils } from "../../hooks/useTableUtils";
 import { useThemeColors } from "../../hooks/utilHooks";
-import { OvenTransactionTable } from "../../interfaces/analytics";
-import { trimAddress } from "../../utils/addressUtils";
 import TableCommon, { ColData } from "./comonTable";
 
 

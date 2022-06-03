@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, priceSats, TvlData, TvlDataALL, TwoLineGraph } from "../interfaces/analytics";
+import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, priceSats, SwapTransaction, TvlAMMData, TvlAMMDataAll, TvlData, TvlDataALL, TwoLineGraph, TwoLineGraphWithoutValue, VolumeAMMData, VolumeAMMDataAll } from "../interfaces/analytics";
 
 const analyticsAPI = axios.create({
   baseURL: 'https://analyticsapi.ctez.app'
@@ -125,7 +125,17 @@ export const useWithdrawTransactionTable = () => {
     { refetchInterval: 30_000 },
   );
 };
- 
+export const useSwapTransactionTable = () => {
+  return useQuery<SwapTransaction[], Error>(
+    'main_ctez_swapTransaction',
+    async () => {
+      const data = await analyticsAPI.get('/amm_transaction/swap');
+      const SwapTransactionTable: SwapTransaction[] = data.data;
+      return SwapTransactionTable;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
  
 export const useCtezGraphctez1m = () => {
   return useQuery<TwoLineGraph[], Error>(
@@ -191,6 +201,79 @@ export const useCtezGraphTVLAll = () => {
       const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
         return <OneLineGraph> {
            value: e.tvl, 
+           time: e.timestampFrom
+        }
+      })
+      return data1;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useCtezGraphAMMTVL = () => {
+  return useQuery<TwoLineGraphWithoutValue[], Error>(
+    'graph_Tvl_AMM_Data',
+    async () => {
+      const data = await analyticsAPI.get('/price_stats');
+      const priceStatsArr: TvlAMMData[] = data.data;
+      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.map((e) => {
+        return <TwoLineGraphWithoutValue> {
+           data1: e.ctez_price,
+           data2: e.tez_price,
+           value:e.tvl, 
+           time: e.timestamp
+        }
+      })
+      return data1;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useCtezGraphAMMTVLAll = () => {
+  return useQuery<TwoLineGraphWithoutValue[], Error>(
+    'graph_Tvl_AMM_Data_all',
+    async () => {
+      const data = await analyticsAPI.get('/price_stats_all');
+      const priceStatsArr: TvlAMMDataAll[] = data.data;
+      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.map((e) => {
+        return <TwoLineGraphWithoutValue> {
+           data1: e.ctez_price,
+           data2: e.tez_price,
+           value: e.tvl, 
+           time: e.timestamp_from
+        }
+      })
+      return data1;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+
+export const useCtezGraphAMMVolume = () => {
+  return useQuery<OneLineGraph[], Error>(
+    'ctez_graph_AMM_volume',
+    async () => {
+      const data = await analyticsAPI.get('/volume_stats');
+      const ctezgraphTVL: VolumeAMMData[] = data.data;
+      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+        return <OneLineGraph> {
+           value: e.volume24hours, 
+           time: e.timestamp
+        }
+      })
+      return data1;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useCtezGraphAMMVolumeAll = () => {
+  return useQuery<OneLineGraph[], Error>(
+    'ctez_graph_AMM_volume_all',
+    async () => {
+      const data = await analyticsAPI.get('/volume_stats_month');
+      const ctezgraphTVL: VolumeAMMDataAll[] = data.data;
+      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+        return <OneLineGraph> {
+           value: e.volume, 
            time: e.timestampFrom
         }
       })
