@@ -107,8 +107,9 @@ export interface OneLineGraph {
     time:number | string | Date;
 }
 export interface PiGraphOven {
-    id:number,
+    id:number;
     value:number | string;
+    address:number |string;
     time:number | string | Date;
 }
 export interface PiGraph {

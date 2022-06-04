@@ -1,6 +1,7 @@
 import { format } from 'date-fns/fp';
 import React, { Dispatch, ReactNode, SetStateAction, useCallback, useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
+import { trimAddress, trimSizeMap } from '../../utils/addressUtils';
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -15,7 +16,8 @@ const renderActiveShape = (props: any) => {
     fill,
     payload,
     percent,
-    value
+    value,
+    address
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
@@ -30,7 +32,8 @@ const renderActiveShape = (props: any) => {
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.value}
+        {payload.address==="Others"?'Others':trimAddress(payload.address)}
+        
       </text>
       <Sector
         cx={cx}

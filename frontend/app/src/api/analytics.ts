@@ -292,6 +292,7 @@ export const useCtezGraphOvendata = () => {
       const data1: PiGraphOven[] = ctezgraphOvendata.map((e,index) => {
         return <PiGraphOven> {
            id:index,
+           address:e.oven_address,
            value: parseFloat(e.percentage.toString()), 
            time: e.ctez_standing
         }
