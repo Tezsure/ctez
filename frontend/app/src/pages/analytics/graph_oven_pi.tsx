@@ -1,9 +1,11 @@
-import { Button, ButtonGroup, Flex, Skeleton, SkeletonCircle, Text, useMediaQuery } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Flex, SkeletonCircle, Text, useMediaQuery } from "@chakra-ui/react";
+import React from "react";
 import { useCtezGraphOvendata } from "../../api/analytics";
-import LineChart from "../../components/graph/line-chart";
 import PiChart from "../../components/graph/pi-chart";
 import { useThemeColors } from "../../hooks/utilHooks";
+
+
+
 
 const OvenPiChart: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
@@ -15,7 +17,7 @@ const OvenPiChart: React.FC = () => {
         'text4',
     ]);
     const { data:dataChart = false } = useCtezGraphOvendata();
-    console.log('data',dataChart)
+    console.log('datachart5tingpi',dataChart)
     // graph options
    return(<Flex direction='column'
    borderRadius={16}

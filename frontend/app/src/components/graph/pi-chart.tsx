@@ -1,9 +1,95 @@
-import React, { Dispatch, SetStateAction, ReactNode } from 'react';
-import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, CartesianGrid, YAxis, PieChart, Pie } from 'recharts';
-import { format, parseISO } from 'date-fns/fp';
-import { Box } from '@chakra-ui/react';
-import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
+import { format } from 'date-fns/fp';
+import React, { Dispatch, ReactNode, SetStateAction, useCallback, useState } from 'react';
+import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
 
+const renderActiveShape = (props: any) => {
+  const RADIAN = Math.PI / 180;
+  const {
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    startAngle,
+    endAngle,
+    fill,
+    payload,
+    percent,
+    value
+  } = props;
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 10) * cos;
+  const sy = cy + (outerRadius + 10) * sin;
+  const mx = cx + (outerRadius + 30) * cos;
+  const my = cy + (outerRadius + 30) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  const textAnchor = cos >= 0 ? "start" : "end";
+
+  return (
+    <g>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+        {payload.value}
+      </text>
+      <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+      <Sector
+        cx={cx}
+        cy={cy}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        innerRadius={outerRadius + 6}
+        outerRadius={outerRadius + 10}
+        fill={fill}
+      />
+      <path
+        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+        stroke={fill}
+        fill="none"
+      />
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        textAnchor={textAnchor}
+        fill="#4E5D78"
+        className='alingright'
+      >Minted</text>
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        dy={18}
+        textAnchor={textAnchor}
+        fill="#4E5D78"
+        fontWeight={600}
+        fontSize='16px'
+        className='alingright'
+      >
+        {`${value} CTEZ`}
+      </text>
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        dy={29}
+        fontSize='12px'
+        className='alingright'
+        textAnchor={textAnchor}
+        fill="#B0B7C3"
+      >
+        {`${(percent * 100).toFixed(2)}%`}
+      </text>
+    </g>
+  );
+};
+const ColorPalet=['#463ABF','#7B70FF','#A586E3','#675CD5','#2161F7','#8FA9FA']
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
 const formatMonth = format('dd LLL');
@@ -43,12 +129,37 @@ const PiChart = ({
   ...rest
 }: PiChartProps) => {
   const parsedValue = value;
-  
+  const [activeIndex, setActiveIndex] = useState(0);
+  const onPieEnter = useCallback(
+    (_, index) => {
+      setActiveIndex(index);
+    },
+    [setActiveIndex]
+  );
+
+
+
   return (
     <ResponsiveContainer width="100%" height={minHeight}>
 
-    <PieChart  height={250}>
-    <Pie data={data} dataKey="value" nameKey="time" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+    <PieChart  height={300}>
+    <Pie 
+    data={data} 
+    dataKey="value" 
+    nameKey="time" 
+    cx='207px'
+    cy='207px'
+    innerRadius={60} 
+    outerRadius={80} 
+    fill="#82ca9d"  
+    activeIndex={activeIndex}
+    activeShape={renderActiveShape}
+    onMouseEnter={onPieEnter}
+    >
+      {data.map((_, index) => (
+        <Cell key={`cell-${index}`} fill={ColorPalet[index % ColorPalet.length]} />
+      ))}
+      </Pie>
   </PieChart>
   </ResponsiveContainer>
   );

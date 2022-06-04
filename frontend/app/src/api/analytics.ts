@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, priceSats, SwapTransaction, TvlAMMData, TvlAMMDataAll, TvlData, TvlDataALL, TwoLineGraph, TwoLineGraphWithoutValue, VolumeAMMData, VolumeAMMDataAll } from "../interfaces/analytics";
+import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, PiGraphOven, priceSats, SwapTransaction, TvlAMMData, TvlAMMDataAll, TvlData, TvlDataALL, TwoLineGraph, TwoLineGraphWithoutValue, VolumeAMMData, VolumeAMMDataAll } from "../interfaces/analytics";
 
 const analyticsAPI = axios.create({
   baseURL: 'https://analyticsapi.ctez.app'
@@ -284,15 +284,16 @@ export const useCtezGraphAMMVolumeAll = () => {
 };
 
 export const useCtezGraphOvendata = () => {
-  return useQuery<OneLineGraph[], Error>(
-    'ctez_graph_oven',
+  return useQuery<PiGraphOven[], Error>(
+    'ctez_graph_oven_pi',
     async () => {
       const data = await analyticsAPI.get('/ovens_graph');
       const ctezgraphOvendata: Ovendata[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphOvendata.map((e) => {
-        return <OneLineGraph> {
-           value: e.ctezStanding, 
-           time: e.timestamp
+      const data1: PiGraphOven[] = ctezgraphOvendata.map((e,index) => {
+        return <PiGraphOven> {
+           id:index,
+           value: parseFloat(e.percentage.toString()), 
+           time: e.ctez_standing
         }
       });
       return data1;

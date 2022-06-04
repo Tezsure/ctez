@@ -86,11 +86,9 @@ export interface ctezGraphTVL {
 }
 
 export interface Ovendata {
-    ctezStanding: number;
-    id: number;
-    ovenAddress: string;
-    tezStanding: number;
-    timestamp: Date;
+    ctez_standing: any;
+    oven_address: string;
+    percentage: string;
 }
 export interface TwoLineGraph {
     data1:number | string;
@@ -105,6 +103,11 @@ export interface TwoLineGraphWithoutValue {
     time:number | string | Date;
 }
 export interface OneLineGraph {
+    value:number | string;
+    time:number | string | Date;
+}
+export interface PiGraphOven {
+    id:number,
     value:number | string;
     time:number | string | Date;
 }
