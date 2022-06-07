@@ -23,6 +23,8 @@ export interface ColData{
   isCtez?:boolean,
   accessor:string,
   isDecription?:boolean,
+  isDecriptionAdd?:boolean,
+  isDecriptionRemove?:boolean,
   isTez?:boolean,
   isCtez2?:boolean,
 
@@ -154,7 +156,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                   return(
                     <Tr key={pagedata.address+index}>
                     {column.map((coldata,mainkey)=>{
-                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isTez,isCtez2}= coldata;
+                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2}= coldata;
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez)
@@ -197,7 +199,45 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                                 </a>
                               </div>
                               
-                              </Td>);  
+                              </Td>);
+                        if(isDecriptionAdd)
+                        return (<Td  key={pagedata.address+index+mainkey} >
+                          <div className="addresslinktd">
+                          Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
+                          <a 
+                          href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                          rel="noreferrer"
+                          target="_blank">
+                            <Icon
+                            color="light.tradebg"
+                            _hover={{ cursor: 'pointer' }}
+                            className="addresslinktdIcon"
+                            as={linkLight}
+                            
+                            />
+                            </a>
+                          </div>
+                          
+                          </Td>);
+                          if(isDecriptionRemove)
+                          return (<Td  key={pagedata.address+index+mainkey} >
+                            <div className="addresslinktd">
+                            Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
+                            <a 
+                            href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                            rel="noreferrer"
+                            target="_blank">
+                              <Icon
+                              color="light.tradebg"
+                              _hover={{ cursor: 'pointer' }}
+                              className="addresslinktdIcon"
+                              as={linkLight}
+                              
+                              />
+                              </a>
+                            </div>
+                            
+                            </Td>);         
                             if(isTez)
                              return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} tez</Td>;
                              if(isCtez2)

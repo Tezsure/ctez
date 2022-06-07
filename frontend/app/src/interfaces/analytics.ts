@@ -147,6 +147,17 @@ export interface SwapTransaction {
     trader: string;
     sideTrade: number;
 }
+export interface AMMTransactionLiquidity {
+    id: number;
+    quantityBurn: number;
+    quantityMint: number;
+    quantityPool1: number;
+    quantityPool2: number;
+    quantityTk1: number;
+    quantityTk2: number;
+    timestamp: Date;
+    trader: string;
+}
 export interface ctezOvenTransaction {
     mintBurnData: MintBurnData[];
 }

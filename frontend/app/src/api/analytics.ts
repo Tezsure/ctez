@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, PiGraphOven, priceSats, SwapTransaction, TvlAMMData, TvlAMMDataAll, TvlData, TvlDataALL, TwoLineGraph, TwoLineGraphWithoutValue, VolumeAMMData, VolumeAMMDataAll } from "../interfaces/analytics";
+import { AMMTransactionLiquidity, ctezGraphctez, ctezGraphctezDateRange, ctezGraphOvendata, ctezGraphTVL, ctezGraphVolumestat, ctezMainHeader, ctezOven, DepositTransactionTable, driftGraphInterface, driftGraphInterfaceAll, MintBurnData, OneLineGraph, Ovendata, OvenTransactionTable, PiGraphOven, priceSats, SwapTransaction, TvlAMMData, TvlAMMDataAll, TvlData, TvlDataALL, TwoLineGraph, TwoLineGraphWithoutValue, VolumeAMMData, VolumeAMMDataAll } from "../interfaces/analytics";
 
 const analyticsAPI = axios.create({
   baseURL: 'https://analyticsapi.ctez.app'
@@ -131,6 +131,28 @@ export const useSwapTransactionTable = () => {
     async () => {
       const data = await analyticsAPI.get('/amm_transaction/swap');
       const SwapTransactionTable: SwapTransaction[] = data.data;
+      return SwapTransactionTable;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useAddLiquidityTransactionTable = () => {
+  return useQuery<AMMTransactionLiquidity[], Error>(
+    'main_ctez_AddLiquidityTransaction',
+    async () => {
+      const data = await analyticsAPI.get('/amm_transaction/add_liquidity');
+      const SwapTransactionTable: AMMTransactionLiquidity[] = data.data;
+      return SwapTransactionTable;
+    },
+    { refetchInterval: 30_000 },
+  );
+};
+export const useRemoveLiquidityTransactionTable = () => {
+  return useQuery<AMMTransactionLiquidity[], Error>(
+    'main_ctez_AddLiquidityTransaction',
+    async () => {
+      const data = await analyticsAPI.get('/amm_transaction/remove_liquidity');
+      const SwapTransactionTable: AMMTransactionLiquidity[] = data.data;
       return SwapTransactionTable;
     },
     { refetchInterval: 30_000 },
