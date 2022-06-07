@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { format } from 'date-fns/fp';
 import { useDriftGraph, useDriftGraphAll } from "../../api/analytics";
 import LineChart from "../../components/graph/line-chart";
 import { useThemeColors } from "../../hooks/utilHooks";
@@ -16,16 +17,18 @@ const GraphDrift: React.FC = () => {
     const { data:data1m = false } = useDriftGraph();
     const { data:dataAll = false } = useDriftGraphAll();
     const [value, setValue] = useState<number | undefined>();
+    const [time, setTime] = useState<number | undefined>();
     const [activeTab,setActiveTab]=useState('1m');
     // graph options
-
+    const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
+   
     return (<Flex direction='column'
         borderRadius={16}
         backgroundColor={background}
         flex={1}
         paddingX='35px'
         paddingY='27px'
-        gridGap={6}
+        gridGap={2}
     >
 
         <Flex justifyContent='space-between'>
@@ -43,11 +46,17 @@ const GraphDrift: React.FC = () => {
             </ButtonGroup>
 
         </Flex>
+        <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
+        <Flex gridGap={1} flexDirection='column'>
+        {value ? <Text>Drift  <b>{value}</b></Text>:<Text opacity={0}>Premium</Text>}
+        {time ? <Text><b>{dateFormat(time )}</b></Text>:<Text opacity={0}>Time</Text>}
+        </Flex>
+        </Flex>
         {activeTab==='1m' ? data1m?<LineChart
-         data={data1m}  setValue={setValue} 
+         data={data1m}  setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />:
         dataAll?<LineChart
-         data={dataAll} isShowMonth setValue={setValue} 
+         data={dataAll} isShowMonth setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />
         }
     </Flex>)

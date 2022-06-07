@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Flex, Skeleton, SkeletonText, Text, useMediaQuery } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { format } from 'date-fns/fp';
 import { useCtezGraphAMMTVL, useCtezGraphAMMTVLAll } from "../../api/analytics";
 import { TextWithCircleColor } from "../../components/analytics/TTextWithColorCircle";
 import TwoLineChart from "../../components/graph/two-line-chart-t";
@@ -21,9 +22,11 @@ const GraphAMMTVL: React.FC = () => {
     const { data:dataAll = false } = useCtezGraphAMMTVLAll();
 
     const [value, setValue] = useState<number | undefined>();
+    const [time, setTime] = useState<number | undefined>();
     const [activeTab,setActiveTab]=useState('1m');
     // graph options
-
+    const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
+   
     return (<Flex direction='column'
         borderRadius={16}
         backgroundColor={background}
@@ -43,6 +46,7 @@ const GraphAMMTVL: React.FC = () => {
             >
                 TVL
             </Text>
+            <Flex flexDirection='column'>
             <Text
             color={textcolor}
             fontSize={largerScreen ? '32px' : '18px'}
@@ -52,6 +56,8 @@ const GraphAMMTVL: React.FC = () => {
             {(data1m && !value)?numberToMillionOrBillionFormate(data1m[data1m.length-1].value):value?numberToMillionOrBillionFormate(value):<SkeletonText pr={6} noOfLines={1} spacing="1" />}
             
             </Text>
+            {time ? <Text fontSize='12px' ><b>{dateFormat(time )}</b></Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            </Flex>
             </div>
             <Flex  flexDirection='column' gridGap={2} justifyContent='space-between' fontWeight={400} fontSize='12px' >
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
@@ -68,10 +74,10 @@ const GraphAMMTVL: React.FC = () => {
 
         </Flex>
         {activeTab==='1m' ? data1m?<TwoLineChart
-         data={data1m}  setValue={setValue} 
+         data={data1m}  setValue={setValue} setLabel={setTime} 
         />:<Skeleton height='300px' minWidth='20px' />:
         dataAll?<TwoLineChart
-         data={dataAll} isShowMonth setValue={setValue} 
+         data={dataAll} isShowMonth setValue={setValue} setLabel={setTime} 
         />:<Skeleton height='300px' minWidth='20px' />
         }
     </Flex>)

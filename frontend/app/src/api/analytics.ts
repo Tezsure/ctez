@@ -30,7 +30,7 @@ export const useDriftGraph = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/drift');
       const priceStatsArr: driftGraphInterface[] = data.data;
-      const data1: OneLineGraph[] = priceStatsArr.map((e) => {
+      const data1: OneLineGraph[] = priceStatsArr.reverse().map((e) => {
         return <OneLineGraph> {
            value: e.drift, 
            time: e.timestamp
@@ -47,7 +47,7 @@ export const useDriftGraphAll = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/drift_all');
       const priceStatsArr: driftGraphInterfaceAll[] = data.data;
-      const data1: OneLineGraph[] = priceStatsArr.map((e) => {
+      const data1: OneLineGraph[] = priceStatsArr.reverse().map((e) => {
         return <OneLineGraph> {
            value: e.drift, 
            time: e.timestamp_from
@@ -143,7 +143,7 @@ export const useCtezGraphctez1m = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/target');
       const priceStatsArr: ctezGraphctez[] = data.data;
-      const data1: TwoLineGraph[] = priceStatsArr.map((e) => {
+      const data1: TwoLineGraph[] = priceStatsArr.reverse().map((e) => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
@@ -162,7 +162,7 @@ export const useCtezGraphctezall = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/target_all');
       const priceStatsArr: ctezGraphctezDateRange[] = data.data;
-      const data1: TwoLineGraph[] = priceStatsArr.map((e) => {
+      const data1: TwoLineGraph[] = priceStatsArr.reverse().map((e) => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
@@ -181,7 +181,7 @@ export const useCtezGraphTVL = () => {
     async () => {
       const data = await analyticsAPI.get('/tvl');
       const ctezgraphTVL: TvlData[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+      const data1: OneLineGraph[] = ctezgraphTVL.reverse().map((e) => {
         return <OneLineGraph> {
            value: e.tvl, 
            time: e.timestamp
@@ -198,7 +198,7 @@ export const useCtezGraphTVLAll = () => {
     async () => {
       const data = await analyticsAPI.get('/tvl_all');
       const ctezgraphTVL: TvlDataALL[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+      const data1: OneLineGraph[] = ctezgraphTVL.reverse().map((e) => {
         return <OneLineGraph> {
            value: e.tvl, 
            time: e.timestampFrom
@@ -215,7 +215,7 @@ export const useCtezGraphAMMTVL = () => {
     async () => {
       const data = await analyticsAPI.get('/price_stats');
       const priceStatsArr: TvlAMMData[] = data.data;
-      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.map((e) => {
+      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.reverse().map((e) => {
         return <TwoLineGraphWithoutValue> {
            data1: e.ctez_price,
            data2: e.tez_price,
@@ -234,7 +234,7 @@ export const useCtezGraphAMMTVLAll = () => {
     async () => {
       const data = await analyticsAPI.get('/price_stats_all');
       const priceStatsArr: TvlAMMDataAll[] = data.data;
-      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.map((e) => {
+      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.reverse().map((e) => {
         return <TwoLineGraphWithoutValue> {
            data1: e.ctez_price,
            data2: e.tez_price,
@@ -254,7 +254,7 @@ export const useCtezGraphAMMVolume = () => {
     async () => {
       const data = await analyticsAPI.get('/volume_stats');
       const ctezgraphTVL: VolumeAMMData[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+      const data1: OneLineGraph[] = ctezgraphTVL.reverse().map((e) => {
         return <OneLineGraph> {
            value: e.volume24hours, 
            time: e.timestamp
@@ -271,7 +271,7 @@ export const useCtezGraphAMMVolumeAll = () => {
     async () => {
       const data = await analyticsAPI.get('/volume_stats_month');
       const ctezgraphTVL: VolumeAMMDataAll[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+      const data1: OneLineGraph[] = ctezgraphTVL.reverse().map((e) => {
         return <OneLineGraph> {
            value: e.volume, 
            time: e.timestampFrom

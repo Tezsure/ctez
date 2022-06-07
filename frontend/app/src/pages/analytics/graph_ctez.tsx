@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { format } from 'date-fns/fp';
+import React, { useMemo, useState } from "react";
 import { useCtezGraphctez1m, useCtezGraphctezall } from "../../api/analytics";
 import { TextWithCircleColor } from "../../components/analytics/TTextWithColorCircle";
 import TwoLineChart from "../../components/graph/two-line-chart";
@@ -20,9 +21,11 @@ const GraphCtez: React.FC = () => {
   const { data:mainDatatargetall=false } = useCtezGraphctezall();
 
   const [value, setValue] = useState<number | undefined>();
+  const [time, setTime] = useState<number | undefined>();
   const [activeTab,setActiveTab]=useState('1m');
     // graph options
-    
+    const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
+ 
     return (<Flex direction='column'
         borderRadius={16}
         backgroundColor={background}
@@ -48,21 +51,24 @@ const GraphCtez: React.FC = () => {
 
         </Flex>
         <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
+        <Flex gridGap={1} flexDirection='column'>
+        {value ? <Text>Premium  <b>{value}%</b></Text>:<Text opacity={0}>Premium</Text>}
+        {time ? <Text><b>{dateFormat(time )}</b></Text>:<Text opacity={0}>Time</Text>}
+        </Flex>
             <Flex gridGap={4}>
                 <TextWithCircleColor color={color}  text="Price" />
                 <TextWithCircleColor color={color2}  text="Target" />
 
             </Flex>
-            {value && <Text>Premium  <b>{value}%</b></Text>}
         </Flex>
         
         {/* <GraphTwoLine labelArr={priceData.dateArr} data1={priceData.ctez_priceArr} data2={priceData.tez_priceArr}/>
         graph goes here */}
         {activeTab==='1m' ? mainDatatarget1m?<TwoLineChart
-         data={mainDatatarget1m}  setValue={setValue} 
+         data={mainDatatarget1m}  setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />:
         mainDatatargetall?<TwoLineChart
-         data={mainDatatargetall} isShowMonth setValue={setValue} 
+         data={mainDatatargetall} isShowMonth setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />
         }
     </Flex>)

@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Center, Flex, Skeleton, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Center, Flex, Skeleton, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import { useMainHeader } from '../../api/analytics';
 import { useThemeColors } from '../../hooks/utilHooks';
@@ -31,9 +31,6 @@ const AnaluticsPage: React.FC = () => {
             {text}
         </b>;
     }
-    const GradienTSimmer = () => {
-        return null;
-    }
     return (
         <div style={{ padding: largerScreen ? '55px' : '35px' }}>
 
@@ -41,15 +38,28 @@ const AnaluticsPage: React.FC = () => {
 
 
             <Center>
-                <Text
+            {headerData?<Text
                     color={textcolor}
                     fontSize={largerScreen ? '48px' : '26px'}
                     lineHeight="50px"
                     fontWeight={400}
                     textAlign='center'
                 >
-                    Ctez is managing <GradienTSimmer /> {headerData ? GradientText(numberToMillionOrBillionFormate(headerData.TVL), true) : <GradienTSimmer />} across {headerData ? GradientText(`${headerData.total_ovens} Ovens`, false) : <GradienTSimmer />}
+                   Ctez is managing {GradientText(numberToMillionOrBillionFormate(headerData.TVL), true) } across {GradientText(`${headerData.total_ovens} Ovens`, false) }
+                        
+                                            
                 </Text>
+                :<Skeleton>
+                    <Text
+                    color={textcolor}
+                    fontSize={largerScreen ? '48px' : '26px'}
+                    lineHeight="50px"
+                    fontWeight={400}
+                    textAlign='center'
+                >
+                   Ctez is managing $1.13m across 185 Ovens
+                </Text>
+                    </Skeleton>}
             </Center>
 
 

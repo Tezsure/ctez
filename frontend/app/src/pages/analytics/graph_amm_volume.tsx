@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Flex, Skeleton, SkeletonText, Text, useMediaQuery } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { format } from 'date-fns/fp';
 import { useCtezGraphAMMVolume, useCtezGraphAMMVolumeAll } from "../../api/analytics";
 import { TextWithCircleColor } from "../../components/analytics/TTextWithColorCircle";
 import BarChartAlt from "../../components/graph/bar-graph";
@@ -21,9 +22,10 @@ const GraphAMMVolume: React.FC = () => {
     const { data: dataAll = false } = useCtezGraphAMMVolumeAll();
 
     const [value, setValue] = useState<number | undefined>();
+    const [time, setTime] = useState<number | undefined>();
     const [activeTab, setActiveTab] = useState('1m');
     // graph options
-
+    const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
     return (<Flex direction='column'
         borderRadius={16}
         backgroundColor={background}
@@ -34,6 +36,7 @@ const GraphAMMVolume: React.FC = () => {
     >
 
         <Flex justifyContent='space-between'>
+            <div>
             <Text
                 color={textcolor}
                 fontSize={largerScreen ? '20px' : '16px'}
@@ -42,17 +45,30 @@ const GraphAMMVolume: React.FC = () => {
             >
                 Volume
             </Text>
+            <Flex flexDirection='column'>
+            <Text
+            color={textcolor}
+            fontSize={largerScreen ? '32px' : '18px'}
+            lineHeight="29px"
+            fontWeight={600}
+            >
+            {(data1m && !value)?numberToMillionOrBillionFormate(data1m[data1m.length-1].value):value?numberToMillionOrBillionFormate(value):<SkeletonText pr={6} noOfLines={1} spacing="1" />}
+            
+            </Text>
+            {time ? <Text fontSize='12px' ><b>{dateFormat(time )}</b></Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            </Flex>
+            </div>
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
-                <Button fontSize='12px' className={activeTab === '1m' ? "btnactive" : ''} textDecoration='underline' onClick={() => setActiveTab('1m')} >1M</Button>
-                <Button fontSize='12px' className={activeTab === 'all' ? "btnactive" : ''} textDecoration='underline' onClick={() => setActiveTab('all')}>ALL</Button>
+                <Button fontSize='12px' className={activeTab === '1m' ? "btnactive" : ''} textDecoration='underline' onClick={() => setActiveTab('1m')} >1D</Button>
+                <Button fontSize='12px' className={activeTab === 'all' ? "btnactive" : ''} textDecoration='underline' onClick={() => setActiveTab('all')}>1M</Button>
             </ButtonGroup>
 
         </Flex>
         {activeTab === '1m' ? data1m ? <BarChartAlt
-            data={data1m} setValue={setValue}
+            data={data1m} setValue={setValue} setLabel={setTime}
         /> : <Skeleton height='300px' minWidth='20px' /> :
             dataAll ? <BarChartAlt
-                data={dataAll} isShowMonth setValue={setValue}
+                data={dataAll} isShowMonth setValue={setValue} setLabel={setTime}
             /> : <Skeleton height='300px' minWidth='20px' />
         }
     </Flex>)

@@ -55,7 +55,7 @@ const TwoLineChart = ({
           margin={{
             top: 10,
             right: 30,
-            left: -23,
+            left: -18,
             bottom: 5,
           }}
           onMouseLeave={() => {

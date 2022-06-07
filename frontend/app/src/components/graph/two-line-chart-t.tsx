@@ -54,7 +54,7 @@ const TwoLineChart = ({
           data={data}
           margin={{
             top: 10,
-            right: -20,
+            right: 0,
             left: 10,
             bottom: 5,
           }}
