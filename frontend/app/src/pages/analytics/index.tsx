@@ -21,7 +21,7 @@ const AnaluticsPage: React.FC = () => {
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
     const [background,inputbg] = useThemeColors([
-        'cardbg',
+        'cardbg2',
         'inputbg',
     ]);
     const {colorMode} = useColorMode();
@@ -33,10 +33,6 @@ const AnaluticsPage: React.FC = () => {
     }
     return (
         <div style={{ padding: largerScreen ? '55px' : '35px' }} className={colorMode}>
-
-
-
-
             <Center>
             {headerData?<Text
                     color={textcolor}
@@ -61,11 +57,6 @@ const AnaluticsPage: React.FC = () => {
                 </Text>
                     </Skeleton>}
             </Center>
-
-
-
-
-
             <div className='section-container'>
                 <Text
                     fontSize={largerScreen ? '30px' : '20px'}

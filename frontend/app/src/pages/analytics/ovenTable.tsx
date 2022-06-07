@@ -8,7 +8,7 @@ const OvenTable: React.FC = () => {
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
     const [background, imported, text4] = useThemeColors([
-        'cardbg',
+        'cardbg2',
         'imported',
         'text4',
     ]);

@@ -19,7 +19,7 @@ const TransactionTableoven: React.FC = () => {
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
     const [background,inputbg] = useThemeColors([
-        'cardbg',
+        'cardbg2',
         'inputbg',
     ]);
     const { data: mintedTransactionTable = [] } = useOvenTransactionTable();

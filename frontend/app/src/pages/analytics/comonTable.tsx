@@ -36,7 +36,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
     const [background,inputbg] = useThemeColors([
-        'cardbg',
+        'cardbg2',
         'inputbg',
     ]);
     const baseStyles: ButtonProps = {
