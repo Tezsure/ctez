@@ -20,7 +20,7 @@ const GraphCtez: React.FC = () => {
   const { data:mainDatatargetall=false } = useCtezGraphctezall();
 
   const [value, setValue] = useState<number | undefined>();
-  const [activeTab,setActiveTab]=useState('all');
+  const [activeTab,setActiveTab]=useState('1m');
     // graph options
     
     return (<Flex direction='column'

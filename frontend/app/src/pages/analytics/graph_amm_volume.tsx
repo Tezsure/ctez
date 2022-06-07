@@ -21,7 +21,7 @@ const GraphAMMVolume: React.FC = () => {
     const { data: dataAll = false } = useCtezGraphAMMVolumeAll();
 
     const [value, setValue] = useState<number | undefined>();
-    const [activeTab, setActiveTab] = useState('all');
+    const [activeTab, setActiveTab] = useState('1m');
     // graph options
 
     return (<Flex direction='column'

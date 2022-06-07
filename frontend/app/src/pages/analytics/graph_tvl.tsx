@@ -18,7 +18,7 @@ const GraphTVL: React.FC = () => {
     const { data:dataAll = false } = useCtezGraphTVLAll();
 
     const [value, setValue] = useState<number | undefined>();
-    const [activeTab,setActiveTab]=useState('all');
+    const [activeTab,setActiveTab]=useState('1m');
     // graph options
 
     return (<Flex direction='column'

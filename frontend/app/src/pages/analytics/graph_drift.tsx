@@ -16,7 +16,7 @@ const GraphDrift: React.FC = () => {
     const { data:data1m = false } = useDriftGraph();
     const { data:dataAll = false } = useDriftGraphAll();
     const [value, setValue] = useState<number | undefined>();
-    const [activeTab,setActiveTab]=useState('all');
+    const [activeTab,setActiveTab]=useState('1m');
     // graph options
 
     return (<Flex direction='column'

@@ -182,7 +182,8 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                         if(isDecription)
                             return (<Td  key={pagedata.address+index+mainkey} >
                               <div className="addresslinktd">
-                              Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez<a 
+                              {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
+                              <a 
                               href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
                               rel="noreferrer"
                               target="_blank">
