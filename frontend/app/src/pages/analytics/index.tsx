@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Center, Flex, Skeleton, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Center, Flex, Skeleton, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import { useMainHeader } from '../../api/analytics';
 import { useThemeColors } from '../../hooks/utilHooks';
@@ -20,11 +20,11 @@ const AnaluticsPage: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
-    const [background, imported, text4] = useThemeColors([
+    const [background,inputbg] = useThemeColors([
         'cardbg',
-        'imported',
-        'text4',
+        'inputbg',
     ]);
+    const {colorMode} = useColorMode();
     const GradientText = (text: string | number, isDollor: boolean) => {
         return <b className='gradientcolortext'>
             {isDollor ? '$' : null}
@@ -32,7 +32,7 @@ const AnaluticsPage: React.FC = () => {
         </b>;
     }
     return (
-        <div style={{ padding: largerScreen ? '55px' : '35px' }}>
+        <div style={{ padding: largerScreen ? '55px' : '35px' }} className={colorMode}>
 
 
 

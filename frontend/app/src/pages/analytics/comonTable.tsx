@@ -35,17 +35,18 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
     const [textcolor] = useThemeColors(['homeTxt']);
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
-    const [background, imported, text4] = useThemeColors([
+    const [background,inputbg] = useThemeColors([
         'cardbg',
-        'imported',
-        'text4',
+        'inputbg',
     ]);
     const baseStyles: ButtonProps = {
         w: 7,
         fontSize: 'sm',
+        backgroundColor:'transparent'
       };
       const activeStyles: ButtonProps = {
         ...baseStyles,
+        backgroundColor:inputbg,
         _hover: {
           bg: 'light.text4',
         },

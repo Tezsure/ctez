@@ -1,9 +1,12 @@
+import { useColorMode } from '@chakra-ui/react';
 import { format } from 'date-fns/fp';
 import React, { Dispatch, ReactNode, SetStateAction, useCallback, useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
+import { useThemeColors } from '../../hooks/utilHooks';
 import { trimAddress, trimSizeMap } from '../../utils/addressUtils';
 
-const renderActiveShape = (props: any) => {
+const RenderActiveShape = (props: any) => {
+
   const RADIAN = Math.PI / 180;
   const {
     cx,
@@ -17,6 +20,7 @@ const renderActiveShape = (props: any) => {
     payload,
     percent,
     value,
+    textColor,
     address
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);
@@ -63,7 +67,7 @@ const renderActiveShape = (props: any) => {
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
-        fill="#4E5D78"
+        fill={textColor}
         className='alingright'
       >Minted</text>
       <text
@@ -71,7 +75,7 @@ const renderActiveShape = (props: any) => {
         y={ey}
         dy={18}
         textAnchor={textAnchor}
-        fill="#4E5D78"
+        fill={textColor}
         fontWeight={600}
         fontSize='16px'
         className='alingright'
@@ -85,7 +89,7 @@ const renderActiveShape = (props: any) => {
         fontSize='12px'
         className='alingright'
         textAnchor={textAnchor}
-        fill="#B0B7C3"
+        fill='#B0B7C3'
       >
         {`${(percent * 100).toFixed(2)}%`}
       </text>
@@ -139,9 +143,11 @@ const PiChart = ({
     },
     [setActiveIndex]
   );
-
-
-
+  const [textColor,text4] = useThemeColors([
+    'textColor',
+    'text4',
+]);
+  const theme = useColorMode();
   return (
     <ResponsiveContainer width="100%" height={minHeight}>
 
@@ -156,7 +162,7 @@ const PiChart = ({
     outerRadius={80} 
     fill="#82ca9d"  
     activeIndex={activeIndex}
-    activeShape={renderActiveShape}
+    activeShape={<RenderActiveShape  textColor={theme.colorMode==='dark'?'#FFFFFF':'#4E5D78'} />}
     onMouseEnter={onPieEnter}
     >
       {data.map((_, index) => (

@@ -11,10 +11,9 @@ const OvenPiChart: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
     const [textHighlight] = useThemeColors(['sideBarBg']);
     const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
-    const [background, imported, text4] = useThemeColors([
+    const [background,inputbg] = useThemeColors([
         'cardbg',
-        'imported',
-        'text4',
+        'inputbg',
     ]);
     const { data:dataChart = false } = useCtezGraphOvendata();
     console.log('datachart5tingpi',dataChart)
