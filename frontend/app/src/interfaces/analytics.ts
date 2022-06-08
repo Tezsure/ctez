@@ -111,6 +111,7 @@ export interface PiGraphOven {
     value:number | string;
     address:number |string;
     time:number | string | Date;
+    ctez_standing: any;
 }
 export interface PiGraph {
     value:number | string;

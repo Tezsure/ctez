@@ -161,14 +161,14 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez)
-                         return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} CETZ</Td>;
+                         return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} CTEZ</Td>;
                        if(istrimAddress)
                          return (<Td  key={pagedata.address+index+mainkey} >
                           <div className="addresslinktd">
                           {
                           trimAddress(pagedata[datakey])
                           }<a 
-                          href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                          href={`https://tzkt.io/${pagedata[datakey]}`}
                           rel="noreferrer"
                           target="_blank">
                            <Icon
@@ -186,8 +186,8 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             return (<Td  key={pagedata.address+index+mainkey} >
                               <div className="addresslinktd">
                               {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
-                              <a 
-                              href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                              {/* <a 
+                              href={`https://tzkt.io/${pagedata.trader}`}
                               rel="noreferrer"
                               target="_blank">
                                 <Icon
@@ -197,7 +197,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                                 as={linkLight}
                                 
                                 />
-                                </a>
+                                </a> */}
                               </div>
                               
                               </Td>);
@@ -205,8 +205,8 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                         return (<Td  key={pagedata.address+index+mainkey} >
                           <div className="addresslinktd">
                           Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
-                          <a 
-                          href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                          {/* <a 
+                          href={`https://tzkt.io/${pagedata.trader}`}
                           rel="noreferrer"
                           target="_blank">
                             <Icon
@@ -216,7 +216,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             as={linkLight}
                             
                             />
-                            </a>
+                            </a> */}
                           </div>
                           
                           </Td>);
@@ -224,8 +224,8 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           return (<Td  key={pagedata.address+index+mainkey} >
                             <div className="addresslinktd">
                             Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
-                            <a 
-                            href={`https://better-call.dev/mainnet/${pagedata[datakey]}`}
+                            {/* <a 
+                            href={`https://tzkt.io/${pagedata.trader}`}
                             rel="noreferrer"
                             target="_blank">
                               <Icon
@@ -235,7 +235,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               as={linkLight}
                               
                               />
-                              </a>
+                              </a> */}
                             </div>
                             
                             </Td>);         

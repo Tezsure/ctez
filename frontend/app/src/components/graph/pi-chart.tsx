@@ -4,6 +4,7 @@ import React, { Dispatch, ReactNode, SetStateAction, useCallback, useState } fro
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
 import { useThemeColors } from '../../hooks/utilHooks';
 import { trimAddress, trimSizeMap } from '../../utils/addressUtils';
+import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 
 const RenderActiveShape = (props: any) => {
 
@@ -21,7 +22,8 @@ const RenderActiveShape = (props: any) => {
     percent,
     value,
     textColor,
-    address
+    address,
+    name
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
@@ -79,8 +81,8 @@ const RenderActiveShape = (props: any) => {
         fontWeight={600}
         fontSize='16px'
         className='alingright'
-      >
-        {`${value} CTEZ`}
+      > 
+        {`${name?numberToMillionOrBillionFormate(name):0} CTEZ`}
       </text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
