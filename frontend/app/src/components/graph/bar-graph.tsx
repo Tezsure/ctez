@@ -11,7 +11,7 @@ export enum VolumeWindow {
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
-const formatMonth = format('dd LLL');
+const formatMonth = format('LLL');
 
 export type LineChartProps = {
   data: any[];
@@ -82,8 +82,8 @@ const BarChartAlt = ({
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 0,
+            left: 0,
             bottom: 5,
           }}
           onMouseLeave={() => {
@@ -96,7 +96,7 @@ const BarChartAlt = ({
             axisLine={false}
             tickLine={false}
             tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
-
+            fontSize='12px'
             minTickGap={10}
           />
           <Tooltip

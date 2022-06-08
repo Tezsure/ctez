@@ -6,7 +6,7 @@ import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
-const formatMonth = format('dd LLL');
+const formatMonth = format('LLL');
 
 
 export type LineChartProps = {
@@ -56,9 +56,9 @@ const TwoLineChart = ({
           height={300}
           data={data}
           margin={{
-            top: 10,
-            right: 30,
-            left: -10,
+            top: 5,
+            right: 0,
+            left: 0,
             bottom: 5,
           }}
           onMouseLeave={() => {
@@ -82,6 +82,7 @@ const TwoLineChart = ({
             tickLine={false}
             tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
             minTickGap={10}
+            fontSize='12px'
           />
          
          <YAxis
@@ -89,6 +90,7 @@ const TwoLineChart = ({
           axisLine={false}
           tickLine={false}
           tickFormatter={(value1)=>numberToMillionOrBillionFormate(value1,2)}
+          fontSize='12px'
          />
           <Tooltip
             contentStyle={{ display: 'none' }}

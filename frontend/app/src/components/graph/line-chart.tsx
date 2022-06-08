@@ -6,7 +6,7 @@ import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
-const formatMonth = format('dd LLL');
+const formatMonth = format('LLL');
 export type LineChartProps = {
   data: any[];
   color?: string | undefined;
@@ -61,8 +61,8 @@ const LineChart = ({
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: -10,
+            right: 0,
+            left: 0,
             bottom: 5,
           }}
         
@@ -85,6 +85,7 @@ const LineChart = ({
          axisLine={false}
          tickLine={false}
          domain={[bottom, top]}
+         fontSize='12px'
          tickFormatter={(dataYAxis)=>isShowSmallData?numberToMillionOrBillionFormate(dataYAxis,2,true):numberToMillionOrBillionFormate(dataYAxis,2)}
          />
           <XAxis
@@ -93,6 +94,7 @@ const LineChart = ({
             tickLine={false}
             tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
             minTickGap={10}
+            fontSize='12px'
           />
           <Tooltip
             contentStyle={{ display: 'none' }}
