@@ -53,6 +53,16 @@
     justify-content: left;
     align-items: center;
 }
+.addresslinktd2{
+    display: flex;
+    gap:8px;
+    justify-content: right;
+    align-items: center;
+}
+.addresslinktd2:hover{
+    /* text-decoration: underline; */
+    cursor: pointer;
+}
 .addresslinktdIcon{
     width: 14px;
     height: 14px;

@@ -19,7 +19,10 @@ const SI_SYMBOL = ["", "k", "m", "b", "t", "p", "e"];
 //   // format number and add suffix
 //   return scaled.toFixed(2) + suffix;
 // }
-export const numberToMillionOrBillionFormate=(num :any,digits=2 )=>{
+export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false, )=>{
+  if(isDecimal){
+    return num.toFixed(digits)
+  }
   const lookup = [
     { value: 1, symbol: "" },
     { value: 1e3, symbol: "k" },

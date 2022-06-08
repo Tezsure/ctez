@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, ReactNode } from 'react';
 import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, YAxis, CartesianGrid } from 'recharts';
 import { format, parseISO } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
+import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
@@ -44,7 +45,9 @@ const TwoLineChart = ({
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-
+  const dataassending=data.sort((a,b)=>a.value-b.value);
+  const top=dataassending[dataassending.length-2]
+  const bottom=dataassending[0]
   return (
     <Box minHeight={minHeight}>
       
@@ -55,7 +58,7 @@ const TwoLineChart = ({
           margin={{
             top: 10,
             right: 30,
-            left: -18,
+            left: -10,
             bottom: 5,
           }}
           onMouseLeave={() => {
@@ -82,8 +85,10 @@ const TwoLineChart = ({
           />
          
          <YAxis
-         axisLine={false}
-         tickLine={false}
+          domain={[bottom, top]}
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value1)=>numberToMillionOrBillionFormate(value1,2)}
          />
           <Tooltip
             contentStyle={{ display: 'none' }}

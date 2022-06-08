@@ -45,7 +45,9 @@ const LineChart = ({
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-  
+  const dataassending=data.sort((a,b)=>a.value-b.value);
+  const top=dataassending[dataassending.length-2]
+  const bottom=dataassending[0]
   return (
     <Box minHeight={minHeight}  {...rest}>
       <Box>
@@ -82,7 +84,8 @@ const LineChart = ({
           <YAxis
          axisLine={false}
          tickLine={false}
-         tickFormatter={(dataYAxis)=>isShowSmallData?dataYAxis:numberToMillionOrBillionFormate(dataYAxis)}
+         domain={[bottom, top]}
+         tickFormatter={(dataYAxis)=>isShowSmallData?numberToMillionOrBillionFormate(dataYAxis,2,true):numberToMillionOrBillionFormate(dataYAxis,2)}
          />
           <XAxis
             dataKey="time"

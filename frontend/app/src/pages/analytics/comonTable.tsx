@@ -146,7 +146,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                {column.map((coldata,mainkey)=>{
                  if(mainkey===0)
                    return <Th key={`coldataaccessor${mainkey}`} textAlign='left' >{coldata.accessor}</Th>;
-                 return <Th key={`coldataaccessor${mainkey}`}   >{coldata.accessor}</Th>;  
+                 return <Th key={`coldataaccessor${mainkey}`}  textAlign='right'  >{coldata.accessor}</Th>;  
                })}
                </Tr>
            </Thead>
@@ -159,12 +159,12 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                     {column.map((coldata,mainkey)=>{
                        const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2}= coldata;
                        if(isTimeformat)
-                         return <Td key={pagedata.address+index+mainkey}>{timeago.format(pagedata[datakey])}</Td>;
+                         return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez)
-                         return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} CTEZ</Td>;
+                         return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{pagedata[datakey]} CTEZ</Td>;
                        if(istrimAddress)
-                         return (<Td  key={pagedata.address+index+mainkey} >
-                          <div className="addresslinktd">
+                         return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>
+                          <div className="addresslinktd2">
                           {
                           trimAddress(pagedata[datakey])
                           }<a 
@@ -183,7 +183,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                          
                           </Td>);
                         if(isDecription)
-                            return (<Td  key={pagedata.address+index+mainkey} >
+                            return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >
                               <div className="addresslinktd">
                               {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
                               {/* <a 
@@ -202,7 +202,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               
                               </Td>);
                         if(isDecriptionAdd)
-                        return (<Td  key={pagedata.address+index+mainkey} >
+                        return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >
                           <div className="addresslinktd">
                           Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
                           {/* <a 
@@ -221,7 +221,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           
                           </Td>);
                           if(isDecriptionRemove)
-                          return (<Td  key={pagedata.address+index+mainkey} >
+                          return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >
                             <div className="addresslinktd">
                             Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
                             {/* <a 
@@ -240,11 +240,11 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             
                             </Td>);         
                             if(isTez)
-                             return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} tez</Td>;
+                             return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{pagedata[datakey]} tez</Td>;
                              if(isCtez2)
-                             return <Td key={pagedata.address+index+mainkey} textAlign='left'>{pagedata[datakey]} ctez</Td>;
+                             return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{pagedata[datakey]} ctez</Td>;
 
-                       return <Td key={pagedata.address+index+mainkey} >{pagedata[datakey]}</Td>;  
+                       return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >{pagedata[datakey]}</Td>;  
                     })}
                 </Tr>)
                })}
