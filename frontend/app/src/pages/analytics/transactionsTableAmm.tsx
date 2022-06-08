@@ -116,9 +116,8 @@ const TransactionTableAMM: React.FC = () => {
         backgroundColor={background}
         fontSize='14px'
         borderRadius={16}
-
-        paddingY={35}
-        paddingX={25}
+        paddingY={27}
+        paddingX={35}
     >
         <Flex justifyContent='space-between' wrap='wrap'>
             <Text

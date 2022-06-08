@@ -53,7 +53,7 @@ const GraphCtez: React.FC = () => {
         <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
         <Flex gridGap={1} flexDirection='column'>
         {value ? <Text>Premium  <b>{value}%</b></Text>:<Text opacity={0}>Premium</Text>}
-        {time ? <Text><b>{dateFormat(time )}</b></Text>:<Text opacity={0}>Time</Text>}
+        {time ? <Text>{dateFormat(time )}</Text>:<Text opacity={0}>Time</Text>}
         </Flex>
             <Flex gridGap={4}>
                 <TextWithCircleColor color={color}  text="Price" />

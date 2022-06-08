@@ -36,5 +36,5 @@ export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false,
   const item = lookup.slice().reverse().find(function(itemE) {
     return num >= itemE.value;
   });
-  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : (num.toFixed(digits)?num.toFixed(digits):'<0.01');
 }

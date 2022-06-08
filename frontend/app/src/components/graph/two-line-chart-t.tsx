@@ -58,7 +58,7 @@ const TwoLineChart = ({
           margin={{
             top: 5,
             right: 0,
-            left: 0,
+            left: -50,
             bottom: 5,
           }}
           onMouseLeave={() => {
@@ -66,10 +66,10 @@ const TwoLineChart = ({
             setValue && setValue(undefined);
           }}
         >
-          <CartesianGrid  
+          {/* <CartesianGrid  
         vertical={false}
         stroke="#aab8c2"
-        />
+        /> */}
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor='#3260EF' stopOpacity={0.19} />
@@ -95,6 +95,8 @@ const TwoLineChart = ({
          orientation='left'
          domain={[bottom, top]}
          fontSize='12px'
+         minTickGap={10}
+         display='none'
          tickFormatter={(value1)=>numberToMillionOrBillionFormate(value1,2,true)}
          />
           <Tooltip
@@ -116,12 +118,16 @@ const TwoLineChart = ({
           type="monotone" 
           dataKey="data1"
           stroke={color}
-          fill="url(#gradient)" />
+          fill="url(#gradient)" 
+          strokeWidth={2}
+          />
           <Area 
           type="monotone" 
           dataKey="data2" 
           stroke={color2} 
-          fill="url(#gradient2)" />
+          fill="url(#gradient2)" 
+          strokeWidth={2}
+          />
         </AreaChart>
       </ResponsiveContainer>
       <Box>

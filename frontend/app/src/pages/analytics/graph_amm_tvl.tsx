@@ -42,7 +42,7 @@ const GraphAMMTVL: React.FC = () => {
                 color={textcolor}
                 fontSize={largerScreen ? '20px' : '16px'}
                 lineHeight="29px"
-                fontWeight={600}
+                fontWeight={400}
             >
                 TVL
             </Text>
@@ -56,7 +56,7 @@ const GraphAMMTVL: React.FC = () => {
             {(data1m && !value)?numberToMillionOrBillionFormate(data1m[data1m.length-1].value):value?numberToMillionOrBillionFormate(value):<SkeletonText pr={6} noOfLines={1} spacing="1" />}
             
             </Text>
-            {time ? <Text fontSize='12px' ><b>{dateFormat(time )}</b></Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
             </Flex>
             </div>
             <Flex  flexDirection='column' gridGap={2} justifyContent='space-between' fontWeight={400} fontSize='12px' >

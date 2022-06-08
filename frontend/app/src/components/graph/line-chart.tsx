@@ -46,7 +46,7 @@ const LineChart = ({
 }: LineChartProps) => {
   const parsedValue = value;
   const dataassending=data.sort((a,b)=>a.value-b.value);
-  const top=dataassending[dataassending.length-2]
+  const top=dataassending[dataassending.length-1]
   const bottom=dataassending[0]
   return (
     <Box minHeight={minHeight}  {...rest}>
@@ -62,19 +62,18 @@ const LineChart = ({
           margin={{
             top: 5,
             right: 0,
-            left: 0,
+            left: -50,
             bottom: 5,
           }}
-        
           onMouseLeave={() => {
             setLabel && setLabel(undefined);
             setValue && setValue(undefined);
           }}
         >
-          <CartesianGrid  
+          {/* <CartesianGrid  
         vertical={false}
         stroke="#aab8c2"
-        />
+        /> */}
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor='#3260EF' stopOpacity={0.19} />
@@ -86,6 +85,7 @@ const LineChart = ({
          tickLine={false}
          domain={[bottom, top]}
          fontSize='12px'
+         display='none'
          tickFormatter={(dataYAxis)=>isShowSmallData?numberToMillionOrBillionFormate(dataYAxis,2,true):numberToMillionOrBillionFormate(dataYAxis,2)}
          />
           <XAxis

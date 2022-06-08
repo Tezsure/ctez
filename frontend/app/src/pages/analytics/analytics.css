@@ -71,3 +71,6 @@
     text-align: right;
     z-index: 99999;
 }
+.tableFirstCell{
+    padding-left: 0px;
+}

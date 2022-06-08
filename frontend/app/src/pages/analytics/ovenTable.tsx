@@ -2,6 +2,7 @@ import { SkeletonText, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useMedia
 import React from "react";
 import { useCtezOven } from "../../api/analytics";
 import { useThemeColors } from "../../hooks/utilHooks";
+import { numberToMillionOrBillionFormate } from "../../utils/numberFormate";
 
 const OvenTable: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
@@ -21,25 +22,25 @@ const OvenTable: React.FC = () => {
         borderRadius={16}
         textAlign='right'
     >
-        <Table variant='simple'>
+        <Table variant='simple'  padding='12px'>
             <Thead>
                 <Tr>
-                    <Th isNumeric>Total</Th>
-                    <Th isNumeric>Created</Th>
-                    <Th isNumeric>Liquidated</Th>
-                    <Th isNumeric>TVL</Th>
-                    <Th isNumeric>Total Supply</Th>
-                    <Th isNumeric>Collateral Supply</Th>
+                    <Th isNumeric  textAlign='left'>Total</Th>
+                    <Th isNumeric textAlign='right'>Created</Th>
+                    <Th isNumeric textAlign='right'>Liquidated</Th>
+                    <Th isNumeric textAlign='right'>TVL</Th>
+                    <Th isNumeric textAlign='right'>Total Supply</Th>
+                    <Th isNumeric textAlign='right'>Collateral Supply</Th>
                 </Tr>
             </Thead>
-            <Tbody>
+            <Tbody >
                 {overData?<Tr>
-                    <Td isNumeric>{overData.total_ovens}</Td>
-                    <Td isNumeric>{overData.created_ovens}</Td>
-                    <Td isNumeric>{overData.liquidated_ovens}</Td>
-                    <Td isNumeric>{overData.TVL}</Td>
-                    <Td isNumeric>{overData.total_supply}</Td>
-                    <Td isNumeric>{overData.collateral_supply}</Td>
+                <Td isNumeric textAlign='left'>{numberToMillionOrBillionFormate(overData.total_ovens)}</Td>
+                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.created_ovens)}</Td>
+                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.liquidated_ovens)}</Td>
+                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.TVL)}</Td>
+                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.total_supply)}</Td>
+                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_supply)}</Td>
                 </Tr>:<Tr>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>

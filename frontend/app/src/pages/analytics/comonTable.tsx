@@ -11,6 +11,7 @@ import { useThemeColors } from "../../hooks/utilHooks";
 import { OvenTransactionTable } from "../../interfaces/analytics";
 import { trimAddress } from "../../utils/addressUtils";
 import SkeletonLayout from "../../components/skeleton";
+import { numberToMillionOrBillionFormate } from "../../utils/numberFormate";
 
 interface CommonTable {
   column:ColData[]
@@ -145,7 +146,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                <Tr>
                {column.map((coldata,mainkey)=>{
                  if(mainkey===0)
-                   return <Th key={`coldataaccessor${mainkey}`} textAlign='left' >{coldata.accessor}</Th>;
+                   return <Th key={`coldataaccessor${mainkey}`} className="tableFirstCell" textAlign='left' >{coldata.accessor}</Th>;
                  return <Th key={`coldataaccessor${mainkey}`}  textAlign='right'  >{coldata.accessor}</Th>;  
                })}
                </Tr>
@@ -153,24 +154,25 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
            <Tbody>
                {console.log('currentPageOvens',currentPageOvens)}
                { currentPageOvens.map((pagedata:any,index:number)=>{
-
                   return(
                     <Tr key={pagedata.address+index}>
                     {column.map((coldata,mainkey)=>{
                        const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2}= coldata;
                        if(isTimeformat)
-                         return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
+                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez)
-                         return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{pagedata[datakey]} CTEZ</Td>;
+                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey])} ctez</Td>;
                        if(istrimAddress)
-                         return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>
-                          <div className="addresslinktd2">
-                          {
-                          trimAddress(pagedata[datakey])
-                          }<a 
+                         return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''}  textAlign={mainkey===0?'left':'right'}>
+                          <div >
+                          <a 
+                          className="addresslinktd2"
                           href={`https://tzkt.io/${pagedata[datakey]}`}
                           rel="noreferrer"
                           target="_blank">
+                          {
+                          trimAddress(pagedata[datakey])
+                          }
                            <Icon
                             color="light.tradebg"
                             _hover={{ cursor: 'pointer' }}
@@ -183,7 +185,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                          
                           </Td>);
                         if(isDecription)
-                            return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >
+                            return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
                               <div className="addresslinktd">
                               {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
                               {/* <a 
@@ -202,7 +204,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               
                               </Td>);
                         if(isDecriptionAdd)
-                        return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >
+                        return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
                           <div className="addresslinktd">
                           Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
                           {/* <a 
@@ -221,7 +223,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           
                           </Td>);
                           if(isDecriptionRemove)
-                          return (<Td  key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >
+                          return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
                             <div className="addresslinktd">
                             Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
                             {/* <a 
@@ -240,11 +242,11 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             
                             </Td>);         
                             if(isTez)
-                             return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{pagedata[datakey]} tez</Td>;
+                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey])} tez</Td>;
                              if(isCtez2)
-                             return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'}>{pagedata[datakey]} ctez</Td>;
+                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey])} ctez</Td>;
 
-                       return <Td key={pagedata.address+index+mainkey} textAlign={mainkey===0?'left':'right'} >{pagedata[datakey]}</Td>;  
+                       return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >{numberToMillionOrBillionFormate(pagedata[datakey])}</Td>;  
                     })}
                 </Tr>)
                })}

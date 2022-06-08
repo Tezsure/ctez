@@ -40,7 +40,7 @@ const GraphTVL: React.FC = () => {
                 color={textcolor}
                 fontSize={largerScreen ? '20px' : '16px'}
                 lineHeight="29px"
-                fontWeight={600}
+                fontWeight={400}
             >
                 TVL
             </Text>
@@ -53,7 +53,7 @@ const GraphTVL: React.FC = () => {
             >
             {(data1m && !value)?numberToMillionOrBillionFormate(data1m[data1m.length-1].value):value?numberToMillionOrBillionFormate(value):<SkeletonText pr={6} noOfLines={1} spacing="1" />}
             </Text>
-            {time ? <Text fontSize='12px' ><b>{dateFormat(time )}</b></Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
             </Flex>
             </div>
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
