@@ -25,7 +25,7 @@ const OvenPiChart: React.FC = () => {
    paddingX='35px'
    paddingY='27px'
    gridGap={6}
-   justifyContent='center'
+   justifyContent='space-between'
 >
 
    <Flex justifyContent='space-between'>
@@ -33,7 +33,7 @@ const OvenPiChart: React.FC = () => {
            color={textcolor}
            fontSize={largerScreen ? '20px' : '16px'}
            lineHeight="29px"
-           fontWeight={600}
+           fontWeight={400}
        >
            Ovens
        </Text>

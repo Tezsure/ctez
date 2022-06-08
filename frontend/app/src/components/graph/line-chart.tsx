@@ -76,8 +76,8 @@ const LineChart = ({
         /> */}
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor='#3260EF' stopOpacity={0.19} />
-            <stop offset="100%" stopColor='#3560ED' stopOpacity={0} />
+            <stop offset="0%" stopColor='#3260EF' stopOpacity={0.30} />
+            <stop offset="100%" stopColor='#3560ED' stopOpacity={0.08} />
             </linearGradient>
           </defs>
           <YAxis

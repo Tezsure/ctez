@@ -21,26 +21,27 @@ const OvenTable: React.FC = () => {
         fontSize='14px'
         borderRadius={16}
         textAlign='right'
+        padding='12px'
     >
-        <Table variant='simple'  padding='12px'>
+        <Table variant='simple'  >
             <Thead>
                 <Tr>
-                    <Th isNumeric  textAlign='left'>Total</Th>
-                    <Th isNumeric textAlign='right'>Created</Th>
-                    <Th isNumeric textAlign='right'>Liquidated</Th>
-                    <Th isNumeric textAlign='right'>TVL</Th>
-                    <Th isNumeric textAlign='right'>Total Supply</Th>
-                    <Th isNumeric textAlign='right'>Collateral Supply</Th>
+                    <Th borderBottom={0} isNumeric  textAlign='left'>Total</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Created</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Liquidated</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>TVL</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Total Supply</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Collateral Supply</Th>
                 </Tr>
             </Thead>
             <Tbody >
                 {overData?<Tr>
-                <Td isNumeric textAlign='left'>{numberToMillionOrBillionFormate(overData.total_ovens)}</Td>
-                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.created_ovens)}</Td>
-                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.liquidated_ovens)}</Td>
-                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.TVL)}</Td>
-                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.total_supply)}</Td>
-                <Td isNumeric textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_supply)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='left'>{numberToMillionOrBillionFormate(overData.total_ovens)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.created_ovens)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.liquidated_ovens)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.TVL)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.total_supply)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_supply)}</Td>
                 </Tr>:<Tr>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>
