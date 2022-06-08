@@ -53,9 +53,11 @@ const GraphDrift: React.FC = () => {
         </Flex>
         </Flex>
         {activeTab==='1m' ? data1m?<LineChart
+        isShowSmallData
          data={data1m}  setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />:
         dataAll?<LineChart
+        isShowSmallData
          data={dataAll} isShowMonth setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />
         }

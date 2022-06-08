@@ -23,6 +23,7 @@ export type LineChartProps = {
   bottomLeft?: ReactNode | undefined;
   bottomRight?: ReactNode | undefined;
   isShowMonth?:boolean;
+  isShowSmallData?:boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const LineChart = ({
@@ -39,6 +40,7 @@ const LineChart = ({
   bottomLeft,
   bottomRight,
   isShowMonth=false,
+  isShowSmallData=false,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
@@ -80,7 +82,7 @@ const LineChart = ({
           <YAxis
          axisLine={false}
          tickLine={false}
-         tickFormatter={(dataYAxis)=>numberToMillionOrBillionFormate(dataYAxis)}
+         tickFormatter={(dataYAxis)=>isShowSmallData?dataYAxis:numberToMillionOrBillionFormate(dataYAxis)}
          />
           <XAxis
             dataKey="time"
