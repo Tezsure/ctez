@@ -48,7 +48,7 @@ const GraphDrift: React.FC = () => {
         </Flex>
         <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
         <Flex gridGap={1} flexDirection='column'>
-        {value ? <Text>Drift  <b>{value}</b></Text>:<Text opacity={0}>Premium</Text>}
+        {value ? <Text>  <b>{value}</b></Text>:<Text opacity={0}>Premium</Text>}
         {time ? <Text>{dateFormat(time )}</Text>:<Text opacity={0}>Time</Text>}
         </Flex>
         </Flex>

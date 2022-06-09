@@ -31,7 +31,7 @@ const OvenTable: React.FC = () => {
                     <Th isNumeric borderBottom={0} textAlign='right'>Liquidated</Th>
                     <Th isNumeric borderBottom={0} textAlign='right'>TVL</Th>
                     <Th isNumeric borderBottom={0} textAlign='right'>Total Supply</Th>
-                    <Th isNumeric borderBottom={0} textAlign='right'>Collateral Supply</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Collateral Ratio</Th>
                 </Tr>
             </Thead>
             <Tbody >
@@ -39,9 +39,9 @@ const OvenTable: React.FC = () => {
                 <Td isNumeric borderBottom={0} textAlign='left'>{numberToMillionOrBillionFormate(overData.total_ovens)}</Td>
                 <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.created_ovens)}</Td>
                 <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.liquidated_ovens)}</Td>
-                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.TVL)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>${numberToMillionOrBillionFormate(overData.TVL)}</Td>
                 <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.total_supply)}</Td>
-                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_supply)}</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_supply)} %</Td>
                 </Tr>:<Tr>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>

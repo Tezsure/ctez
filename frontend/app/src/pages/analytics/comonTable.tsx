@@ -161,7 +161,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez)
-                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey])} ctez</Td>;
+                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey],6)} ctez</Td>;
                        if(istrimAddress)
                          return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''}  textAlign={mainkey===0?'left':'right'}>
                           <div >
@@ -242,11 +242,11 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             
                             </Td>);         
                             if(isTez)
-                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey])} tez</Td>;
+                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey],6)} tez</Td>;
                              if(isCtez2)
-                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey])} ctez</Td>;
+                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey],6)} ctez</Td>;
 
-                       return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >{numberToMillionOrBillionFormate(pagedata[datakey])}</Td>;  
+                       return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >{numberToMillionOrBillionFormate(pagedata[datakey],6)}</Td>;  
                     })}
                 </Tr>)
                })}

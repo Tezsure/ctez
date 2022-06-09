@@ -153,7 +153,7 @@ const PiChart = ({
   return (
     <ResponsiveContainer width="100%" height={minHeight}>
 
-    <PieChart  height={300}>
+    <PieChart  height={350} width={350}>
     <Pie 
     data={data} 
     dataKey="value" 

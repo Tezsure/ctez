@@ -53,7 +53,7 @@ const GraphAMMTVL: React.FC = () => {
             lineHeight="29px"
             fontWeight={600}
             >
-            {(data1m && !value)?numberToMillionOrBillionFormate(data1m[data1m.length-1].value):value?numberToMillionOrBillionFormate(value):<SkeletonText pr={6} noOfLines={1} spacing="1" />}
+            {(data1m && !value)?`$${numberToMillionOrBillionFormate(data1m[data1m.length-1].value)}`:value?`$${numberToMillionOrBillionFormate(value)}`:<SkeletonText pr={6} noOfLines={1} spacing="1" />}
             
             </Text>
             {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
