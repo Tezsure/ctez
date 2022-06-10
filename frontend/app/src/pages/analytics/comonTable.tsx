@@ -29,7 +29,7 @@ export interface ColData{
   isTez?:boolean,
   isCtez2?:boolean,
   isShowAdderessSend?:boolean,
-
+  isConsiderLogicChange?:boolean,
 }
 
 const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
@@ -158,7 +158,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                   return(
                     <Tr key={pagedata.address+index}>
                     {column.map((coldata,mainkey)=>{
-                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2,isShowAdderessSend}= coldata;
+                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2,isShowAdderessSend,isConsiderLogicChange}= coldata;
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez && isShowAdderessSend)
@@ -168,8 +168,8 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           href={`https://tzkt.io/${pagedata.operationHash}`}
                           rel="noreferrer"
                           target="_blank">
-                          {numberToMillionOrBillionFormate(pagedata[datakey],6)}
-                          ctez
+                          {`${numberToMillionOrBillionFormate(pagedata[datakey],6)} ctez`}
+                          
                           <Icon
                             color="light.tradebg"
                             _hover={{ cursor: 'pointer' }}
@@ -263,7 +263,35 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               </a>
                             </div>
                             
-                            </Td>);         
+                            </Td>);
+                            if(isTez && isShowAdderessSend)
+                            return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>
+                              <div >
+                             <a className="addresslinktd"
+                             href={`https://tzkt.io/${pagedata.operationHash}`}
+                             rel="noreferrer"
+                             target="_blank">
+                             {`${numberToMillionOrBillionFormate(pagedata[datakey],6)} tez`}
+                             <Icon
+                               color="light.tradebg"
+                               _hover={{ cursor: 'pointer' }}
+                               className="addresslinktdIcon"
+                               as={linkLight}
+                               
+                               />
+                             </a>
+                             </div>
+                             </Td>;
+                             if(isTez && isConsiderLogicChange)
+                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{
+                              pagedata.sideTrade===1?`${numberToMillionOrBillionFormate(pagedata.tezQty,6)} tez`:`${numberToMillionOrBillionFormate(pagedata.tokenQty,6)} ctez`
+                              } 
+                              </Td>;
+                             if(isCtez2 && isConsiderLogicChange)
+                             return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>
+                               { pagedata.sideTrade===0?`${numberToMillionOrBillionFormate(pagedata.tezQty,6)} tez`:`${numberToMillionOrBillionFormate(pagedata.tokenQty,6)} ctez`}
+                              </Td>;
+         
                             if(isTez)
                              return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey],6)} tez</Td>;
                              if(isCtez2)

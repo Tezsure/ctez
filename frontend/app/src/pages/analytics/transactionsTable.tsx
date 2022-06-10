@@ -61,7 +61,7 @@ const TransactionTableoven: React.FC = () => {
         {
             accessor:'Deposit',
             datakey:'amount',
-            isCtez:true,
+            isTez:true,
             isShowAdderessSend:true,
 
         },
@@ -90,7 +90,7 @@ const TransactionTableoven: React.FC = () => {
         {
             accessor:'Withdraw',
             datakey:'amount',
-            isCtez:true,
+            isTez:true,
             isShowAdderessSend:true,
 
         },

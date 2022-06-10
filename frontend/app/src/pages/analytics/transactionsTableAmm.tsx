@@ -37,11 +37,13 @@ const TransactionTableAMM: React.FC = () => {
             accessor:'Amount',
             datakey:'tezQty',
             isTez:true,
+            isConsiderLogicChange:true,
         },
         {
             accessor:'Amount',
             datakey:'tokenQty',
             isCtez2:true,
+            isConsiderLogicChange:true,
         },
         {
             accessor:'Account',

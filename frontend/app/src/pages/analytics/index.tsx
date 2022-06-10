@@ -33,10 +33,10 @@ const AnaluticsPage: React.FC = () => {
     }
     return (
         <div style={{ padding: largerScreen ? '55px' : '35px' }} className={colorMode}>
-            <Center>
+            <Center maxWidth='800px' margin='0px auto'>
             {headerData?<Text
                     color={textcolor}
-                    fontSize={largerScreen ? '48px' : '26px'}
+                    fontSize={largerScreen ? '40px' : '26px'}
                     lineHeight="50px"
                     fontWeight={400}
                     textAlign='center'
@@ -47,7 +47,7 @@ const AnaluticsPage: React.FC = () => {
                 :<Skeleton>
                     <Text
                     color={textcolor}
-                    fontSize={largerScreen ? '48px' : '26px'}
+                    fontSize={largerScreen ? '40px' : '26px'}
                     lineHeight="50px"
                     fontWeight={400}
                     textAlign='center'
