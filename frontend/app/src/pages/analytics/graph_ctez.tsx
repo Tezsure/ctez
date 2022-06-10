@@ -38,11 +38,11 @@ const GraphCtez: React.FC = () => {
         <Flex justifyContent='space-between'>
             <Text
                 color={textcolor}
-                fontSize={largerScreen ? '20px' : '16px'}
+                fontSize={largerScreen ? '14px' : '14px'}
                 lineHeight="29px"
                 fontWeight={600}
             >
-                Ctez
+                Ctez Price
             </Text>
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
                 <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
@@ -51,8 +51,8 @@ const GraphCtez: React.FC = () => {
 
         </Flex>
         <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
-        <Flex gridGap={1} flexDirection='column'>
-        {value ? <Text>Premium  <b>{value}%</b></Text>:<Text opacity={0}>Premium</Text>}
+        <Flex gridGap={0} flexDirection='column'>
+        {value ? <Text className="bigFontSize"> <b>{value}tez</b></Text>:<Text className="bigFontSize" opacity={0}>Tez</Text>}
         {time ? <Text>{dateFormat(time )}</Text>:<Text opacity={0}>Time</Text>}
         </Flex>
             <Flex gridGap={4}>

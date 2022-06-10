@@ -158,10 +158,10 @@ const PiChart = ({
     data={data} 
     dataKey="value" 
     nameKey="time" 
-    cx='207px'
-    cy='207px'
-    innerRadius={60} 
-    outerRadius={80} 
+    cx='350px'
+    cy='350px'
+    innerRadius={100} 
+    outerRadius={130} 
     fill="#82ca9d"  
     activeIndex={activeIndex}
     activeShape={<RenderActiveShape  textColor={theme.colorMode==='dark'?'#FFFFFF':'#4E5D78'} />}

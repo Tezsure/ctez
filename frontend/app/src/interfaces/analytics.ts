@@ -7,24 +7,28 @@ export interface driftGraphInterface {
     id: number;
     drift: number;
     timestamp: Date;
+    epoch_timestamp: number;
 }
 export interface driftGraphInterfaceAll {
     id: number;
     drift: number;
     timestamp_from: Date;
     timestamp_to: Date;
+    epoch_timestamp_from: number;
+    epoch_timestamp_to: number;
 }
 export interface ctezMainHeader {
-    total_ovens: number;
-    TVL: number;
+    Total_Ovens: number;
+    Total_TVL: number;
+    Total_AMM: number;
 }
 export interface ctezOven {
     total_ovens: number;
     created_ovens: number;
     liquidated_ovens: number;
-    TVL: number;
-    total_supply: number;
-    collateral_supply: number;
+    collateral_locked: number;
+    total_debt: number;
+    collateral_ratio: string;
 }
 export interface ctezGraphctez {
     id: number;
@@ -32,27 +36,35 @@ export interface ctezGraphctez {
     current_target: number;
     premium: number;
     timestamp: Date;
+    epoch_timestamp:number;
 }
 export interface ctezGraphctezDateRange {
     id: number;
     current_price: number;
     current_target: number;
-    premium: number;
+    premium: string;
     timestamp_from: Date;
     timestamp_to: Date;
+    epoch_timestamp_from: number;
+    epoch_timestamp_to: number;
 }
 
 export interface TvlData {
+    ovenTvl: number;
+    epochTimestamp: number;
     timestamp: Date;
-    tvl: number;
+    ammTvl: number;
     id: number;
 }
 
 export interface TvlDataALL {
+    ammTvl: number;
+    epochTimestampFrom: any;
+    epochTimestampTo: any;
     id: number;
     timestampFrom: Date;
     timestampTo: Date;
-    tvl: number;
+    ovenTvl: number;
 }
 
 export interface TvlAMMData {
@@ -132,12 +144,14 @@ export interface MintBurnData {
 }
 export interface DepositTransactionTable {
     address: string;
-    amount: number;
+    burnAmount: number;
+    epochTimestamp: any;
     id: number;
+    operationHash: string;
     ovenAddress: string;
-    sideOven: number;
     target: number;
     timestamp: Date;
+
 }
 export interface SwapTransaction {
     id: number;
@@ -174,9 +188,11 @@ export interface ctezGraphVolumestat {
 }
 
 export interface OvenTransactionTable {
+    address: string;
+    epochTimestamp: any;
     id: number;
     mintAmount: number;
-    address: string;
+    operationHash: string;
     ovenAddress: string;
     target: number;
     timestamp: Date;

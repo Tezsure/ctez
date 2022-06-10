@@ -30,10 +30,11 @@ export const useDriftGraph = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/drift');
       const priceStatsArr: driftGraphInterface[] = data.data;
-      const data1: OneLineGraph[] = priceStatsArr.reverse().map((e) => {
+       priceStatsArr.sort((a,b)=>a.epoch_timestamp-b.epoch_timestamp)
+      const data1: OneLineGraph[] = priceStatsArr.map((e) => {
         return <OneLineGraph> {
            value: e.drift, 
-           time: e.timestamp
+           time: e.epoch_timestamp
         }
       })
       return data1;
@@ -47,10 +48,11 @@ export const useDriftGraphAll = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/drift_all');
       const priceStatsArr: driftGraphInterfaceAll[] = data.data;
-      const data1: OneLineGraph[] = priceStatsArr.reverse().map((e) => {
+      priceStatsArr.sort((a,b)=>a.epoch_timestamp_from-b.epoch_timestamp_from)
+      const data1: OneLineGraph[] = priceStatsArr.map((e) => {
         return <OneLineGraph> {
            value: e.drift, 
-           time: e.timestamp_from
+           time: e.epoch_timestamp_from
         }
       })
       return data1;
@@ -170,7 +172,7 @@ export const useCtezGraphctez1m = () => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
-           value: e.premium, 
+           value: e.current_price, 
            time: e.epoch_timestamp
         }
       })
@@ -185,13 +187,13 @@ export const useCtezGraphctezall = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/target_all');
       const priceStatsArr: ctezGraphctezDateRange[] = data.data;
-      priceStatsArr.sort((a,b)=>a.epoch_timestamp_from-b.epoch_timestamp_from)
+      priceStatsArr.sort((a,b)=>a.epoch_timestamp_to-b.epoch_timestamp_to)
       const data1: TwoLineGraph[] = priceStatsArr.map((e) => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
            value: e.premium, 
-           time: e.epoch_timestamp_from
+           time: e.epoch_timestamp_to,
         }
       })
       return data1;
@@ -205,10 +207,11 @@ export const useCtezGraphTVL = () => {
     async () => {
       const data = await analyticsAPI.get('/tvl');
       const ctezgraphTVL: TvlData[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphTVL.reverse().map((e) => {
+      ctezgraphTVL.sort((a,b)=>a.epochTimestamp-b.epochTimestamp);
+      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
         return <OneLineGraph> {
-           value: e.tvl, 
-           time: e.timestamp
+           value: e.ovenTvl, 
+           time: e.epochTimestamp
         }
       })
       return data1;
@@ -222,10 +225,11 @@ export const useCtezGraphTVLAll = () => {
     async () => {
       const data = await analyticsAPI.get('/tvl_all');
       const ctezgraphTVL: TvlDataALL[] = data.data;
-      const data1: OneLineGraph[] = ctezgraphTVL.reverse().map((e) => {
+      ctezgraphTVL.sort((a,b)=>a.epochTimestampFrom-b.epochTimestampFrom);
+      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
         return <OneLineGraph> {
-           value: e.tvl, 
-           time: e.timestampFrom
+           value: e.ovenTvl, 
+           time: e.epochTimestampFrom
         }
       })
       return data1;
@@ -234,17 +238,16 @@ export const useCtezGraphTVLAll = () => {
   );
 };
 export const useCtezGraphAMMTVL = () => {
-  return useQuery<TwoLineGraphWithoutValue[], Error>(
-    'graph_Tvl_AMM_Data',
+  return useQuery<OneLineGraph[], Error>(
+    'ctez_graph_TVL_on',
     async () => {
-      const data = await analyticsAPI.get('/price_stats');
-      const priceStatsArr: TvlAMMData[] = data.data;
-      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.reverse().map((e) => {
-        return <TwoLineGraphWithoutValue> {
-           data1: e.ctez_price,
-           data2: e.tez_price,
-           value:e.tvl, 
-           time: e.timestamp
+      const data = await analyticsAPI.get('/tvl');
+      const ctezgraphTVL: TvlData[] = data.data;
+      ctezgraphTVL.sort((a,b)=>a.epochTimestamp-b.epochTimestamp);
+      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+        return <OneLineGraph> {
+           value: e.ammTvl, 
+           time: e.epochTimestamp
         }
       })
       return data1;
@@ -253,17 +256,16 @@ export const useCtezGraphAMMTVL = () => {
   );
 };
 export const useCtezGraphAMMTVLAll = () => {
-  return useQuery<TwoLineGraphWithoutValue[], Error>(
-    'graph_Tvl_AMM_Data_all',
+  return useQuery<OneLineGraph[], Error>(
+    'ctez_graph_TVL_all_on',
     async () => {
-      const data = await analyticsAPI.get('/price_stats_all');
-      const priceStatsArr: TvlAMMDataAll[] = data.data;
-      const data1: TwoLineGraphWithoutValue[] = priceStatsArr.reverse().map((e) => {
-        return <TwoLineGraphWithoutValue> {
-           data1: e.ctez_price,
-           data2: e.tez_price,
-           value: e.tvl, 
-           time: e.timestamp_from
+      const data = await analyticsAPI.get('/tvl_all');
+      const ctezgraphTVL: TvlDataALL[] = data.data;
+      ctezgraphTVL.sort((a,b)=>a.epochTimestampFrom-b.epochTimestampFrom);
+      const data1: OneLineGraph[] = ctezgraphTVL.map((e) => {
+        return <OneLineGraph> {
+           value: e.ammTvl, 
+           time: e.epochTimestampFrom
         }
       })
       return data1;

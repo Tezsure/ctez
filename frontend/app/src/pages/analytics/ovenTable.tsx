@@ -29,8 +29,8 @@ const OvenTable: React.FC = () => {
                     <Th borderBottom={0} isNumeric  textAlign='left'>Total</Th>
                     <Th isNumeric borderBottom={0} textAlign='right'>Created</Th>
                     <Th isNumeric borderBottom={0} textAlign='right'>Liquidated</Th>
-                    <Th isNumeric borderBottom={0} textAlign='right'>TVL</Th>
-                    <Th isNumeric borderBottom={0} textAlign='right'>Total Supply</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Collateral Locked</Th>
+                    <Th isNumeric borderBottom={0} textAlign='right'>Total Debt</Th>
                     <Th isNumeric borderBottom={0} textAlign='right'>Collateral Ratio</Th>
                 </Tr>
             </Thead>
@@ -39,9 +39,9 @@ const OvenTable: React.FC = () => {
                 <Td isNumeric borderBottom={0} textAlign='left'>{numberToMillionOrBillionFormate(overData.total_ovens)}</Td>
                 <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.created_ovens)}</Td>
                 <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.liquidated_ovens)}</Td>
-                <Td isNumeric borderBottom={0} textAlign='right'>${numberToMillionOrBillionFormate(overData.TVL)}</Td>
-                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.total_supply)}</Td>
-                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_supply)} %</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_locked)} tez</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.total_debt)} ctez</Td>
+                <Td isNumeric borderBottom={0} textAlign='right'>{numberToMillionOrBillionFormate(overData.collateral_ratio)} %</Td>
                 </Tr>:<Tr>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>
                     <Td isNumeric><SkeletonText pr={6} noOfLines={1} spacing="1" /></Td>

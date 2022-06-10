@@ -6,6 +6,7 @@ import { TextWithCircleColor } from "../../components/analytics/TTextWithColorCi
 import TwoLineChart from "../../components/graph/two-line-chart-t";
 import { useThemeColors } from "../../hooks/utilHooks";
 import { numberToMillionOrBillionFormate } from "../../utils/numberFormate";
+import LineChart from "../../components/graph/line-chart";
 
 const color = '#0F62FF';
 const color2 = '#38CB89';
@@ -73,12 +74,14 @@ const GraphAMMTVL: React.FC = () => {
             
 
         </Flex>
-        {activeTab==='1m' ? data1m?<TwoLineChart
-         data={data1m}  setValue={setValue} setLabel={setTime} 
-        />:<Skeleton height='300px' minWidth='20px' />:
-        dataAll?<TwoLineChart
-         data={dataAll} isShowMonth setValue={setValue} setLabel={setTime} 
+        {activeTab==='1m' ? data1m?<LineChart
+         data={data1m}  setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />
+:
+        dataAll?<LineChart
+         data={dataAll} isShowMonth setValue={setValue} setLabel={setTime}
+        />:<Skeleton height='300px' minWidth='20px' />
+
         }
     </Flex>)
 }

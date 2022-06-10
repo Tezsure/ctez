@@ -54,4 +54,7 @@ export const formatDate=(dateInEpoch:number)=> {
     const monthIndex = date.getMonth();
     
     return `${monthNames[monthIndex]}`;
+  }
+  export const parseISO=(timestamp:number| string)=>{
+    return new Date (timestamp);
   } 

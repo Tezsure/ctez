@@ -74,3 +74,7 @@
 .tableFirstCell{
     padding-left: 0px;
 }
+.bigFontSize{
+    font-size: 32px;
+    line-height: 29px;
+}

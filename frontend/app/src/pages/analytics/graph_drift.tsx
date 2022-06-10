@@ -4,6 +4,7 @@ import { format } from 'date-fns/fp';
 import { useDriftGraph, useDriftGraphAll } from "../../api/analytics";
 import LineChart from "../../components/graph/line-chart";
 import { useThemeColors } from "../../hooks/utilHooks";
+import { numberToMillionOrBillionFormate } from "../../utils/numberFormate";
 
 const GraphDrift: React.FC = () => {
     const [textcolor] = useThemeColors(['homeTxt']);
@@ -34,11 +35,11 @@ const GraphDrift: React.FC = () => {
         <Flex justifyContent='space-between'>
             <Text
                 color={textcolor}
-                fontSize={largerScreen ? '20px' : '16px'}
+                fontSize={largerScreen ? '14px' : '14px'}
                 lineHeight="29px"
                 fontWeight={600}
             >
-                Drift
+                Annual Drift
             </Text>
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
                 <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
@@ -47,8 +48,8 @@ const GraphDrift: React.FC = () => {
 
         </Flex>
         <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
-        <Flex gridGap={1} flexDirection='column'>
-        {value ? <Text>  <b>{value}</b></Text>:<Text opacity={0}>Premium</Text>}
+        <Flex gridGap={0} flexDirection='column'>
+        {value ? <Text className="bigFontSize">  <b>{numberToMillionOrBillionFormate(value,2)} %</b></Text>:<Text className="bigFontSize" opacity={0}>Premium</Text>}
         {time ? <Text>{dateFormat(time )}</Text>:<Text opacity={0}>Time</Text>}
         </Flex>
         </Flex>

@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react';
 import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, CartesianGrid, YAxis } from 'recharts';
-import { format, parseISO } from 'date-fns/fp';
+import { format } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
-import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
+import { numberToMillionOrBillionFormate,parseISO } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
@@ -45,7 +45,7 @@ const LineChart = ({
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-  const dataassending=data.sort((a,b)=>a.value-b.value);
+  const dataassending=data;
   const top=dataassending[dataassending.length-1]
   const bottom=dataassending[0]
   return (

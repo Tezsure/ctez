@@ -188,8 +188,8 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
                               <div className="addresslinktd">
                               {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
-                              {/* <a 
-                              href={`https://tzkt.io/${pagedata.trader}`}
+                              <a 
+                              href={`https://tzkt.io/${pagedata.operationHash}`}
                               rel="noreferrer"
                               target="_blank">
                                 <Icon
@@ -199,7 +199,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                                 as={linkLight}
                                 
                                 />
-                                </a> */}
+                                </a>
                               </div>
                               
                               </Td>);

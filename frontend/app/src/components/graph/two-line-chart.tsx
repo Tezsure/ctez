@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react';
 import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, YAxis, CartesianGrid } from 'recharts';
-import { format, parseISO } from 'date-fns/fp';
+import { format } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
-import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
+import { numberToMillionOrBillionFormate, parseISO } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
