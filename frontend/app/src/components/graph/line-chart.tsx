@@ -62,7 +62,7 @@ const LineChart = ({
           margin={{
             top: 5,
             right: 0,
-            left: -50,
+            left: -46,
             bottom: 5,
           }}
           onMouseLeave={() => {

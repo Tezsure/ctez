@@ -188,13 +188,14 @@ export const useCtezGraphctezall = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/target_all');
       const priceStatsArr: ctezGraphctezDateRange[] = data.data;
-      priceStatsArr.sort((a,b)=>a.epoch_timestamp_to-b.epoch_timestamp_to)
+      priceStatsArr.sort((a,b)=>a.epoch_timestamp_to-b.epoch_timestamp_to);
       const data1: TwoLineGraph[] = priceStatsArr.map((e) => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
-           value: e.premium, 
+           value: e.current_price, 
            time: e.epoch_timestamp_to,
+           premium:e.premium,
         }
       })
       return data1;
