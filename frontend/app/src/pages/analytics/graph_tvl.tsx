@@ -38,7 +38,7 @@ const GraphTVL: React.FC = () => {
             <div>
             <Text
                 color={textcolor}
-                fontSize={largerScreen ? '20px' : '16px'}
+                fontSize={largerScreen ? '14px' : '14px'}
                 lineHeight="29px"
                 fontWeight={400}
             >

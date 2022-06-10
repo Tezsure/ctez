@@ -33,6 +33,7 @@ const TransactionTableoven: React.FC = () => {
             accessor:'Burned',
             datakey:'burnAmount',
             isCtez:true,
+            isShowAdderessSend:true,
         },
         {
             accessor:'Target',
@@ -61,6 +62,7 @@ const TransactionTableoven: React.FC = () => {
             accessor:'Deposit',
             datakey:'amount',
             isCtez:true,
+            isShowAdderessSend:true,
 
         },
         {
@@ -89,6 +91,7 @@ const TransactionTableoven: React.FC = () => {
             accessor:'Withdraw',
             datakey:'amount',
             isCtez:true,
+            isShowAdderessSend:true,
 
         },
         {
@@ -117,6 +120,7 @@ const TransactionTableoven: React.FC = () => {
             accessor:'Minted',
             datakey:'mintAmount',
             isCtez:true,
+            isShowAdderessSend:true,
         },
         {
             accessor:'Target',

@@ -28,6 +28,7 @@ export interface ColData{
   isDecriptionRemove?:boolean,
   isTez?:boolean,
   isCtez2?:boolean,
+  isShowAdderessSend?:boolean,
 
 }
 
@@ -157,12 +158,18 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                   return(
                     <Tr key={pagedata.address+index}>
                     {column.map((coldata,mainkey)=>{
-                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2}= coldata;
+                       const {datakey,istrimAddress,isTimeformat,isCtez,isDecription,isDecriptionAdd,isDecriptionRemove,isTez,isCtez2,isShowAdderessSend}= coldata;
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
+                       if(isCtez && isShowAdderessSend)
+                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{
+                          numberToMillionOrBillionFormate(pagedata[datakey],6)
+                          
+                          } ctez</Td>;
                        if(isCtez)
                          return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey],6)} ctez</Td>;
-                       if(istrimAddress)
+                       
+                         if(istrimAddress)
                          return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''}  textAlign={mainkey===0?'left':'right'}>
                           <div >
                           <a 

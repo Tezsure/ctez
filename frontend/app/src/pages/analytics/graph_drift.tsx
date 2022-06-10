@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Skeleton, SkeletonText, Text, useMediaQuery } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
 import { format } from 'date-fns/fp';
 import { useDriftGraph, useDriftGraphAll } from "../../api/analytics";
@@ -29,29 +29,36 @@ const GraphDrift: React.FC = () => {
         flex={1}
         paddingX='35px'
         paddingY='27px'
-        gridGap={2}
+        gridGap={1}
     >
 
-        <Flex justifyContent='space-between'>
+      <Flex justifyContent='space-between'>
+            <div>
             <Text
                 color={textcolor}
                 fontSize={largerScreen ? '14px' : '14px'}
                 lineHeight="29px"
-                fontWeight={600}
+                fontWeight={400}
             >
                 Annual Drift
             </Text>
+            <Flex flexDirection='column'>
+            <Text
+            color={textcolor}
+            fontSize={largerScreen ? '32px' : '18px'}
+            lineHeight="29px"
+            fontWeight={600}
+            >
+            {(data1m && !value && data1m[data1m.length-1].value )?`${numberToMillionOrBillionFormate(data1m[data1m.length-1].value,2)} %`:value?`${numberToMillionOrBillionFormate(value,2)} %`:<SkeletonText pr={6} noOfLines={1} spacing="1" />}
+            </Text>
+            {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            </Flex>
+            </div>
+           
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
                 <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
                 <Button fontSize='12px' className={activeTab==='all'?"btnactive":''}  textDecoration='underline' onClick={()=>setActiveTab('all')}>ALL</Button>
             </ButtonGroup>
-
-        </Flex>
-        <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
-        <Flex gridGap={0} flexDirection='column'>
-        {value ? <Text className="bigFontSize">  <b>{numberToMillionOrBillionFormate(value,2)} %</b></Text>:<Text className="bigFontSize" opacity={0}>Premium</Text>}
-        {time ? <Text>{dateFormat(time )}</Text>:<Text opacity={0}>Time</Text>}
-        </Flex>
         </Flex>
         {activeTab==='1m' ? data1m?<LineChart
         isShowSmallData

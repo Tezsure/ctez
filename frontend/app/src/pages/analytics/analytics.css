@@ -12,6 +12,7 @@
     flex-direction: row;
     gap:4px;
     align-items: center;
+    font-size: 12px;
 }
 .textContainer .circleIcon{
     height: 8px;
@@ -77,4 +78,8 @@
 .bigFontSize{
     font-size: 32px;
     line-height: 29px;
+}
+.hoverPointer:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }

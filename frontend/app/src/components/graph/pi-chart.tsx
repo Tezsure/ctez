@@ -31,14 +31,15 @@ const RenderActiveShape = (props: any) => {
   const sy = cy + (outerRadius + 10) * sin;
   const mx = cx + (outerRadius + 30) * cos;
   const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 0.01;
   const ey = my;
   const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.address==="Others"?'Others':trimAddress(payload.address)}
+      <text x={cx} y={cy} dy={1} textAnchor="middle" fill={fill}>
+        {payload.address==="Others"?'Others':
+        <a className='hoverPointer' href={`https://tzkt.io/${payload.address}`} target="_blank"  rel="noreferrer" >{trimAddress(payload.address)}</a>}
         
       </text>
       <Sector
@@ -55,8 +56,8 @@ const RenderActiveShape = (props: any) => {
         cy={cy}
         startAngle={startAngle}
         endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
+        innerRadius={outerRadius + 1}
+        outerRadius={outerRadius + 4}
         fill={fill}
       />
       <path
@@ -153,15 +154,15 @@ const PiChart = ({
   return (
     <ResponsiveContainer width="100%" height={minHeight}>
 
-    <PieChart  height={350} width={350}>
+    <PieChart  height={450} width={450}>
     <Pie 
     data={data} 
     dataKey="value" 
     nameKey="time" 
     cx='350px'
     cy='350px'
-    innerRadius={100} 
-    outerRadius={130} 
+    innerRadius={90} 
+    outerRadius={120} 
     fill="#82ca9d"  
     activeIndex={activeIndex}
     activeShape={<RenderActiveShape  textColor={theme.colorMode==='dark'?'#FFFFFF':'#4E5D78'} />}

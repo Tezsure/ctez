@@ -1,10 +1,11 @@
-import { Button, ButtonGroup, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Skeleton, SkeletonText, Text, useMediaQuery } from "@chakra-ui/react";
 import { format } from 'date-fns/fp';
 import React, { useMemo, useState } from "react";
 import { useCtezGraphctez1m, useCtezGraphctezall } from "../../api/analytics";
 import { TextWithCircleColor } from "../../components/analytics/TTextWithColorCircle";
 import TwoLineChart from "../../components/graph/two-line-chart";
 import { useThemeColors } from "../../hooks/utilHooks";
+import { numberToMillionOrBillionFormate } from "../../utils/numberFormate";
 
 const color = '#0F62FF';
 const color2 = '#38CB89';
@@ -25,7 +26,7 @@ const GraphCtez: React.FC = () => {
   const [activeTab,setActiveTab]=useState('1m');
     // graph options
     const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
- 
+
     return (<Flex direction='column'
         borderRadius={16}
         backgroundColor={background}
@@ -34,33 +35,42 @@ const GraphCtez: React.FC = () => {
         paddingY='27px'
         gridGap={1}
     >
-
-        <Flex justifyContent='space-between'>
+   <Flex justifyContent='space-between'>
+            <div>
             <Text
                 color={textcolor}
                 fontSize={largerScreen ? '14px' : '14px'}
                 lineHeight="29px"
-                fontWeight={600}
+                fontWeight={400}
             >
                 Ctez Price
             </Text>
+            <Flex flexDirection='column'>
+            <Text
+            color={textcolor}
+            fontSize={largerScreen ? '32px' : '18px'}
+            lineHeight="29px"
+            fontWeight={600}
+            >
+            {(mainDatatarget1m && !value && mainDatatarget1m[mainDatatarget1m.length-1].value )?`$${numberToMillionOrBillionFormate(mainDatatarget1m[mainDatatarget1m.length-1].value,6)}`:value?`$${numberToMillionOrBillionFormate(value,6)}`:<SkeletonText pr={6} noOfLines={1} spacing="1" />}
+            </Text>
+            {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            </Flex>
+            </div>
+            <Flex flexDirection='column' align='flex-end' gridGap={2}>
             <ButtonGroup variant='ghost' gridGap={2} textColor={textcolor} fontSize='12px' spacing='-1'>
                 <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
                 <Button fontSize='12px' className={activeTab==='all'?"btnactive":''}  textDecoration='underline' onClick={()=>setActiveTab('all')}>ALL</Button>
             </ButtonGroup>
-
-        </Flex>
-        <Flex justifyContent='space-between' fontWeight={400} fontSize='12px' >
-        <Flex gridGap={0} flexDirection='column'>
-        {value ? <Text className="bigFontSize"> <b>{value}tez</b></Text>:<Text className="bigFontSize" opacity={0}>Tez</Text>}
-        {time ? <Text>{dateFormat(time )}</Text>:<Text opacity={0}>Time</Text>}
-        </Flex>
-            <Flex gridGap={4}>
+            <Flex gridGap={4} >
                 <TextWithCircleColor color={color}  text="Price" />
                 <TextWithCircleColor color={color2}  text="Target" />
 
             </Flex>
+            </Flex>
+
         </Flex>
+        
         
         {/* <GraphTwoLine labelArr={priceData.dateArr} data1={priceData.ctez_priceArr} data2={priceData.tez_priceArr}/>
         graph goes here */}
