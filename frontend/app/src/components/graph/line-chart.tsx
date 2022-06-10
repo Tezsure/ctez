@@ -54,7 +54,7 @@ const LineChart = ({
         {topLeft ?? null}
         {topRight ?? null}
       </Box>
-      <ResponsiveContainer width="100%" height={minHeight}>
+      <ResponsiveContainer  height={minHeight}>
         <AreaChart
           width={500}
           height={300}

@@ -51,7 +51,7 @@ const TwoLineChart = ({
   return (
     <Box minHeight={minHeight}>
       
-      <ResponsiveContainer width="100%"  height={minHeight}>
+      <ResponsiveContainer  height={minHeight}>
         <AreaChart
           height={300}
           data={data}

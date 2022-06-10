@@ -36,7 +36,7 @@ const RenderActiveShape = (props: any) => {
   const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
-    <g>
+    <g style={{zIndex:999}}>
       <text x={cx} y={cy} dy={1} textAnchor="middle" fill={fill}>
         {payload.address==="Others"?'Others':
         <a className='hoverPointer' href={`https://tzkt.io/${payload.address}`} target="_blank"  rel="noreferrer" >{trimAddress(payload.address)}</a>}
@@ -152,9 +152,9 @@ const PiChart = ({
 ]);
   const theme = useColorMode();
   return (
-    <ResponsiveContainer width="100%" height={minHeight}>
+    <ResponsiveContainer  height={350}>
 
-    <PieChart  height={450} width={450}>
+    <PieChart  height={350} width={350}>
     <Pie 
     data={data} 
     dataKey="value" 
