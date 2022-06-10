@@ -162,10 +162,24 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                        if(isTimeformat)
                          return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{timeago.format(pagedata[datakey])}</Td>;
                        if(isCtez && isShowAdderessSend)
-                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{
-                          numberToMillionOrBillionFormate(pagedata[datakey],6)
-                          
-                          } ctez</Td>;
+                         return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>
+                           <div >
+                          <a className="addresslinktd"
+                          href={`https://tzkt.io/${pagedata.operationHash}`}
+                          rel="noreferrer"
+                          target="_blank">
+                          {numberToMillionOrBillionFormate(pagedata[datakey],6)}
+                          ctez
+                          <Icon
+                            color="light.tradebg"
+                            _hover={{ cursor: 'pointer' }}
+                            className="addresslinktdIcon"
+                            as={linkLight}
+                            
+                            />
+                          </a>
+                          </div>
+                          </Td>;
                        if(isCtez)
                          return <Td key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'}>{numberToMillionOrBillionFormate(pagedata[datakey],6)} ctez</Td>;
                        
@@ -193,12 +207,14 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           </Td>);
                         if(isDecription)
                             return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
-                              <div className="addresslinktd">
-                              {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
-                              <a 
+                              <div>
+                              <a className="addresslinktd"
                               href={`https://tzkt.io/${pagedata.operationHash}`}
                               rel="noreferrer"
                               target="_blank">
+                              {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
+                             
+                              
                                 <Icon
                                 color="light.tradebg"
                                 _hover={{ cursor: 'pointer' }}
@@ -212,12 +228,12 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               </Td>);
                         if(isDecriptionAdd)
                         return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
-                          <div className="addresslinktd">
-                          Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
-                          {/* <a 
-                          href={`https://tzkt.io/${pagedata.trader}`}
+                          <div> 
+                          <a className="addresslinktd"
+                          href={`https://tzkt.io/${pagedata.operationHash}`}
                           rel="noreferrer"
                           target="_blank">
+                          Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez                          
                             <Icon
                             color="light.tradebg"
                             _hover={{ cursor: 'pointer' }}
@@ -225,18 +241,18 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             as={linkLight}
                             
                             />
-                            </a> */}
+                            </a> 
                           </div>
                           
                           </Td>);
                           if(isDecriptionRemove)
                           return (<Td  key={pagedata.address+index+mainkey} className={mainkey===0?"tableFirstCell":''} textAlign={mainkey===0?'left':'right'} >
-                            <div className="addresslinktd">
-                            Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
-                            {/* <a 
-                            href={`https://tzkt.io/${pagedata.trader}`}
+                            <div>
+                            <a  className="addresslinktd"
+                            href={`https://tzkt.io/${pagedata.operationHash}`}
                             rel="noreferrer"
                             target="_blank">
+                            Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
                               <Icon
                               color="light.tradebg"
                               _hover={{ cursor: 'pointer' }}
@@ -244,7 +260,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               as={linkLight}
                               
                               />
-                              </a> */}
+                              </a>
                             </div>
                             
                             </Td>);         
