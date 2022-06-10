@@ -20,9 +20,10 @@ const CustomTooltip = (props:any) => {
   // }
 
   if (active && !isShowCursor && payload && payload.length) {
+    console.log("payload",payload)
     return (
       <div className="custom-tooltip">
-        <p>Target: <b>{numberToMillionOrBillionFormate(payload[0].value,6)}</b></p>
+        <p>Target: <b>{numberToMillionOrBillionFormate(payload[0].payload.data2,6)}</b></p>
         <p>Premium : <b>{payload[0].payload.premium}%</b></p>
       </div>
     );

@@ -23,8 +23,12 @@ const addZeroes=(num:number,fixDigit:number)=>{
   return num.toLocaleString("en", {useGrouping: false, minimumFractionDigits: fixDigit})
 }
 export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false, )=>{
-  if(digits===6)
-  return addZeroes(num,digits)
+  if(digits===6){
+     if(!(num % 1 !== 0))
+        return num;
+    return addZeroes(num,digits)
+  }
+  
   if(isDecimal){
     return num.toFixed(digits)
   }

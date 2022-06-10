@@ -151,7 +151,7 @@ export const useAddLiquidityTransactionTable = () => {
 };
 export const useRemoveLiquidityTransactionTable = () => {
   return useQuery<AMMTransactionLiquidity[], Error>(
-    'main_ctez_AddLiquidityTransaction',
+    'main_ctez_remove_liquidityTransaction',
     async () => {
       const data = await analyticsAPI.get('/amm_transaction/remove_liquidity');
       const SwapTransactionTable: AMMTransactionLiquidity[] = data.data;
