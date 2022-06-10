@@ -81,5 +81,21 @@
 }
 .hoverPointer:hover{
     cursor: pointer;
-    text-decoration: underline;
+}
+.custom-tooltip{ 
+    width: 130px;
+    height: 52px;
+    background: #FEFDFF;
+    border: 1px solid #B0B7C3;
+    border-radius: 4px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #0D0714;
+
+}
+.dark.custom-tooltip{
+
 }

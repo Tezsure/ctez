@@ -7,7 +7,35 @@ import { numberToMillionOrBillionFormate, parseISO } from '../../utils/numberFor
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
 const formatMonth = format('LLL');
+const CustomTooltip = (props:any) => {
+  const { active, payload, label,setValue,parsedValue,setLabel,isShowCursor}=props;
+  console.log("propsprops",props)
+  // if(payload && payload.length) {
+  // // if (setValue && parsedValue!== ) {
+  // //   setValue(Math.random());
+  // // }
+  if (active && payload && payload.length){
+  if (setLabel && label) {
+    setLabel(label);
+  }
+  if (setValue && payload && payload.length && payload[0].payload ) {
+    setValue(payload[0].payload.value);
+  }
+}
+  // }
 
+  if (active && !isShowCursor && payload && payload.length) {
+    console.log("payload-payload",payload)
+    return (
+      <div className="custom-tooltip">
+        <p>Target: <b>{payload[0].value} tez</b></p>
+        <p>Premium : <b>{payload[0].payload.premium}%</b></p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 export type LineChartProps = {
   data: any[];
@@ -25,6 +53,7 @@ export type LineChartProps = {
   bottomLeft?: ReactNode | undefined;
   bottomRight?: ReactNode | undefined;
   isShowMonth?:boolean;
+  isShowCursor?:boolean
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const TwoLineChart = ({
@@ -41,6 +70,7 @@ const TwoLineChart = ({
   bottomLeft,
   bottomRight,
   isShowMonth=false,
+  isShowCursor=false,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
@@ -64,6 +94,9 @@ const TwoLineChart = ({
           onMouseLeave={() => {
             setLabel && setLabel(undefined);
             setValue && setValue(undefined);
+          }}
+          onMouseEnter={(e)=>{
+            console.log('ieee',e)
           }}
         >
           {/* <CartesianGrid  
@@ -93,8 +126,8 @@ const TwoLineChart = ({
           tickFormatter={(value1)=>numberToMillionOrBillionFormate(value1,2)}
           fontSize='12px'
          />
-          <Tooltip
-            contentStyle={{ display: 'none' }}
+          {/* <Tooltip
+            contentStyle={{ display: isShowCursor?'':'none' }}
             formatter={(
               value1: number,
               name: string,
@@ -107,7 +140,22 @@ const TwoLineChart = ({
                 setLabel(parseISO(props.payload.time).getTime());
               }
             }}
-          />
+          /> */}
+          <Tooltip
+          formatter={(
+            value1: number,
+            name: string,
+            props: { payload: { time: string; value: number } },
+          ) => {
+            if (setValue && parsedValue !== props.payload.value) {
+              setValue(props.payload.value);
+            }
+            if (setLabel && label !== parseISO(props.payload.time).getTime()) {
+              setLabel(parseISO(props.payload.time).getTime());
+            }
+          }}
+          content={<CustomTooltip setLabel={setLabel} setValue={setValue}/>} />
+    
           <Area 
           type="monotone" 
           dataKey="data1"

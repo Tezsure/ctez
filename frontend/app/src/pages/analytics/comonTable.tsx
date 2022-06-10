@@ -233,7 +233,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           href={`https://tzkt.io/${pagedata.operationHash}`}
                           rel="noreferrer"
                           target="_blank">
-                          Add {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez                          
+                          Add {pagedata.quantityTk1} tez and {pagedata.quantityTk2} ctez                          
                             <Icon
                             color="light.tradebg"
                             _hover={{ cursor: 'pointer' }}
@@ -252,7 +252,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             href={`https://tzkt.io/${pagedata.operationHash}`}
                             rel="noreferrer"
                             target="_blank">
-                            Remove {pagedata.quantityTk1} ctez and {pagedata.quantityTk2} tez
+                            Remove {pagedata.quantityTk1} tez and {pagedata.quantityTk2} ctez
                               <Icon
                               color="light.tradebg"
                               _hover={{ cursor: 'pointer' }}

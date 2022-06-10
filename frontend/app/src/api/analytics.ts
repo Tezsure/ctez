@@ -173,7 +173,8 @@ export const useCtezGraphctez1m = () => {
            data1: e.current_price,
            data2: e.current_target, 
            value: e.current_price, 
-           time: e.epoch_timestamp
+           time: e.epoch_timestamp,
+           premium:e.premium,
         }
       })
       return data1;

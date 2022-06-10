@@ -75,10 +75,10 @@ const GraphCtez: React.FC = () => {
         {/* <GraphTwoLine labelArr={priceData.dateArr} data1={priceData.ctez_priceArr} data2={priceData.tez_priceArr}/>
         graph goes here */}
         {activeTab==='1m' ? mainDatatarget1m?<TwoLineChart
-         data={mainDatatarget1m}  setValue={setValue} setLabel={setTime}
+         data={mainDatatarget1m} isShowCursor setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />:
         mainDatatargetall?<TwoLineChart
-         data={mainDatatargetall} isShowMonth setValue={setValue} setLabel={setTime}
+         data={mainDatatargetall} isShowCursor isShowMonth setValue={setValue} setLabel={setTime}
         />:<Skeleton height='300px' minWidth='20px' />
         }
     </Flex>)

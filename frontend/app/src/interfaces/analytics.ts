@@ -107,6 +107,7 @@ export interface TwoLineGraph {
     data2:number | string;
     value:number | string;
     time:number | string | Date;
+    premium?:number
 }
 export interface TwoLineGraphWithoutValue {
     data1:number | string;
