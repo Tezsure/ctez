@@ -65,11 +65,6 @@ const GraphAMMTVL: React.FC = () => {
                 <Button fontSize='12px' className={activeTab==='1m'?"btnactive":''} textDecoration='underline' onClick={()=>setActiveTab('1m')} >1M</Button>
                 <Button fontSize='12px' className={activeTab==='all'?"btnactive":''}  textDecoration='underline' onClick={()=>setActiveTab('all')}>ALL</Button>
             </ButtonGroup>
-            <Flex gridGap={4}>
-                <TextWithCircleColor color={color}  text="Ctez" />
-                <TextWithCircleColor color={color2}  text="Tez" />
-
-            </Flex>
             </Flex>
             
 

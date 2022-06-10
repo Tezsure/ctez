@@ -33,7 +33,7 @@ const OvenPiChart: React.FC = () => {
            color={textcolor}
            fontSize={largerScreen ? '20px' : '16px'}
            lineHeight="29px"
-           fontWeight={600}
+           fontWeight={400}
        >
            Ovens
        </Text>
