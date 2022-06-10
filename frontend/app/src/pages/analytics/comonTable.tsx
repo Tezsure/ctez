@@ -153,7 +153,6 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                </Tr>
            </Thead>
            <Tbody>
-               {console.log('currentPageOvens',currentPageOvens)}
                { currentPageOvens.map((pagedata:any,index:number)=>{
                   return(
                     <Tr key={pagedata.address+index}>
@@ -168,7 +167,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           href={`https://tzkt.io/${pagedata.operationHash}`}
                           rel="noreferrer"
                           target="_blank">
-                          {`${numberToMillionOrBillionFormate(pagedata[datakey])}`}
+                          {`${numberToMillionOrBillionFormate(pagedata[datakey])} ctez`}
                           
                           <Icon
                             color="light.tradebg"
@@ -271,7 +270,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                              href={`https://tzkt.io/${pagedata.operationHash}`}
                              rel="noreferrer"
                              target="_blank">
-                             {`${numberToMillionOrBillionFormate(pagedata[datakey],6)}`}
+                             {`${numberToMillionOrBillionFormate(pagedata[datakey])} tez`}
                              <Icon
                                color="light.tradebg"
                                _hover={{ cursor: 'pointer' }}

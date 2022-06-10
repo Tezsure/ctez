@@ -16,8 +16,6 @@ const OvenPiChart: React.FC = () => {
         'inputbg',
     ]);
     const { data:dataChart = false } = useCtezGraphOvendata();
-    console.log('datachart5tingpi',dataChart)
-    // graph options
    return(<Flex direction='column'
    borderRadius={16}
    backgroundColor={background}

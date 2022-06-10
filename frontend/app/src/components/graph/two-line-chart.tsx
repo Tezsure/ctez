@@ -9,11 +9,6 @@ const formatDay = format('dd');
 const formatMonth = format('LLL');
 const CustomTooltip = (props:any) => {
   const { active, payload, label,setValue,parsedValue,setLabel,isShowCursor}=props;
-  console.log("propsprops",props)
-  // if(payload && payload.length) {
-  // // if (setValue && parsedValue!== ) {
-  // //   setValue(Math.random());
-  // // }
   if (active && payload && payload.length){
   if (setLabel && label) {
     setLabel(label);
@@ -25,10 +20,9 @@ const CustomTooltip = (props:any) => {
   // }
 
   if (active && !isShowCursor && payload && payload.length) {
-    console.log("payload-payload",payload)
     return (
       <div className="custom-tooltip">
-        <p>Target: <b>{payload[0].value} tez</b></p>
+        <p>Target: <b>{numberToMillionOrBillionFormate(payload[0].value,6)}</b></p>
         <p>Premium : <b>{payload[0].payload.premium}%</b></p>
       </div>
     );
@@ -94,9 +88,6 @@ const TwoLineChart = ({
           onMouseLeave={() => {
             setLabel && setLabel(undefined);
             setValue && setValue(undefined);
-          }}
-          onMouseEnter={(e)=>{
-            console.log('ieee',e)
           }}
         >
           {/* <CartesianGrid  
