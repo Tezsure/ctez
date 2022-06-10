@@ -30,11 +30,11 @@ export const useDriftGraph = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/drift');
       const priceStatsArr: driftGraphInterface[] = data.data;
-       priceStatsArr.sort((a,b)=>a.epoch_timestamp-b.epoch_timestamp)
+       priceStatsArr.sort((a,b)=>new Date(a.epoch_timestamp).getTime()-new Date(b.epoch_timestamp).getTime())
       const data1: OneLineGraph[] = priceStatsArr.map((e) => {
         return <OneLineGraph> {
            value: e.drift, 
-           time: e.epoch_timestamp
+           time: e.timestamp
         }
       })
       return data1;
@@ -48,11 +48,11 @@ export const useDriftGraphAll = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/drift_all');
       const priceStatsArr: driftGraphInterfaceAll[] = data.data;
-      priceStatsArr.sort((a,b)=>a.epoch_timestamp_from-b.epoch_timestamp_from)
+      priceStatsArr.sort((a,b)=>new Date(a.timestamp_from).getTime()-new Date(b.timestamp_from).getTime())
       const data1: OneLineGraph[] = priceStatsArr.map((e) => {
         return <OneLineGraph> {
            value: e.drift, 
-           time: e.epoch_timestamp_from
+           time: e.timestamp_from
         }
       })
       return data1;

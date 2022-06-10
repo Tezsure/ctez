@@ -22,8 +22,8 @@ const OvenPiChart: React.FC = () => {
    borderRadius={16}
    backgroundColor={background}
    flex={1}
-   paddingX='10px'
-   paddingY='10px'
+   paddingX='35px'
+   paddingY='27px'
    gridGap={6}
    justifyContent='flex-start'
 >

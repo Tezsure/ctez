@@ -67,26 +67,27 @@ const RenderActiveShape = (props: any) => {
       />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
       <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        x={ex + (cos >= 0 ? 1 : -1) * 8}
         y={ey}
         textAnchor={textAnchor}
         fill={textColor}
+        fontSize='12px'
         className='alingright'
       >Minted</text>
       <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        x={ex + (cos >= 0 ? 1 : -1) * 8}
         y={ey}
         dy={18}
         textAnchor={textAnchor}
         fill={textColor}
         fontWeight={600}
-        fontSize='16px'
+        fontSize='14px'
         className='alingright'
       > 
         {`${name?numberToMillionOrBillionFormate(name):0} CTEZ`}
       </text>
       <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        x={ex + (cos >= 0 ? 1 : -1) * 8}
         y={ey}
         dy={29}
         fontSize='12px'
@@ -152,7 +153,7 @@ const PiChart = ({
 ]);
   const theme = useColorMode();
   return (
-    <ResponsiveContainer  height={350}>
+    <ResponsiveContainer  height={400}>
 
     <PieChart  height={350} width={350}>
     <Pie 
