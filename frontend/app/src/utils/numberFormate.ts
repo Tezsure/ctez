@@ -19,12 +19,14 @@ const SI_SYMBOL = ["", "k", "m", "b", "t", "p", "e"];
 //   // format number and add suffix
 //   return scaled.toFixed(2) + suffix;
 // }
-const addZeroes=(num:number,fixedTo:number)=>{
-  return num.toLocaleString("en", {useGrouping: false, minimumFractionDigits: fixedTo})
+const addZeroes=(num:number,fixDigit:number)=>{
+  return num.toLocaleString("en", {useGrouping: false, minimumFractionDigits: fixDigit})
 }
 export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false, )=>{
+  if(digits===6)
+  return addZeroes(num,digits)
   if(isDecimal){
-    return addZeroes(num,digits)
+    return num.toFixed(digits)
   }
   const lookup = [
     { value: 1, symbol: "" },
@@ -39,7 +41,7 @@ export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false,
   const item = lookup.slice().reverse().find(function(itemE) {
     return num >= itemE.value;
   });
-  return item ? addZeroes(num / item.value,digits).replace(rx, "$1") + item.symbol : (num.toFixed(digits)?addZeroes(num,digits):'<0.01');
+  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : (num.toFixed(digits)?num.toFixed(digits):'<0.01');
 }
 
 export const formatDate=(dateInEpoch:number)=> {

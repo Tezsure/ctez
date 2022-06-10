@@ -168,7 +168,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           href={`https://tzkt.io/${pagedata.operationHash}`}
                           rel="noreferrer"
                           target="_blank">
-                          {`${numberToMillionOrBillionFormate(pagedata[datakey],6)} ctez`}
+                          {`${numberToMillionOrBillionFormate(pagedata[datakey])}`}
                           
                           <Icon
                             color="light.tradebg"
@@ -212,7 +212,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                               href={`https://tzkt.io/${pagedata.operationHash}`}
                               rel="noreferrer"
                               target="_blank">
-                              {pagedata.sideTrade===1?<p>Swap {pagedata.tezQty} tez for {pagedata.tokenQty} ctez</p>:<p>Swap {pagedata.tokenQty} ctez for {pagedata.tezQty} tez</p>}            
+                              {pagedata.sideTrade===1?<p>Swap {numberToMillionOrBillionFormate(pagedata.tezQty,6)} tez for {numberToMillionOrBillionFormate(pagedata.tokenQty,6)} ctez</p>:<p>Swap {numberToMillionOrBillionFormate(pagedata.tokenQty,6)} ctez for {numberToMillionOrBillionFormate(pagedata.tezQty,6)} tez</p>}            
                              
                               
                                 <Icon
@@ -233,7 +233,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                           href={`https://tzkt.io/${pagedata.operationHash}`}
                           rel="noreferrer"
                           target="_blank">
-                          Add {pagedata.quantityTk1} tez and {pagedata.quantityTk2} ctez                          
+                          Add {numberToMillionOrBillionFormate(pagedata.quantityTk1,6)} tez and {numberToMillionOrBillionFormate(pagedata.quantityTk2,6)} ctez                          
                             <Icon
                             color="light.tradebg"
                             _hover={{ cursor: 'pointer' }}
@@ -252,7 +252,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                             href={`https://tzkt.io/${pagedata.operationHash}`}
                             rel="noreferrer"
                             target="_blank">
-                            Remove {pagedata.quantityTk1} tez and {pagedata.quantityTk2} ctez
+                            Remove {numberToMillionOrBillionFormate(pagedata.quantityTk1,6)} tez and {numberToMillionOrBillionFormate(pagedata.quantityTk2,6)} ctez
                               <Icon
                               color="light.tradebg"
                               _hover={{ cursor: 'pointer' }}
@@ -271,7 +271,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
                              href={`https://tzkt.io/${pagedata.operationHash}`}
                              rel="noreferrer"
                              target="_blank">
-                             {`${numberToMillionOrBillionFormate(pagedata[datakey],6)} tez`}
+                             {`${numberToMillionOrBillionFormate(pagedata[datakey],6)}`}
                              <Icon
                                color="light.tradebg"
                                _hover={{ cursor: 'pointer' }}

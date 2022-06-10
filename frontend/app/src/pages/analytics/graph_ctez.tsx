@@ -52,7 +52,7 @@ const GraphCtez: React.FC = () => {
             lineHeight="29px"
             fontWeight={600}
             >
-            {(mainDatatarget1m && !value && mainDatatarget1m[mainDatatarget1m.length-1].value )?`$${numberToMillionOrBillionFormate(mainDatatarget1m[mainDatatarget1m.length-1].value,6)}`:value?`$${numberToMillionOrBillionFormate(value,6)}`:<SkeletonText pr={6} noOfLines={1} spacing="1" />}
+            {(mainDatatarget1m && !value && mainDatatarget1m[mainDatatarget1m.length-1].value )?`${numberToMillionOrBillionFormate(mainDatatarget1m[mainDatatarget1m.length-1].value,6)} tez`:value?`${numberToMillionOrBillionFormate(value,6)} tez`:<SkeletonText pr={6} noOfLines={1} spacing="1" />}
             </Text>
             {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
             </Flex>
