@@ -38,3 +38,20 @@ export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false,
   });
   return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : (num.toFixed(digits)?num.toFixed(digits):'<0.01');
 }
+
+export const formatDate=(dateInEpoch:number)=> {
+  const date= new Date(dateInEpoch);
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+  
+  return `${monthNames[monthIndex]} . ${day} ,  ${year}`;
+  }
+  export const formatMonth=(dateInEpoch:number)=> {
+    const date= new Date(dateInEpoch);
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    const monthIndex = date.getMonth();
+    
+    return `${monthNames[monthIndex]}`;
+  } 

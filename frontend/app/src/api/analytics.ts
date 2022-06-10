@@ -165,12 +165,13 @@ export const useCtezGraphctez1m = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/target');
       const priceStatsArr: ctezGraphctez[] = data.data;
-      const data1: TwoLineGraph[] = priceStatsArr.reverse().map((e) => {
+      priceStatsArr.sort((a,b)=>a.epoch_timestamp-b.epoch_timestamp)
+      const data1: TwoLineGraph[] = priceStatsArr.map((e) => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
            value: e.premium, 
-           time: e.timestamp
+           time: e.epoch_timestamp
         }
       })
       return data1;
@@ -184,12 +185,13 @@ export const useCtezGraphctezall = () => {
     async () => {
       const data = await analyticsAPI.get('/main_data/target_all');
       const priceStatsArr: ctezGraphctezDateRange[] = data.data;
-      const data1: TwoLineGraph[] = priceStatsArr.reverse().map((e) => {
+      priceStatsArr.sort((a,b)=>a.epoch_timestamp_from-b.epoch_timestamp_from)
+      const data1: TwoLineGraph[] = priceStatsArr.map((e) => {
         return <TwoLineGraph> {
            data1: e.current_price,
            data2: e.current_target, 
            value: e.premium, 
-           time: e.timestamp_from
+           time: e.epoch_timestamp_from
         }
       })
       return data1;

@@ -45,7 +45,7 @@ const TwoLineChart = ({
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-  const dataassending=data.sort((a,b)=>a.value-b.value);
+  const dataassending=data;
   const top=dataassending[dataassending.length-2]
   const bottom=dataassending[0]
   return (

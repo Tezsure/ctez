@@ -41,8 +41,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                   Ctez is managing {GradientText(numberToMillionOrBillionFormate(headerData.TVL), true) } across {GradientText(`${headerData.total_ovens} Ovens`, false) }
-                        
+                   Ctez is managing {GradientText(numberToMillionOrBillionFormate(headerData.Total_TVL), true) } in its attached {GradientText('CFMM',false)} and across {GradientText(`${headerData.Total_Ovens} Ovens`, false) }      
                                             
                 </Text>
                 :<Skeleton>
@@ -53,7 +52,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                   Ctez is managing $1.13m across 185 Ovens
+                   Ctez is managing $3.4m in its attached CFMM and across 351 ovens 
                 </Text>
                     </Skeleton>}
             </Center>
@@ -69,7 +68,7 @@ const AnaluticsPage: React.FC = () => {
                 </Text>
                 <Flex direction='row' wrap='wrap' gridGap='10' >
                     <GraphCtez />
-                    <GraphDrift />
+                    {/* <GraphDrift /> */}
                 </Flex>
             </div>
             <div className='section-container'>
@@ -82,18 +81,18 @@ const AnaluticsPage: React.FC = () => {
                 >
                     Ovens
                 </Text>
-                <OvenTable />
+                {/* <OvenTable /> */}
             </div>
 
             <div className='section-container'>
                 <Flex direction='row' wrap='wrap' gridGap='10' >
-                    <GraphTVL />
-                    <OvenPiChart />
+                    {/* <GraphTVL />
+                    <OvenPiChart /> */}
 
                 </Flex>
             </div>
             <div className='section-container'>
-                <TransactionTableoven />
+                {/* <TransactionTableoven /> */}
             </div>
 
             <div className='section-container'>
@@ -107,13 +106,13 @@ const AnaluticsPage: React.FC = () => {
                     AMM
                 </Text>
                 <Flex direction='row' wrap='wrap' gridGap='10' >
-                    <GraphAMMTVL/>
-                    <GraphAMMVolume/>
+                    {/* <GraphAMMTVL/>
+                    <GraphAMMVolume/> */}
                 </Flex>
             </div>
 
             <div className='section-container'>
-            <TransactionTableAMM/>
+            {/* <TransactionTableAMM/> */}
             </div>
 
 
