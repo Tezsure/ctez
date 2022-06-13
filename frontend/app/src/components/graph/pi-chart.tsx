@@ -1,4 +1,4 @@
-import { useColorMode } from '@chakra-ui/react';
+import { useColorMode, useMediaQuery } from '@chakra-ui/react';
 import { format } from 'date-fns/fp';
 import React, { Dispatch, ReactNode, SetStateAction, useCallback, useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
@@ -36,10 +36,11 @@ const RenderActiveShape = (props: any) => {
   const ex = mx + ((toDegrees(RADIAN*midAngle)>60 && toDegrees(RADIAN*midAngle)<136) ? ((cos >= 0 ? 1 : -1)*12): ((cos >= 0 ? 1 : -1) * 0.01));
   const ey = my +((toDegrees(RADIAN*midAngle)>60 && toDegrees(RADIAN*midAngle)<136) ? -15:0);
   const textAnchor = cos >= 0 ? "start" : "end";
-
+  const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
+  
   return (
     <g style={{zIndex:999}}>
-      <text x={cx} y={cy} dy={1} textAnchor="middle" fill={fill}>
+      <text x={cx} y={cy} dy={1} textAnchor="middle" fill={fill} fontSize={largerScreen?'':'10px'}>
         {payload.address==="Others"?'Others':
         <a className='hoverPointer' href={`https://tzkt.io/${payload.address}`} target="_blank"  rel="noreferrer" >{trimAddress(payload.address)}</a>}
       </text>
@@ -72,7 +73,7 @@ const RenderActiveShape = (props: any) => {
         y={ey}
         textAnchor={textAnchor}
         fill={textColor}
-        fontSize='12px'
+        fontSize={largerScreen?'12px':'10px'}
         className='alingright'
       >Minted</text>
       <text
@@ -82,7 +83,7 @@ const RenderActiveShape = (props: any) => {
         textAnchor={textAnchor}
         fill={textColor}
         fontWeight={600}
-        fontSize='14px'
+        fontSize={largerScreen?'14px':'12px'}
         className='alingright'
       > 
         {`${name?numberToMillionOrBillionFormate(name):0} CTEZ`}
@@ -91,7 +92,7 @@ const RenderActiveShape = (props: any) => {
         x={ex + (cos >= 0 ? 1 : -1) * 10}
         y={ey}
         dy={32}
-        fontSize='12px'
+        fontSize={largerScreen?'12px':'10px'}
         className='alingright'
         textAnchor={textAnchor}
         fill='#B0B7C3'
@@ -103,6 +104,7 @@ const RenderActiveShape = (props: any) => {
 };
 const ColorPalet=['#463ABF','#7B70FF','#A586E3','#675CD5','#2161F7','#8FA9FA']
 const DEFAULT_HEIGHT = 300;
+const DEFAULT_HEIGHT_MOBILE = 270;
 const formatDay = format('dd');
 const formatMonth = format('dd LLL');
 export type PiChartProps = {
@@ -153,8 +155,10 @@ const PiChart = ({
     'text4',
 ]);
   const theme = useColorMode();
+  const [largerScreen] = useMediaQuery(['(min-width: 900px)']);
+
   return (
-    <ResponsiveContainer  height={DEFAULT_HEIGHT}>
+    <ResponsiveContainer  height={largerScreen?DEFAULT_HEIGHT:DEFAULT_HEIGHT_MOBILE} width='100%'>
 
     <PieChart >
     <Pie 
@@ -163,8 +167,8 @@ const PiChart = ({
     nameKey="time" 
     cx="50%"
     cy="50%"
-    innerRadius="58%"
-    outerRadius="70%" 
+    innerRadius={largerScreen?"58%":'35%'}
+    outerRadius={largerScreen?"70%":'50%'}
     
     fill="#82ca9d"  
     activeIndex={activeIndex}
