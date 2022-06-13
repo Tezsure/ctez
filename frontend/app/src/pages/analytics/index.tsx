@@ -32,8 +32,8 @@ const AnaluticsPage: React.FC = () => {
         </b>;
     }
     return (
-        <div style={{ padding: largerScreen ? '55px' : '35px', width:'100%' }} className={colorMode}>
-            <Center maxWidth='800px' margin='0px auto'>
+        <Box p= {largerScreen ? '55px' : '15px'} maxWidth={1200} mx="auto" className={colorMode}>
+            <Center maxWidth='800px' margin='0px auto' >
             {headerData?<Text
                     color={textcolor}
                     fontSize={largerScreen ? '40px' : '26px'}
@@ -66,7 +66,7 @@ const AnaluticsPage: React.FC = () => {
                 >
                     Protocol
                 </Text>
-                <Flex direction='row' wrap='wrap' gridGap='10' >
+                <Flex direction='row' wrap={largerScreen?'nowrap':'wrap'} gridGap='10' >
                     <GraphCtez />
                     <GraphDrift />
                 </Flex>
@@ -85,7 +85,7 @@ const AnaluticsPage: React.FC = () => {
             </div>
 
             <div className='section-container'>
-                <Flex direction='row' wrap='wrap' gridGap='10' >
+                <Flex direction='row' wrap={largerScreen?'nowrap':'wrap'} gridGap='10' >
                    <GraphTVL />
                      <OvenPiChart />
 
@@ -105,7 +105,7 @@ const AnaluticsPage: React.FC = () => {
                 >
                     AMM
                 </Text>
-                <Flex direction='row' wrap='wrap' gridGap='10' >
+                <Flex direction='row' wrap={largerScreen?'nowrap':'wrap'} gridGap='10' >
                      <GraphAMMTVL/>
                    <GraphAMMVolume/>
                 </Flex>
@@ -116,7 +116,7 @@ const AnaluticsPage: React.FC = () => {
             </div>
 
 
-        </div>
+        </Box>
     )
 }
 export default AnaluticsPage;
