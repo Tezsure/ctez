@@ -30,8 +30,8 @@ const GraphAMMVolume: React.FC = () => {
         borderRadius={16}
         backgroundColor={background}
         flex={1}
-        paddingX='35px'
-        paddingY='27px'
+        paddingX={largerScreen?'35px':'19px'}
+        paddingY={largerScreen?'27px':'24px'} 
         gridGap={4}
     >
 
