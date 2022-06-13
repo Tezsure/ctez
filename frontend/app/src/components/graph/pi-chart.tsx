@@ -7,7 +7,9 @@ import { trimAddress, trimSizeMap } from '../../utils/addressUtils';
 import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 
 const RenderActiveShape = (props: any) => {
-
+  function toDegrees (angle:number) {
+    return angle * (180 / Math.PI);
+  }
   const RADIAN = Math.PI / 180;
   const {
     cx,
@@ -31,8 +33,8 @@ const RenderActiveShape = (props: any) => {
   const sy = cy + (outerRadius + 5) * sin;
   const mx = cx + (outerRadius + 10) * cos;
   const my = cy + (outerRadius + 10) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 0.01;
-  const ey = my ;
+  const ex = mx + ((toDegrees(RADIAN*midAngle)>60 && toDegrees(RADIAN*midAngle)<136) ? ((cos >= 0 ? 1 : -1)*12): ((cos >= 0 ? 1 : -1) * 0.01));
+  const ey = my +((toDegrees(RADIAN*midAngle)>60 && toDegrees(RADIAN*midAngle)<136) ? -15:0);
   const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
@@ -40,7 +42,6 @@ const RenderActiveShape = (props: any) => {
       <text x={cx} y={cy} dy={1} textAnchor="middle" fill={fill}>
         {payload.address==="Others"?'Others':
         <a className='hoverPointer' href={`https://tzkt.io/${payload.address}`} target="_blank"  rel="noreferrer" >{trimAddress(payload.address)}</a>}
-        
       </text>
       <Sector
         cx={cx}
@@ -89,7 +90,7 @@ const RenderActiveShape = (props: any) => {
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 10}
         y={ey}
-        dy={29}
+        dy={32}
         fontSize='12px'
         className='alingright'
         textAnchor={textAnchor}
@@ -162,8 +163,8 @@ const PiChart = ({
     nameKey="time" 
     cx="50%"
     cy="50%"
-    innerRadius="50%"
-    outerRadius="65%" 
+    innerRadius="58%"
+    outerRadius="70%" 
     
     fill="#82ca9d"  
     activeIndex={activeIndex}
