@@ -37,7 +37,7 @@ const OvenPiChart: React.FC = () => {
        </Text>
 
    </Flex>
-   <Flex justifyContent='center'>
+   <Flex justifyContent='center' >
    {dataChart?<PiChart
          data={dataChart}  
         />:<SkeletonCircle size='300' />}

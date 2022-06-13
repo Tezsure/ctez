@@ -27,12 +27,12 @@ const RenderActiveShape = (props: any) => {
   } = props;
   const sin = Math.sin(-RADIAN * midAngle);
   const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
+  const sx = cx + (outerRadius + 5) * cos;
+  const sy = cy + (outerRadius + 5) * sin;
+  const mx = cx + (outerRadius + 10) * cos;
+  const my = cy + (outerRadius + 10) * sin;
   const ex = mx + (cos >= 0 ? 1 : -1) * 0.01;
-  const ey = my;
+  const ey = my ;
   const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
@@ -67,7 +67,7 @@ const RenderActiveShape = (props: any) => {
       />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
       <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        x={ex + (cos >= 0 ? 1 : -1) * 10}
         y={ey}
         textAnchor={textAnchor}
         fill={textColor}
@@ -75,7 +75,7 @@ const RenderActiveShape = (props: any) => {
         className='alingright'
       >Minted</text>
       <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        x={ex + (cos >= 0 ? 1 : -1) * 10}
         y={ey}
         dy={18}
         textAnchor={textAnchor}
@@ -87,7 +87,7 @@ const RenderActiveShape = (props: any) => {
         {`${name?numberToMillionOrBillionFormate(name):0} CTEZ`}
       </text>
       <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        x={ex + (cos >= 0 ? 1 : -1) * 10}
         y={ey}
         dy={29}
         fontSize='12px'
@@ -155,15 +155,16 @@ const PiChart = ({
   return (
     <ResponsiveContainer  height={DEFAULT_HEIGHT}>
 
-    <PieChart  height={350} width={350}>
+    <PieChart >
     <Pie 
     data={data} 
     dataKey="value" 
     nameKey="time" 
-    cx='350px'
-    cy='350px'
-    innerRadius={90} 
-    outerRadius={120} 
+    cx="50%"
+    cy="50%"
+    innerRadius="50%"
+    outerRadius="65%" 
+    
     fill="#82ca9d"  
     activeIndex={activeIndex}
     activeShape={<RenderActiveShape  textColor={theme.colorMode==='dark'?'#FFFFFF':'#4E5D78'} />}
