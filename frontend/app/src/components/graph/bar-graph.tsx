@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@chakra-ui/react';
+import { Box, useColorMode, useTheme } from '@chakra-ui/react';
 import { format, parseISO } from 'date-fns/fp';
 import React, { Dispatch, SetStateAction, ReactNode } from 'react';
 import { BarChart, ResponsiveContainer, XAxis, Tooltip, Bar } from 'recharts';
@@ -66,8 +66,9 @@ const BarChartAlt = ({
   isShowMonth=false,
   ...rest
 }: LineChartProps) => {
-  const theme = useTheme();
   const parsedValue = value;
+  const {colorMode} = useColorMode();
+
 
   return (
     <Box minHeight={minHeight}  {...rest}>
@@ -101,6 +102,7 @@ const BarChartAlt = ({
           />
           <Tooltip
             contentStyle={{ display: 'none' }}
+            cursor={{ fill: colorMode==='dark'? '#44579e':'#E2E8F1', strokeWidth: 2 }}
             formatter={(
               value1: number,
               name: string,

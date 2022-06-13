@@ -102,3 +102,12 @@
 .dark.custom-tooltip{
 
 }
+.dark .pageNavigation-center-btn li >button[aria-current="true"]{
+    background: #3A4776;
+}
+.pageNavigation-center-btn li >button[aria-current="true"]{
+    background: #F8F9FF;
+}  
+.dark .recharts-sector{
+    stroke: transparent;
+}
