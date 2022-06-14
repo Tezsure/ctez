@@ -33,7 +33,7 @@ const AnaluticsPage: React.FC = () => {
     }
     return (
         <Box p= {largerScreen ? '55px' : '15px'} pt={largerScreen ? '55px' : '30px'} maxWidth={1200} mx="auto" className={colorMode}>
-            <Center maxWidth='800px' margin='0px auto' >
+            <Center maxWidth='759px' margin='0px auto' >
             {headerData?<Text
                     color={textcolor}
                     fontSize={largerScreen ? '40px' : '26px'}
@@ -41,7 +41,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } across {GradientText(`${headerData.Total_Ovens} `, false)} {GradientText('Ovens',false)}
+           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } across {GradientText(`${headerData.Total_Ovens} `, false)} {GradientText('ovens',false)}
                                             
                 </Text>
                 :<Skeleton>
