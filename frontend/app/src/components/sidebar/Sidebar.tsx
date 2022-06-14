@@ -9,7 +9,6 @@ import { ReactComponent as AllOvens } from '../../assets/images/sidebar/allovens
 import { ReactComponent as CreateOven } from '../../assets/images/sidebar/createoven.svg';
 import { ReactComponent as Trade } from '../../assets/images/sidebar/trade.svg';
 import { ReactComponent as Faq } from '../../assets/images/sidebar/faq.svg';
-import { ReactComponent as Analytics } from '../../assets/images/sidebar/analytics-icon.svg';
 import { ReactComponent as Github } from '../../assets/images/sidebar/github.svg';
 import BenderLabs from '../../assets/images/sidebar/bender-labs.png';
 import { ReactComponent as Plenty } from '../../assets/images/sidebar/plenty.svg';
@@ -193,14 +192,6 @@ const Sidebar: React.FC<Props> = ({ handleCollapsed, handleToggled, collapsed, t
                   <Text fontSize="sm" color={sidebarTopic}>
                     Info
                   </Text>
-                </MenuItem>
-                <MenuItem
-                  className={clsx({
-                    highlight: location.pathname === '/analytics',
-                  })}
-                  icon={<Analytics />}
-                >
-                  <Link to="/analytics">Analytics</Link>
                 </MenuItem>
                 <MenuItem
                   className={clsx({
