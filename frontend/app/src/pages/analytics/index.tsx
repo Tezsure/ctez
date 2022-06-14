@@ -43,7 +43,7 @@ const AnaluticsPage: React.FC = () => {
                 >
 
 
-           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } accross {GradientText(`${headerData.Total_Ovens} Ovens`, false) }
+           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } accross {GradientText(`${headerData.Total_Ovens} `, false)} {GradientText('Oven',false)}
                                             
                 </Text>
                 :<Skeleton>
