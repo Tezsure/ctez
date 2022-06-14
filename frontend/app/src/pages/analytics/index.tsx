@@ -41,7 +41,9 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                   Ctez is managing {GradientText(numberToMillionOrBillionFormate(headerData.Total_TVL), true) } in its attached {GradientText('CFMM',false)} and across {GradientText(`${headerData.Total_Ovens} Ovens`, false) }      
+
+
+           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } accross {GradientText(`${headerData.Total_Ovens} Ovens`, false) }
                                             
                 </Text>
                 :<Skeleton>
@@ -52,7 +54,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                   Ctez is managing $3.4m in its attached CFMM and across 351 ovens 
+                441k ctez collateralized by 568k tez accross 195 ovens 
                 </Text>
                     </Skeleton>}
             </Center>

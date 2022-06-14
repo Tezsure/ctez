@@ -19,7 +19,11 @@ export interface driftGraphInterfaceAll {
 }
 export interface ctezMainHeader {
     Total_Ovens: number;
+    Amm_TVL: number;
+    Oven_TVL: number;
     Total_TVL: number;
+    collateral_locked: number;
+    total_debt: number;
     Total_AMM: number;
 }
 export interface ctezOven {
