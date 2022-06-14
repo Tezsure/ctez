@@ -41,9 +41,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-
-
-           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } accross {GradientText(`${headerData.Total_Ovens} `, false)} {GradientText('Ovens',false)}
+           {GradientText(`${numberToMillionOrBillionFormate(headerData.total_debt)} ctez`, false) } collateralized by {GradientText(`${numberToMillionOrBillionFormate(headerData.collateral_locked)} tez`, false) } across {GradientText(`${headerData.Total_Ovens} `, false)} {GradientText('Ovens',false)}
                                             
                 </Text>
                 :<Skeleton>
@@ -54,7 +52,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                441.39k ctez collateralized by 568.34k tez accross 195 ovens 
+                441.39k ctez collateralized by 568.34k tez across 195 ovens 
                 </Text>
                     </Skeleton>}
             </Center>
