@@ -54,7 +54,7 @@ const AnaluticsPage: React.FC = () => {
                     fontWeight={400}
                     textAlign='center'
                 >
-                441k ctez collateralized by 568k tez accross 195 ovens 
+                441.39k ctez collateralized by 568.34k tez accross 195 ovens 
                 </Text>
                     </Skeleton>}
             </Center>
