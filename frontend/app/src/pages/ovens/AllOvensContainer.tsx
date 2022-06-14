@@ -58,7 +58,6 @@ const AllOvensContainer: React.FC = () => {
 
   useEffect(() => {
     if (searchText) {
-      console.log('searchText', searchText);
       const searchResults = sortedOvens?.filter((oven) => oven.key.owner === searchText);
       searchResults && setCurrentPageOvens(searchResults);
     }
