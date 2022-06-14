@@ -37,7 +37,7 @@ const AnaluticsPage: React.FC = () => {
             {headerData?<Text
                     color={textcolor}
                     fontSize={largerScreen ? '40px' : '26px'}
-                    lineHeight="50px"
+                    lineHeight={largerScreen ? '50px' : '32px'}
                     fontWeight={400}
                     textAlign='center'
                 >
