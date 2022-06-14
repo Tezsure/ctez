@@ -32,7 +32,7 @@ const AnaluticsPage: React.FC = () => {
         </b>;
     }
     return (
-        <Box p= {largerScreen ? '55px' : '15px'} maxWidth={1200} mx="auto" className={colorMode}>
+        <Box p= {largerScreen ? '55px' : '15px'} pt={largerScreen ? '55px' : '30px'} maxWidth={1200} mx="auto" className={colorMode}>
             <Center maxWidth='800px' margin='0px auto' >
             {headerData?<Text
                     color={textcolor}

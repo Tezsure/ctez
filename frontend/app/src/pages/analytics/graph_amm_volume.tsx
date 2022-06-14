@@ -25,7 +25,7 @@ const GraphAMMVolume: React.FC = () => {
     const [time, setTime] = useState<number | undefined>();
     const [activeTab, setActiveTab] = useState('1m');
     // graph options
-    const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
+    const dateFormat = useMemo(() => format('MMM, yyyy'), []);
     return (<Flex direction='column'
         borderRadius={16}
         backgroundColor={background}

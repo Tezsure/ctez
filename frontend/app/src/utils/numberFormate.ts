@@ -45,7 +45,12 @@ export const numberToMillionOrBillionFormate=(num :any,digits=2,isDecimal=false,
   const item = lookup.slice().reverse().find(function(itemE) {
     return num >= itemE.value;
   });
-  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : (num.toFixed(digits)?num.toFixed(digits):'<0.01');
+  return item ? 
+  (num / item.value).toFixed(0).toString().split('').length>2?
+  (num / item.value).toFixed(0).replace(rx, "$1") + item.symbol :
+  (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol 
+  
+  : (num.toFixed(digits)?num.toFixed(digits):'<0.01');
 }
 
 export const formatDate=(dateInEpoch:number)=> {

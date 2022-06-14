@@ -63,7 +63,7 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
         {
           total: ovenTransactionTable?.length,
           initialState: {
-            pageSize: 5,
+            pageSize: largerScreen?5:5,
             isDisabled: false,
             currentPage: 1,
           },
@@ -85,31 +85,47 @@ const TableCommon: React.FC<CommonTable> = ({column,data=[]}) => {
           <>
             <Paginator
               isDisabled={isDisabled}
-              innerLimit={innerLimit}
+              innerLimit={largerScreen?innerLimit:1}
               currentPage={currentPage}
-              outerLimit={outerLimit}
+              outerLimit={largerScreen?outerLimit:1}
               pagesQuantity={pagesQuantity}
               activeStyles={activeStyles}
               normalStyles={baseStyles}
               onPageChange={handlePageChange}
             >
-              <Container align="center" display='flex' justifyContent='center' gridGap={5} w="full" pt={4}>
-                <Previous className="pagignationIcon">
+              <Container align="center" display='flex' justifyContent='center' flexDirection={largerScreen?'row':'column'} gridGap={5} w="full" pt={4}>
+              {largerScreen&&<Previous className="pagignationIcon">
+                   <Icon
+                   color="light.tradebg"
+                   _hover={{ cursor: 'pointer' }}
+                   as={leftIcon}
+                   />
+                </Previous>}
+                {!largerScreen && <Flex justifyContent='center' alignItems='center' gridGap='2px'>
+                  <Previous className="pagignationIcon">
                    <Icon
                    color="light.tradebg"
                    _hover={{ cursor: 'pointer' }}
                    as={leftIcon}
                    />
                 </Previous>
-                <PageGroup className="pageNavigation-center-btn" isInline align="center" />
-                <Next className="pagignationIcon">
+                  <Next className="pagignationIcon">
+                  <Icon
+                    color="light.tradebg"
+                    _hover={{ cursor: 'pointer' }}
+                    as={rightIcon}
+                    />
+                  </Next>
+                </Flex>}
+                <PageGroup justifyContent={largerScreen?'':'center'} className="pageNavigation-center-btn" isInline align="center" />
+                {largerScreen && <Next className="pagignationIcon">
 
                 <Icon
                    color="light.tradebg"
                    _hover={{ cursor: 'pointer' }}
                    as={rightIcon}
                    />
-                </Next>
+                </Next>}
               </Container>
             </Paginator>
           </>

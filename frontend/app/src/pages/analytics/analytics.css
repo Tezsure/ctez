@@ -111,3 +111,7 @@
 .dark .recharts-sector{
     stroke: transparent;
 }
+
+::-webkit-scrollbar {
+    height: 8px;
+}
