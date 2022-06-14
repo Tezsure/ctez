@@ -9,7 +9,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@reduxjs/toolkit": "^1.6.1",
-    "@taquito/beacon-wallet": "^12.1.0",	
+    "@taquito/beacon-wallet": "^12.1.0",
     "@taquito/taquito": "^12.1.0",
     "@types/react-helmet": "^6.1.5",
     "axios": "^0.21.1",
