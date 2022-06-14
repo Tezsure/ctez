@@ -25,7 +25,8 @@ const GraphCtez: React.FC = () => {
   const [time, setTime] = useState<number | undefined>();
   const [activeTab,setActiveTab]=useState('1m');
     // graph options
-    const dateFormat = useMemo(() => format('MMM, yyyy'), []);
+    const dateFormat = useMemo(() => format('MMM d, yyyy'), []);
+    const dateFormat2 = useMemo(() => format('MMM, yyyy'), []);
 
     return (<Flex direction='column'
         borderRadius={16}
@@ -54,7 +55,7 @@ const GraphCtez: React.FC = () => {
             >
             {(mainDatatarget1m && !value && mainDatatarget1m[mainDatatarget1m.length-1].value )?`${numberToMillionOrBillionFormate(mainDatatarget1m[mainDatatarget1m.length-1].value,6)} tez`:value?`${numberToMillionOrBillionFormate(value,6)} tez`:<SkeletonText pr={6} noOfLines={1} spacing="1" />}
             </Text>
-            {time ? <Text fontSize='12px' >{dateFormat(time )}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
+            {time ? <Text fontSize='12px' >{activeTab==='1m'?dateFormat(time ):dateFormat2(time)}</Text>:<Text fontSize='12px'  opacity={0}>Time</Text>}
             </Flex>
             </div>
             <Flex flexDirection='column' align='flex-end' gridGap={2}>
