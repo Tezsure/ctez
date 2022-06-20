@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
             Ctez, your portal to Tezos DeFi.
           </Text>
           <Text opacity="0.5" color={textcolor} fontSize="md" pr={15}>
-            Collateralized tez that is fungible, decentralized, and without opportunity cost from
+            Collateralized tez that is fungible, decentralized, and without opportunity cost
             from missing out on delegation. Achieved with a bit of mathematics.
           </Text>
           <HStack
