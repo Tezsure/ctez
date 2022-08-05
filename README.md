@@ -2,28 +2,6 @@
 
 Ctez contracts and frontend
 
-## Project setup
-
-Before running anything, you'll need to install the dependencies:
-
-```
-yarn install
-```
-
-## Running the interface locally
-
-```
-yarn start
-```
-
-The interface should automatically open. If it does not, navigate to [http://localhost:3000].
-
-## Creating a production build
-
-```
-yarn build
-```
-
 ## Introduction
 
 The following describes a simplified version of Checker in the special case of tez collateralized by tez. Since 99% of the complexity of Checker comes from handling potentially faulty oracles and liquidation auctions, the resulting system is quite simple. There is no governance involved, the system is completely mechanical and straightforward.
@@ -67,3 +45,29 @@ The drift is a mechanism that automatically discovers a competitive rate at whic
 ## Why it's useful
 
 ctez can be used directly in smart-contracts that would normally pool tez together without the thorny question of "who's baking". Given that there's almost no real movement in this pair, it doesn't need a whole lot of liquidity to function effectively, just a tad enough that the rate read from the contract isn't too noisy, hence the lack of baking shouldn't be a huge hindrance.
+
+## Project setup
+
+To install the dependencies:
+
+```
+yarn install
+```
+
+## Running the interface locally
+
+```
+yarn start
+```
+
+The interface should automatically open. If it does not, navigate to [http://localhost:3000].
+
+## Creating a production build
+
+```
+yarn build
+```
+
+## Contributions
+
+For steps on local deployment, development, and code contribution, please see [CONTRIBUTING](./CONTRIBUTING.md).
