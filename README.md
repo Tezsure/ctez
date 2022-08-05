@@ -1,4 +1,5 @@
 # ctez
+
 Ctez contracts and frontend
 
 ## Introduction
@@ -31,7 +32,7 @@ A constant product market making contract (similar to uniswap) allows people to 
 
 Each time the CFMM pushes its rate to the ctez contract, the drift, and the target factor for ctez, are adjusted.
 
-If the price of ctez implied by the CFMM is below the target, the drift is *raised* by  `max(1024 * (target / price - 1)^2, 1) * 2^(-48)` times the number of seconds since the last adjustment. If it is below, it is *lowered* by that amount. This corresponds roughly to a maximum adjustment of the annualized drift of one percentage point for every fractional day since the last adjustment. The adjustment saturates when the discrepancy exceeds one 32ndth. Note that, by a small miracle, `ln(1.01) / year / day ~ 1.027 * 2^(-48) / second^2` which we use to simplify the computation in the implementation.
+If the price of ctez implied by the CFMM is below the target, the drift is _raised_ by `max(1024 * (target / price - 1)^2, 1) * 2^(-48)` times the number of seconds since the last adjustment. If it is below, it is _lowered_ by that amount. This corresponds roughly to a maximum adjustment of the annualized drift of one percentage point for every fractional day since the last adjustment. The adjustment saturates when the discrepancy exceeds one 32ndth. Note that, by a small miracle, `ln(1.01) / year / day ~ 1.027 * 2^(-48) / second^2` which we use to simplify the computation in the implementation.
 
 ## Rationale
 
@@ -44,3 +45,29 @@ The drift is a mechanism that automatically discovers a competitive rate at whic
 ## Why it's useful
 
 ctez can be used directly in smart-contracts that would normally pool tez together without the thorny question of "who's baking". Given that there's almost no real movement in this pair, it doesn't need a whole lot of liquidity to function effectively, just a tad enough that the rate read from the contract isn't too noisy, hence the lack of baking shouldn't be a huge hindrance.
+
+## Project setup
+
+To install the dependencies:
+
+```
+yarn install
+```
+
+## Running the interface locally
+
+```
+yarn start
+```
+
+The interface should automatically open. If it does not, navigate to [http://localhost:3000].
+
+## Creating a production build
+
+```
+yarn build
+```
+
+## Contributions
+
+For steps on local deployment, development, and code contribution, please see [CONTRIBUTING](./CONTRIBUTING.md).
