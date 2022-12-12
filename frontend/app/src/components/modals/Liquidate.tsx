@@ -51,7 +51,7 @@ const LiquidateOven: React.FC<ILiquidateProps> = ({ isOpen, onClose, oven }) => 
     amount: number().min(0.000001).required(t('required')),
     to: string()
       .test({
-        test: (value) => validateAddress(value) === 3,
+        test: (value) => validateAddress(value ? value : '') === 3,
         message: t('invalidAddress'),
       })
       .required(t('required')),

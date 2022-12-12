@@ -1,5 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { Dispatch, SetStateAction, ReactNode } from 'react';
-import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, YAxis, CartesianGrid } from 'recharts';
+import {
+  ResponsiveContainer,
+  XAxis,
+  Tooltip,
+  AreaChart,
+  Area,
+  YAxis,
+  CartesianGrid,
+} from 'recharts';
 import { format, parseISO } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
 import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
@@ -7,7 +17,6 @@ import { numberToMillionOrBillionFormate } from '../../utils/numberFormate';
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
 const formatMonth = format('LLL');
-
 
 export type LineChartProps = {
   data: any[];
@@ -24,14 +33,14 @@ export type LineChartProps = {
   topRight?: ReactNode | undefined;
   bottomLeft?: ReactNode | undefined;
   bottomRight?: ReactNode | undefined;
-  isShowMonth?:boolean;
+  isShowMonth?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const TwoLineChart = ({
   data,
   color = '#0F62FF',
   color2 = '#38CB89',
-  strokeColor='#CCD2E3',
+  strokeColor = '#CCD2E3',
   value,
   label,
   setValue,
@@ -40,18 +49,17 @@ const TwoLineChart = ({
   topRight,
   bottomLeft,
   bottomRight,
-  isShowMonth=false,
+  isShowMonth = false,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-  const dataassending=data.sort((a,b)=>a.value-b.value);
-  const top=dataassending[dataassending.length-2]
-  const bottom=dataassending[0]
+  const dataassending = data.sort((a, b) => a.value - b.value);
+  const top = dataassending[dataassending.length - 2];
+  const bottom = dataassending[0];
   return (
     <Box minHeight={minHeight}>
-      
-      <ResponsiveContainer  height={minHeight}>
+      <ResponsiveContainer height={minHeight}>
         <AreaChart
           height={300}
           data={data}
@@ -72,33 +80,35 @@ const TwoLineChart = ({
         /> */}
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor='#3260EF' stopOpacity={0.30} />
-              <stop offset="100%" stopColor='#3560ED' stopOpacity={0.08} />
+              <stop offset="0%" stopColor="#3260EF" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#3560ED" stopOpacity={0.08} />
             </linearGradient>
             <linearGradient id="gradient2" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor='#38CB89' stopOpacity={0.30} />
-              <stop offset="100%" stopColor='#38CB89' stopOpacity={0.08} />
+              <stop offset="0%" stopColor="#38CB89" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#38CB89" stopOpacity={0.08} />
             </linearGradient>
           </defs>
           <XAxis
             dataKey="time"
             axisLine={false}
             tickLine={false}
-            tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
+            tickFormatter={(time) =>
+              isShowMonth ? formatMonth(parseISO(time)) : formatDay(parseISO(time))
+            }
             minTickGap={10}
-            fontSize='12px'
+            fontSize="12px"
           />
-         
-         <YAxis
-         axisLine={false}
-         tickLine={false}
-         orientation='left'
-         domain={[bottom, top]}
-         fontSize='12px'
-         minTickGap={10}
-         display='none'
-         tickFormatter={(value1)=>numberToMillionOrBillionFormate(value1,2,true)}
-         />
+
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            orientation="left"
+            domain={[bottom, top]}
+            fontSize="12px"
+            minTickGap={10}
+            display="none"
+            tickFormatter={(value1) => numberToMillionOrBillionFormate(value1, 2, true)}
+          />
           <Tooltip
             contentStyle={{ display: 'none' }}
             formatter={(
@@ -114,19 +124,19 @@ const TwoLineChart = ({
               }
             }}
           />
-          <Area 
-          type="monotone" 
-          dataKey="data1"
-          stroke={color}
-          fill="url(#gradient)" 
-          strokeWidth={2}
+          <Area
+            type="monotone"
+            dataKey="data1"
+            stroke={color}
+            fill="url(#gradient)"
+            strokeWidth={2}
           />
-          <Area 
-          type="monotone" 
-          dataKey="data2" 
-          stroke={color2} 
-          fill="url(#gradient2)" 
-          strokeWidth={2}
+          <Area
+            type="monotone"
+            dataKey="data2"
+            stroke={color2}
+            fill="url(#gradient2)"
+            strokeWidth={2}
           />
         </AreaChart>
       </ResponsiveContainer>

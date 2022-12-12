@@ -76,7 +76,7 @@ const Withdraw: React.FC<IWithdrawProps> = ({ isOpen, onClose, oven }) => {
       .required(t('required')),
     to: string()
       .test({
-        test: (value) => validateAddress(value) === 3,
+        test: (value) => validateAddress(value ? value : '') === 3,
         message: t('invalidAddress'),
       })
       .required(t('required')),

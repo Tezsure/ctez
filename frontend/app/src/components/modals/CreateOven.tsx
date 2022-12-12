@@ -55,12 +55,9 @@ const CreateOven: React.FC<ICreateOvenProps> = ({ isOpen, onClose }) => {
   const [{ pkh: userAddress }] = useWallet();
   const { data: delegates } = useDelegates(userAddress);
 
-  const {
-    bakerSelect,
-    setBakerSelect,
-    options: bakerOptions,
-    handleBakerCreate,
-  } = useBakerSelect(delegates);
+  const { bakerSelect, setBakerSelect, options: bakerOptions, handleBakerCreate } = useBakerSelect(
+    delegates,
+  );
 
   const toast = useToast();
   const { t } = useTranslation(['common']);
@@ -85,7 +82,7 @@ const CreateOven: React.FC<ICreateOvenProps> = ({ isOpen, onClose }) => {
   const validationSchema = object().shape({
     delegate: string()
       .test({
-        test: (value) => validateAddress(value) === 3,
+        test: (value) => validateAddress(value ? value : '') === 3,
       })
       .required(t('required')),
     amount: number().optional(),
