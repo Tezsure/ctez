@@ -16,34 +16,34 @@ import { numberToMillionOrBillionFormate, parseISO } from '../../utils/numberFor
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
 const formatMonth = format('LLL');
-const CustomTooltip = (props: any) => {
-  const { active, payload, label, setValue, parsedValue, setLabel, isShowCursor } = props;
-  if (active && payload && payload.length) {
-    if (setLabel && label) {
-      setLabel(label);
-    }
-    if (setValue && payload && payload.length && payload[0].payload) {
-      setValue(payload[0].payload.value);
-    }
-  }
-  // }
+// const CustomTooltip = (props: any) => {
+//   const { active, payload, label, setValue, parsedValue, setLabel, isShowCursor } = props;
+//   if (active && payload && payload.length) {
+//     if (setLabel && label) {
+//       setLabel(label);
+//     }
+//     if (setValue && payload && payload.length && payload[0].payload) {
+//       setValue(payload[0].payload.value);
+//     }
+//   }
+//   // }
 
-  if (active && !isShowCursor && payload && payload.length) {
-    console.log('payload', payload);
-    return (
-      <div className="custom-tooltip">
-        <p>
-          Target: <b>{numberToMillionOrBillionFormate(payload[0].payload.data2, 6)}</b>
-        </p>
-        <p>
-          Premium : <b>{payload[0].payload.premium}%</b>
-        </p>
-      </div>
-    );
-  }
+//   if (active && !isShowCursor && payload && payload.length) {
+//     console.log('payload', payload);
+//     return (
+//       <div className="custom-tooltip">
+//         <p>
+//           Target: <b>{numberToMillionOrBillionFormate(payload[0].payload.data2, 6)}</b>
+//         </p>
+//         <p>
+//           Premium : <b>{payload[0].payload.premium}%</b>
+//         </p>
+//       </div>
+//     );
+//   }
 
-  return null;
-};
+//   return null;
+// };
 
 export type LineChartProps = {
   data: any[];
@@ -55,7 +55,7 @@ export type LineChartProps = {
   setValue?: Dispatch<SetStateAction<number | undefined>>; // used for value on hover
   setLabel?: Dispatch<SetStateAction<number | undefined>>; // used for label of valye
   value?: number;
-  label?: number;
+  label1?: number;
   topLeft?: ReactNode | undefined;
   topRight?: ReactNode | undefined;
   bottomLeft?: ReactNode | undefined;
@@ -70,7 +70,7 @@ const TwoLineChart = ({
   color2 = '#38CB89',
   strokeColor = '#CCD2E3',
   value,
-  label,
+  label1,
   setValue,
   setLabel,
   topLeft,
