@@ -1,8 +1,17 @@
 import React, { Dispatch, SetStateAction, ReactNode } from 'react';
-import { ResponsiveContainer, XAxis, Tooltip, AreaChart, Area, CartesianGrid, YAxis } from 'recharts';
+import {
+  ResponsiveContainer,
+  XAxis,
+  Tooltip,
+  AreaChart,
+  Area,
+  CartesianGrid,
+  YAxis,
+  TooltipProps,
+} from 'recharts';
 import { format } from 'date-fns/fp';
 import { Box } from '@chakra-ui/react';
-import { numberToMillionOrBillionFormate,parseISO } from '../../utils/numberFormate';
+import { numberToMillionOrBillionFormate, parseISO } from '../../utils/numberFormate';
 
 const DEFAULT_HEIGHT = 300;
 const formatDay = format('dd');
@@ -22,15 +31,15 @@ export type LineChartProps = {
   topRight?: ReactNode | undefined;
   bottomLeft?: ReactNode | undefined;
   bottomRight?: ReactNode | undefined;
-  isShowMonth?:boolean;
-  isShowSmallData?:boolean;
+  isShowMonth?: boolean;
+  isShowSmallData?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const LineChart = ({
   data,
   color = '#0F62FF',
   color2 = '#38CB89',
-  strokeColor='#CCD2E3',
+  strokeColor = '#CCD2E3',
   value,
   label,
   setValue,
@@ -39,22 +48,37 @@ const LineChart = ({
   topRight,
   bottomLeft,
   bottomRight,
-  isShowMonth=false,
-  isShowSmallData=false,
+  isShowMonth = false,
+  isShowSmallData = false,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
   const parsedValue = value;
-  const dataassending=data;
-  const top=dataassending[dataassending.length-1]
-  const bottom=dataassending[0]
+  const dataassending = data;
+  const top = dataassending[dataassending.length - 1];
+  const bottom = dataassending[0];
+  const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+    if (active) {
+      if (payload && setValue && parsedValue !== payload[0]?.payload.value) {
+        setValue(payload ? payload[0]?.payload.value : 0);
+      }
+
+      const now = new Date().getTime();
+
+      if (setLabel && label !== parseISO(label).getTime()) {
+        setLabel(parseISO(label).getTime());
+      }
+    }
+
+    return null;
+  };
   return (
-    <Box minHeight={minHeight}  {...rest}>
+    <Box minHeight={minHeight} {...rest}>
       <Box>
         {topLeft ?? null}
         {topRight ?? null}
       </Box>
-      <ResponsiveContainer  height={minHeight}>
+      <ResponsiveContainer height={minHeight}>
         <AreaChart
           width={500}
           height={300}
@@ -76,41 +100,33 @@ const LineChart = ({
         /> */}
           <defs>
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor='#3260EF' stopOpacity={0.30} />
-            <stop offset="100%" stopColor='#3560ED' stopOpacity={0.08} />
+              <stop offset="0%" stopColor="#3260EF" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#3560ED" stopOpacity={0.08} />
             </linearGradient>
           </defs>
           <YAxis
-         axisLine={false}
-         tickLine={false}
-         domain={[bottom, top]}
-         fontSize='12px'
-         display='none'
-         tickFormatter={(dataYAxis)=>isShowSmallData?numberToMillionOrBillionFormate(dataYAxis,2,true):numberToMillionOrBillionFormate(dataYAxis,2)}
-         />
+            axisLine={false}
+            tickLine={false}
+            domain={[bottom, top]}
+            fontSize="12px"
+            display="none"
+            tickFormatter={(dataYAxis) =>
+              isShowSmallData
+                ? numberToMillionOrBillionFormate(dataYAxis, 2, true)
+                : numberToMillionOrBillionFormate(dataYAxis, 2)
+            }
+          />
           <XAxis
             dataKey="time"
             axisLine={false}
             tickLine={false}
-            tickFormatter={(time) => isShowMonth?formatMonth(parseISO(time)):formatDay(parseISO(time))}
+            tickFormatter={(time) =>
+              isShowMonth ? formatMonth(parseISO(time)) : formatDay(parseISO(time))
+            }
             minTickGap={10}
-            fontSize='12px'
+            fontSize="12px"
           />
-          <Tooltip
-            contentStyle={{ display: 'none' }}
-            formatter={(
-              value1: number,
-              name: string,
-              props: { payload: { time: string; value: number } },
-            ) => {
-              if (setValue && parsedValue !== props.payload.value) {
-                setValue(props.payload.value);
-              }
-              if (setLabel && label !== parseISO(props.payload.time).getTime()) {
-                setLabel(parseISO(props.payload.time).getTime());
-              }
-            }}
-          />
+          <Tooltip contentStyle={{ display: 'none' }} content={<CustomTooltip />} />
           <Area
             dataKey="value"
             type="monotone"
