@@ -21,7 +21,7 @@ export type LineChartProps = {
   setValue?: Dispatch<SetStateAction<number | undefined>>; // used for value on hover
   setLabel?: Dispatch<SetStateAction<number | undefined>>; // used for label of valye
   value?: number;
-  label?: number;
+  label1?: number;
   activeWindow?: VolumeWindow;
   topLeft?: ReactNode | undefined;
   topRight?: ReactNode | undefined;
@@ -56,7 +56,7 @@ const BarChartAlt = ({
   setValue,
   setLabel,
   value,
-  label,
+  label1,
   activeWindow,
   topLeft,
   topRight,
