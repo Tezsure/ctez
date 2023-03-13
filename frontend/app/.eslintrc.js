@@ -44,6 +44,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'import/no-cycle': 'warn',
     'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['false', 'off'],
     '@typescript-eslint/no-unused-expressions': [
       'off',
       {
