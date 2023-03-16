@@ -215,7 +215,7 @@ const Sidebar: React.FC<Props> = ({ handleCollapsed, handleToggled, collapsed, t
                     GitHub
                   </a>
                 </MenuItem>
-                <MenuItem
+                {/* <MenuItem
                   className={clsx({
                     hide: collapsed,
                   })}
@@ -234,6 +234,7 @@ const Sidebar: React.FC<Props> = ({ handleCollapsed, handleToggled, collapsed, t
                     Plenty
                   </a>
                 </MenuItem>
+               */}
               </Menu>
             </Box>
           </SidebarContent>
