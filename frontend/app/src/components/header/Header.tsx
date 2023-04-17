@@ -1,4 +1,4 @@
-import { Flex, Box, useColorMode, Text } from '@chakra-ui/react';
+import { Flex, Box, useColorMode, Text, useMediaQuery } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import { FiMoon, FiSun } from 'react-icons/fi';
@@ -26,6 +26,7 @@ interface HeaderIconText {
 }
 
 const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
+  const [mobileScreen] = useMediaQuery(['(max-width: 600px)']);
   const { colorMode, toggleColorMode } = useColorMode();
   const [headerBackground, bannerbg, bannertext, trynow] = useThemeColors([
     'headerBg',
@@ -103,7 +104,9 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
         <Box width="100%" alignItems="center" className="banner" backgroundColor={bannerbg}>
           <Box className="bannermiddle">
             <span className="banner-text" color={bannertext}>
-              Introducing Plenty.network: A platform to build, earn and trade seamlessly{' '}
+              {mobileScreen
+                ? 'Introducing Plenty.network'
+                : 'Introducing Plenty.network: A platform to build, earn and trade seamlessly'}{' '}
               <a
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
                 href="https://app.plenty.network/"
@@ -113,9 +116,11 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
                 <span className="trynow" color={trynow}>
                   Try it now!
                 </span>{' '}
-                <span className="newBadge" color="#ffffff">
-                  New
-                </span>
+                {!mobileScreen && (
+                  <span className="newBadge" color="#ffffff">
+                    New
+                  </span>
+                )}
                 {colorMode === 'light' ? <Arrow /> : <ArrowDark />}
               </a>
             </span>
