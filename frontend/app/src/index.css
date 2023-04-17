@@ -98,7 +98,7 @@ form {
 }
 .trynow {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 30px;
   letter-spacing: -0.01em;
   text-align: left;
@@ -120,6 +120,7 @@ form {
   justify-content: center;
   display: flex;
   align-items: center;
+  color: #ffffff !important;
 }
 .banner-text {
   display: flex;
