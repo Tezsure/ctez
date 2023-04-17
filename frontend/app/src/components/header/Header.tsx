@@ -8,6 +8,9 @@ import { ReactComponent as MyOvens } from '../../assets/images/sidebar/myovens.s
 import { ReactComponent as Trade } from '../../assets/images/sidebar/trade.svg';
 import { ReactComponent as AnalyticsIcon } from '../../assets/images/sidebar/analytics-icon.svg';
 import { ReactComponent as Faq } from '../../assets/images/sidebar/faq.svg';
+import { ReactComponent as Arrow } from '../../assets/images/icons/rightArrow.svg';
+import { ReactComponent as ArrowDark } from '../../assets/images/icons/rightArrowDark.svg';
+import { ReactComponent as Close } from '../../assets/images/icons/close.svg';
 import Button from '../button';
 import SignIn from '../SignIn';
 import { useThemeColors } from '../../hooks/utilHooks';
@@ -24,7 +27,12 @@ interface HeaderIconText {
 
 const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [headerBackground] = useThemeColors(['headerBg']);
+  const [headerBackground, bannerbg, bannertext, trynow] = useThemeColors([
+    'headerBg',
+    'bannerBg',
+    'bannerText',
+    'tryNow',
+  ]);
   const location = useLocation();
   const [headerIconText, setHeaderIconText] = useState<HeaderIconText>({ text: null, icon: null });
 
@@ -57,25 +65,19 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
       })
     ) {
       setHeaderIconText({ text: `Trade`, icon: <Trade /> });
-
-    } 
-    else if (
+    } else if (
       matchPath(pathName, {
         path: '/analytics',
         exact: true,
       })
     ) {
       setHeaderIconText({ text: `Analytics`, icon: <AnalyticsIcon /> });
-      
-    }
-    else if (
+    } else if (
       matchPath(pathName, {
         path: '/faq',
         exact: true,
       })
-    )
-    
-    {
+    ) {
       setHeaderIconText({ text: `FAQ`, icon: <Faq /> });
     } else {
       setHeaderIconText({ text: null, icon: null });
@@ -90,9 +92,41 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
     const pathName = location.pathname;
     setHeader(pathName);
   }, [location]);
+  const [isBannerOpen, setBannerOpen] = useState(true);
+  const closeBanner = () => {
+    setBannerOpen(false);
+  };
 
   return (
     <Box width="100%">
+      {isBannerOpen && (
+        <Box width="100%" alignItems="center" className="banner" backgroundColor={bannerbg}>
+          <Box className="bannermiddle">
+            <span className="banner-text" color={bannertext}>
+              Introducing Plenty.network: A platform to build, earn and trade seamlessly{' '}
+              <a
+                style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                href="https://app.plenty.network/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="trynow" color={trynow}>
+                  Try it now!
+                </span>{' '}
+                <span className="newBadge" color="#ffffff">
+                  New
+                </span>
+                {colorMode === 'light' ? <Arrow /> : <ArrowDark />}
+              </a>
+            </span>
+          </Box>
+          <Box className="bannerright" style={{ cursor: 'pointer' }}>
+            <span className="closeIconBanner">
+              <Close onClick={() => closeBanner()} />
+            </span>
+          </Box>
+        </Box>
+      )}
       <Flex
         padding="16px"
         alignItems="center"
