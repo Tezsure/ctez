@@ -28,6 +28,9 @@ const theme = extendTheme({
       red: '#CC3936',
       orange: '#F6AD55',
       maxColor: '#e35f5f',
+      bannerBg: '#EDF3FF',
+      tryNow: '#0F62FF',
+      bannerText: '#201C41',
     },
     dark: {
       text1: '#F8F9FF',
@@ -55,6 +58,9 @@ const theme = extendTheme({
       red: '#CC3936',
       orange: '#F6AD55',
       maxColor: '#e35f5f',
+      bannerBg: '#0E2579',
+      tryNow: '#FFFFFF',
+      bannerText: '#FFFFFF',
     },
   },
 });

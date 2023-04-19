@@ -85,6 +85,56 @@ form {
   top: 28px;
   display: none;
 }
+.banner {
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+.trynow {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  margin-left: 12px;
+  margin-right: 4px;
+}
+.newBadge {
+  background: #0f62ff;
+  mix-blend-mode: normal;
+  border: 0.734783px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  height: 17px;
+  width: 38px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0px;
+  margin-right: 4px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: #ffffff !important;
+}
+.banner-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bannermiddle {
+  width: 100%;
+  text-align: center;
+}
+.bannerright {
+  text-align: right;
+  margin-right: 27.5px;
+}
 
 @media (min-width: 992px) {
   .md-menu {
