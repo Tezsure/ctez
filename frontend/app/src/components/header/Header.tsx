@@ -105,8 +105,8 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
           <Box className="bannermiddle">
             <span className="banner-text" color={bannertext}>
               {mobileScreen
-                ? 'Introducing Plenty.network'
-                : 'Introducing Plenty.network: A platform to build, earn and trade seamlessly'}{' '}
+                ? 'Plenty V3 is live!'
+                : 'Plenty V3 is live!'}{' '}
               <a
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
                 href="https://app.plenty.network/"
