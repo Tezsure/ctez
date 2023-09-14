@@ -86,18 +86,19 @@ form {
   display: none;
 }
 .banner {
-  height: 48px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 18px;
   letter-spacing: 0em;
 }
 .trynow {
-  font-size: 14px;
+  font-size: 20
+    px;
   font-weight: 600;
   line-height: 30px;
   letter-spacing: -0.01em;
