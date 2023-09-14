@@ -110,6 +110,9 @@ form {
     margin-right: 4px;
   
 }
+.trynow:hover{
+  box-shadow: 2px 8px 10px #010e18;
+}
 .newBadge {
   display: none;
   background: #0f62ff;
