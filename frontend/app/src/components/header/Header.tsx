@@ -105,8 +105,8 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
           <Box className="bannermiddle">
             <span className="banner-text" color={bannertext}>
               {mobileScreen
-                ? 'Introducing Plenty.network'
-                : 'Introducing Plenty.network: A platform to build, earn and trade seamlessly'}{' '}
+                ? 'Plenty V3 is live!'
+                : 'Plenty V3 is live!'}{' '}
               <a
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
                 href="https://app.plenty.network/"
@@ -114,20 +114,20 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
                 rel="noreferrer"
               >
                 <span className="trynow" color={trynow}>
-                  Try it now!
+                  Try now
                 </span>{' '}
-                {!mobileScreen && (
+{/* {!mobileScreen && (
                   <span className="newBadge" color="#ffffff">
                     New
                   </span>
                 )}
-                {colorMode === 'light' ? <Arrow /> : <ArrowDark />}
+                {colorMode === 'light' ? <Arrow /> : <ArrowDark />} */}
               </a>
             </span>
           </Box>
           <Box className="bannerright" style={{ cursor: 'pointer' }}>
             <span className="closeIconBanner">
-              <Close onClick={() => closeBanner()} />
+              <Close onClick={() => closeBanner()} width={30} height={30} />
             </span>
           </Box>
         </Box>
