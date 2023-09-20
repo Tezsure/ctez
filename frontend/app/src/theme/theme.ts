@@ -28,7 +28,7 @@ const theme = extendTheme({
       red: '#CC3936',
       orange: '#F6AD55',
       maxColor: '#e35f5f',
-      bannerBg: '#EDF3FF',
+      bannerBg: '#0F62FF',
       tryNow: '#0F62FF',
       bannerText: '#201C41',
     },

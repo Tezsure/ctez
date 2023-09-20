@@ -86,33 +86,42 @@ form {
   display: none;
 }
 .banner {
-  height: 48px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 18px;
   letter-spacing: 0em;
 }
 .trynow {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 30px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  margin-left: 12px;
-  margin-right: 4px;
+      background: white;
+    padding: 8px 33px;
+    border-radius: 8px;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -.01em;
+    text-align: left;
+    margin-left: 40px;
+    margin-right: 4px;
+  
+}
+.trynow:hover{
+  box-shadow: 2px 8px 10px #010e18;
 }
 .newBadge {
+  display: none;
   background: #0f62ff;
   mix-blend-mode: normal;
   border: 0.734783px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  height: 17px;
-  width: 38px;
-  font-size: 12px;
+  height: 24px;
+  width: 46px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 22px;
   letter-spacing: 0px;
@@ -123,6 +132,7 @@ form {
   color: #ffffff !important;
 }
 .banner-text {
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
