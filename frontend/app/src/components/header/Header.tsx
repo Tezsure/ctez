@@ -109,7 +109,7 @@ const Header: React.FC<IHeaderProps> = ({ handleToggled, toggled }) => {
                 : 'Plenty V3 is live!'}{' '}
               <a
                 style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-                href="https://app.plenty.network/"
+                href="https://app.plenty.network/pools/v3"
                 target="_blank"
                 rel="noreferrer"
               >
